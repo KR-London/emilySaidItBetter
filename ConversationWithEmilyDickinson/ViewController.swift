@@ -12,16 +12,20 @@ import NaturalLanguage
 import CoreML
 import CreateML
 
+
+
 class ViewController: UIViewController, UITextFieldDelegate {
     
     var textInputField = UITextField()
     var label = UILabel()
     var button = UIButton()
-    
+  
     var allTheLines = [ (String, [Double]) ]()
     var firstLinesWithPoemWeights = [ (String, [Double]) ]()
     var findThePoem = [String: Verse]()
     var firstLines = [String]()
+    
+    var customEmbedding : NLEmbedding?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,8 +33,15 @@ class ViewController: UIViewController, UITextFieldDelegate {
         setup()
         layout()
         
-        var unpackedModel = [String : [Double]]()
-        let model = Verse2()
+      //  var unpackedModel = [String : [Double]]()
+       // let model = copiedVerse()
+       let modelURL = Bundle.main.url(forResource: "Verse2", withExtension: "mlmodelc")
+       // let modelURL = URL(string: "/Users/kate/Desktop/ConversationWithEmilyDickinson/ConversationWithEmilyDickinson/Verse2.mlmodel")
+       // let model = UR
+        customEmbedding = try! NLEmbedding.init(contentsOf: modelURL!)
+        //NLEmbedding.sentenceEmbedding(for: .english)
+        //try! NLEmbedding.init(contentsOf: modelURL!)
+        
         
         // this is where I get very lost. I have included in the bundle models that I pretrained on the full works of emily Dickinson, as per the WWDC demo to get better performance by have custom sentence embeddings.
         // However I am lost as to how to use these custom embeddings in my project
@@ -38,24 +49,31 @@ class ViewController: UIViewController, UITextFieldDelegate {
         // this is also not working for me though, because the code snippet to do this weirdly only works on my laptop
         for i in 0 ...  firstLines.count - 1 {
             
-            do{
-                let dataFromModel =  try model.prediction(text: firstLines[i]).vector
-                //print(dataFromModel)
-                var vector = [Double]()
-                
-                for i in 0 ... 511{
-                    vector.append(contentsOf: [dataFromModel[i].doubleValue])
-                }
-                
-                firstLinesWithPoemWeights.append((firstLines[i], vector))
-                
-            } catch {
-                print(error.localizedDescription)
+           // let vector = customEmbedding?.vector(for: firstLines[i])
+//            if i > 320{
+//               // print("Whoah")
+//            }
+            if let goodVector = customEmbedding?.vector(for: firstLines[i])
+            {
+                firstLinesWithPoemWeights.append((firstLines[i], goodVector))
             }
+//            do{
+//                let dataFromModel =  try model.prediction(text: firstLines[i]).vector
+//               //print(dataFromModel)
+//                var vector = [Double]()
+//
+//                for i in 0 ... 511{
+//                    vector.append(contentsOf: [dataFromModel[i].doubleValue])
+//                }
+//
+//                firstLinesWithPoemWeights.append((firstLines[i], vector))
+//
+//            } catch {
+//                print(error.localizedDescription)
+//            }
         }
         
-        print(allTheLines)
-      //  let customEmbedding = try!
+        print(firstLinesWithPoemWeights.first!)
     }
     
     func layout(){
@@ -139,45 +157,27 @@ class ViewController: UIViewController, UITextFieldDelegate {
     func answerKeyCustom(for string: String) -> String? {
         guard let embedding = NLEmbedding.sentenceEmbedding(for: .english) else { return nil }
         
-        let similarity =  EMSimilarity()
+     //   let similarity =  EMSimilarity()
         
         guard let queryVector = embedding.vector(for: string) else { return nil }
+            //  guard let queryVector = customEmbedding!.vector(for: string) else { return nil }
         
-        var answerKey: String? = nil
-        var answerDistance = 2.0
-        
-        /// This is what was used to make the prototype work. But issues with this:
-        /// 1. I'm not sure that 'distance' is giving us the satate of the art sentence embeddings
-        /// 2. Crunching every line that Emily wrote very time the user makes a query is wildly inefficient. It's essential that we pre-do the work, eitehr fed in as an embedding model - or (at a pinch) done at run time in the background while the UI occupies the user with some filler chat.
-//        for line in allTheLines{
-//           //let distance = embedding.distance(between: string, and: line.0)
-//            let distance = similarity.compute(A: queryVector, B: line.1)
-//                //let distance = NLDistanceType.cosine
-//            if distance < answerDistance {
-//                answerDistance = distance
-//                answerKey = line.0
-//            }
+//        guard let emilyVector = self.customEmbedding?.vector(for: "This is my letter to the world,")  else {
+//            return nil
+//        }
+                //self.customEmbedding?.vector(for: "This is my letter to the world,") else {
+//            return nil
 //        }
         
         
+        guard let (nearestLineKey, distance ) = self.customEmbedding?.neighbors(for: queryVector, maximumCount: 1).first else
+        {
+            return nil
+            
+        }
+        let myAnswer = self.findThePoem[ nearestLineKey ]
         
-                    for line in firstLinesWithPoemWeights{
-                       //let distance = embedding.distance(between: string, and: line.0)
-                        let distance = similarity.compute(A: queryVector, B: line.1)
-                            //let distance = NLDistanceType.cosine
-                        if distance < answerDistance {
-                            answerDistance = distance
-                            answerKey = line.0
-                        }
-                    }
-        
-            //var setAllTheLines = Set(allTheLines)
-            // print(allTheLines)
-        
-            //for (key, vectors) in poemCollection.compactMap{$0.lines}
-            // guard let (nearestLineKey, _)
-        
-        return  answerKey
+        return myAnswer?.lines.first
         
     }
 

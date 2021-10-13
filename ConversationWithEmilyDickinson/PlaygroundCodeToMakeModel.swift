@@ -1,8 +1,8 @@
 //
 //  PlaygroundCodeToMakeModel.swift
-import Cocoa
-import NaturalLanguage
-import CreateML
+//import Cocoa
+//import NaturalLanguage
+//import CreateML
 
 //var str = "Hello, playground"
 //
