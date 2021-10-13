@@ -20,6 +20,7 @@
 		44C3D7272711F164000C1218 /* ConversationWithEmilyDickinsonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C3D7262711F164000C1218 /* ConversationWithEmilyDickinsonTests.swift */; };
 		44C3D7312711F164000C1218 /* ConversationWithEmilyDickinsonUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C3D7302711F164000C1218 /* ConversationWithEmilyDickinsonUITests.swift */; };
 		44C3D7332711F164000C1218 /* ConversationWithEmilyDickinsonUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C3D7322711F164000C1218 /* ConversationWithEmilyDickinsonUITestsLaunchTests.swift */; };
+		44C87CB62717201F008CB280 /* PlaygroundCodeToMakeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C87CB52717201F008CB280 /* PlaygroundCodeToMakeModel.swift */; };
 		44CC3A332713455A00A98F54 /* cosineSimilarity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CC3A322713455A00A98F54 /* cosineSimilarity.swift */; };
 		44CC3A35271347B000A98F54 /* Verse2.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 44CC3A34271347B000A98F54 /* Verse2.mlmodel */; };
 /* End PBXBuildFile section */
@@ -59,6 +60,7 @@
 		44C3D72C2711F164000C1218 /* ConversationWithEmilyDickinsonUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ConversationWithEmilyDickinsonUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		44C3D7302711F164000C1218 /* ConversationWithEmilyDickinsonUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationWithEmilyDickinsonUITests.swift; sourceTree = "<group>"; };
 		44C3D7322711F164000C1218 /* ConversationWithEmilyDickinsonUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationWithEmilyDickinsonUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		44C87CB52717201F008CB280 /* PlaygroundCodeToMakeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaygroundCodeToMakeModel.swift; sourceTree = "<group>"; };
 		44CC3A322713455A00A98F54 /* cosineSimilarity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cosineSimilarity.swift; sourceTree = "<group>"; };
 		44CC3A34271347B000A98F54 /* Verse2.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Verse2.mlmodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -117,6 +119,7 @@
 				44CC3A34271347B000A98F54 /* Verse2.mlmodel */,
 				44CC3A322713455A00A98F54 /* cosineSimilarity.swift */,
 				44C0AEA92712C6980020DA9A /* Verse.swift */,
+				44C87CB52717201F008CB280 /* PlaygroundCodeToMakeModel.swift */,
 				44C3D7122711F162000C1218 /* Main.storyboard */,
 				44C3D7182711F164000C1218 /* Assets.xcassets */,
 				44C0AEAF271305890020DA9A /* copiedVerse.mlmodel */,
@@ -279,6 +282,7 @@
 			files = (
 				44C3D7172711F162000C1218 /* ConversationWithEmilyDickinson.xcdatamodeld in Sources */,
 				44C0AEAA2712C6980020DA9A /* Verse.swift in Sources */,
+				44C87CB62717201F008CB280 /* PlaygroundCodeToMakeModel.swift in Sources */,
 				44CC3A332713455A00A98F54 /* cosineSimilarity.swift in Sources */,
 				44C0AEB0271305890020DA9A /* copiedVerse.mlmodel in Sources */,
 				44C3D7112711F162000C1218 /* ViewController.swift in Sources */,
