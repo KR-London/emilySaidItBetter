@@ -11,10 +11,20 @@ import CoreData
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
+    var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        let initialViewController = storyboard.instantiateViewController(withIdentifier: "hello" )
+        self.window?.rootViewController = initialViewController
+        
+            //   let nextViewController = storyboard.instantiateViewController(withIdentifier: "newDataInputViewController" )
+            //self.window?.rootViewController!.push(nextViewController, animated: true, completion: nil)
+        self.window?.makeKeyAndVisible()
+        
         return true
     }
 
