@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		44998B9C271EC1C700A92AB5 /* EmilyVerse.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 44998B9B271EC1C700A92AB5 /* EmilyVerse.mlmodel */; };
 		44C0AEAA2712C6980020DA9A /* Verse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C0AEA92712C6980020DA9A /* Verse.swift */; };
 		44C0AEAC2712C7780020DA9A /* Emily.tsv in Resources */ = {isa = PBXBuildFile; fileRef = 44C0AEAB2712C7780020DA9A /* Emily.tsv */; };
 		44C0AEB0271305890020DA9A /* copiedVerse.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 44C0AEAF271305890020DA9A /* copiedVerse.mlmodel */; };
@@ -22,7 +23,6 @@
 		44C3D7332711F164000C1218 /* ConversationWithEmilyDickinsonUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C3D7322711F164000C1218 /* ConversationWithEmilyDickinsonUITestsLaunchTests.swift */; };
 		44C87CB62717201F008CB280 /* PlaygroundCodeToMakeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C87CB52717201F008CB280 /* PlaygroundCodeToMakeModel.swift */; };
 		44CC3A332713455A00A98F54 /* cosineSimilarity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CC3A322713455A00A98F54 /* cosineSimilarity.swift */; };
-		44CC3A35271347B000A98F54 /* Verse2.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 44CC3A34271347B000A98F54 /* Verse2.mlmodel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		44998B9B271EC1C700A92AB5 /* EmilyVerse.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = EmilyVerse.mlmodel; sourceTree = "<group>"; };
 		44C0AEA92712C6980020DA9A /* Verse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Verse.swift; sourceTree = "<group>"; };
 		44C0AEAB2712C7780020DA9A /* Emily.tsv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Emily.tsv; sourceTree = "<group>"; };
 		44C0AEAF271305890020DA9A /* copiedVerse.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = copiedVerse.mlmodel; sourceTree = "<group>"; };
@@ -62,7 +63,6 @@
 		44C3D7322711F164000C1218 /* ConversationWithEmilyDickinsonUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationWithEmilyDickinsonUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		44C87CB52717201F008CB280 /* PlaygroundCodeToMakeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaygroundCodeToMakeModel.swift; sourceTree = "<group>"; };
 		44CC3A322713455A00A98F54 /* cosineSimilarity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cosineSimilarity.swift; sourceTree = "<group>"; };
-		44CC3A34271347B000A98F54 /* Verse2.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Verse2.mlmodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,7 +116,7 @@
 				44C3D70C2711F162000C1218 /* AppDelegate.swift */,
 				44C3D70E2711F162000C1218 /* SceneDelegate.swift */,
 				44C3D7102711F162000C1218 /* ViewController.swift */,
-				44CC3A34271347B000A98F54 /* Verse2.mlmodel */,
+				44998B9B271EC1C700A92AB5 /* EmilyVerse.mlmodel */,
 				44CC3A322713455A00A98F54 /* cosineSimilarity.swift */,
 				44C0AEA92712C6980020DA9A /* Verse.swift */,
 				44C87CB52717201F008CB280 /* PlaygroundCodeToMakeModel.swift */,
@@ -281,12 +281,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				44C3D7172711F162000C1218 /* ConversationWithEmilyDickinson.xcdatamodeld in Sources */,
+				44998B9C271EC1C700A92AB5 /* EmilyVerse.mlmodel in Sources */,
 				44C0AEAA2712C6980020DA9A /* Verse.swift in Sources */,
 				44C87CB62717201F008CB280 /* PlaygroundCodeToMakeModel.swift in Sources */,
 				44CC3A332713455A00A98F54 /* cosineSimilarity.swift in Sources */,
 				44C0AEB0271305890020DA9A /* copiedVerse.mlmodel in Sources */,
 				44C3D7112711F162000C1218 /* ViewController.swift in Sources */,
-				44CC3A35271347B000A98F54 /* Verse2.mlmodel in Sources */,
 				44C3D70D2711F162000C1218 /* AppDelegate.swift in Sources */,
 				44C3D70F2711F162000C1218 /* SceneDelegate.swift in Sources */,
 			);
@@ -453,6 +453,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";

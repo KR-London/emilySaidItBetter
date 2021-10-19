@@ -25,38 +25,49 @@ class ViewController: UIViewController, UITextFieldDelegate {
     var findThePoem = [String: Verse]()
     var firstLines = [String]()
     
-    var customEmbedding : NLEmbedding?
+   // var customEmbedding : NLEmbedding?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        makeANewModel()
+        
         setup()
         layout()
+        
+        let sentenceEmbedding = NLEmbedding.sentenceEmbedding(for: .english)?.vector(for: "Hello")
+        
+        print(sentenceEmbedding!)
         
       //  var unpackedModel = [String : [Double]]()
        // let model = copiedVerse()
        let modelURL = Bundle.main.url(forResource: "Verse2", withExtension: "mlmodelc")
        // let modelURL = URL(string: "/Users/kate/Desktop/ConversationWithEmilyDickinson/ConversationWithEmilyDickinson/Verse2.mlmodel")
        // let model = UR
-        customEmbedding = try! NLEmbedding.init(contentsOf: modelURL!)
+       // customEmbedding = try! NLEmbedding.init(contentsOf: modelURL!)
         //NLEmbedding.sentenceEmbedding(for: .english)
         //try! NLEmbedding.init(contentsOf: modelURL!)
+        
+        //let modelURL = Bundle.main.url(forResource: "Verse2", withExtension: "mlmodelc")
+       // let customEmbedding = try! NLEmbedding.init(contentsOf: modelURL!)
         
         
         // this is where I get very lost. I have included in the bundle models that I pretrained on the full works of emily Dickinson, as per the WWDC demo to get better performance by have custom sentence embeddings.
         // However I am lost as to how to use these custom embeddings in my project
         // My best plan was to manually unpack the model back into a dictionary, and they use that to make a custom embedding.
         // this is also not working for me though, because the code snippet to do this weirdly only works on my laptop
-        for i in 0 ...  firstLines.count - 1 {
+     //   for i in 0 ...  firstLines.count - 1 {
             
            // let vector = customEmbedding?.vector(for: firstLines[i])
 //            if i > 320{
 //               // print("Whoah")
 //            }
-            if let goodVector = customEmbedding?.vector(for: firstLines[i])
-            {
-                firstLinesWithPoemWeights.append((firstLines[i], goodVector))
-            }
+            
+           // NLEmbedding.sentenceEmbedding(for: .english)!.vector(for: firstLines[i])
+//            if let goodVector = customEmbedding?.vector(for: firstLines[i])
+//            {
+//                firstLinesWithPoemWeights.append((firstLines[i], goodVector))
+//            }
 //            do{
 //                let dataFromModel =  try model.prediction(text: firstLines[i]).vector
 //               //print(dataFromModel)
@@ -71,10 +82,83 @@ class ViewController: UIViewController, UITextFieldDelegate {
 //            } catch {
 //                print(error.localizedDescription)
 //            }
+   //     }
+        
+      //  print(firstLinesWithPoemWeights.first!)
+    }
+    
+    func makeANewModel(){
+        var sentenceEmbeddingModel = [String : [Double]]()
+        let sentenceEmbedding = NLEmbedding.sentenceEmbedding(for: .english)
+        
+        var rawString = ""
+        
+        if let filepath = Bundle.main.url(forResource: "Emily", withExtension: "tsv")
+        {
+            do {
+                rawString = try String(contentsOf: filepath)
+            } catch{
+                print( error.localizedDescription)
+            }
+        }
+        else{
+            print("Your filepath failed")
         }
         
-        print(firstLinesWithPoemWeights.first!)
+            /// Break it into individual verses and tidy up some typographocal strangness
+            /// source: Project Gutenberg's Poems: Three Series, Complete, by Emily Dickinson
+            var unprocessedVerses = rawString.components(separatedBy: "\r\n\r\n")
+            for unprocessedVerse in unprocessedVerses {
+                var lines = unprocessedVerse.components(separatedBy: "\r\n")
+
+            if lines.count < 0
+            {
+                for i in 0 ... lines.count-1
+                {
+                    lines[i] = lines[i].replacingOccurrences(of: "\"", with: "")
+                    lines[i] = lines[i].replacingOccurrences(of: "T ", with: "It ")
+                    lines[i] = lines[i].trimmingCharacters(in: .whitespaces)
+                    print(lines[i])
+                  //  if let sentenceEmbedding = NLEmbedding.sentenceEmbedding(for: .english){
+                       // print("B")
+                        if let vector = sentenceEmbedding?.vector(for: lines[i]){
+                            sentenceEmbeddingModel[ lines[i] ] = vector
+                          //  print("C")
+                       // }
+                    }
+                }
+                
+            
+                
+                //let verse = Verse(lines: lines)
+               // poemCollection.append(verse)
+            }
+        }
+        
+        //let url = URL(fileURLWithPath: "/Desktop/MLMdata.dat")
+            // write to file
+       // NSKeyedArchiver.archiveRootObject(sentenceEmbeddingModel, toFile: "/Desktop/MLMdata.dat" )
+        
+        let myPath:String = userDesktop() + "/"
+      //  if let customPlistURL = URL(string: "~/Desktop/XcodeDump/text.plist") {
+                //writing
+            do {
+                try "Hello".write(to: URL(string: myPath)!, atomically: false, encoding: .utf8)
+            }
+            catch {
+                
+                print(error.localizedDescription)
+            }
+           // NSDictionary(dictionary: sentenceEmbeddingModel).write(to: customPlistURL, atomically: true)
+      //  }
     }
+    
+    public func userDesktop() -> String {
+        let paths = NSSearchPathForDirectoriesInDomains(.desktopDirectory, .userDomainMask, true)
+        let userDesktopDirectory = paths[0]
+        return userDesktopDirectory
+    }
+  
     
     func layout(){
         textInputField.translatesAutoresizingMaskIntoConstraints = false
@@ -158,7 +242,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
         guard let embedding = NLEmbedding.sentenceEmbedding(for: .english) else { return nil }
         
      //   let similarity =  EMSimilarity()
-        
+        let modelURL = Bundle.main.url(forResource: "Verse2", withExtension: "mlmodelc")
+        let customEmbedding = try! NLEmbedding.init(contentsOf: modelURL!)
         guard let queryVector = embedding.vector(for: string) else { return nil }
             //  guard let queryVector = customEmbedding!.vector(for: string) else { return nil }
         
@@ -170,13 +255,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
 //        }
         
         
-        guard let (nearestLineKey, distance ) = self.customEmbedding?.neighbors(for: queryVector, maximumCount: 1).first else
+        guard let (nearestLineKey, distance ) = customEmbedding.neighbors(for: queryVector, maximumCount: 1).first else
         {
             return nil
             
         }
         let myAnswer = self.findThePoem[ nearestLineKey ]
-        
         return myAnswer?.lines.first
         
     }
