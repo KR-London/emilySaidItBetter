@@ -18,7 +18,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     var textInputField = UITextField()
     var label = UILabel()
-    var button = UIButton()
+    var resetTest = UIButton()
+    var askAgain = UIButton()
   
     var allTheLines = [ (String, [Double]) ]()
     var firstLinesWithPoemWeights = [ (String, [Double]) ]()
@@ -33,8 +34,31 @@ class ViewController: UIViewController, UITextFieldDelegate {
         setup()
         layout()
     }
+    
+//    override func viewDidAppear(_ animated: Bool) {
+//        super.viewDidAppear(true)
+//
+//        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4)){
+//            let animator = UIViewPropertyAnimator(duration: 3, curve: .easeOut) {
+//                self.label.alpha = 1
+//            }
+//            animator.startAnimation()
+//        }
+//    }
+    
+    func animate(){
+        DispatchQueue.main.asyncAfter(deadline: .now() ){
+            let animator = UIViewPropertyAnimator(duration: 3, curve: .easeOut) {
+                self.label.alpha = 1
+            }
+            animator.startAnimation()
+        }
+    }
 
     func layout(){
+        
+        self.view.backgroundColor = .white
+        
         textInputField.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(textInputField)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -56,26 +80,74 @@ class ViewController: UIViewController, UITextFieldDelegate {
         label.isHidden = true
         label.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         
-        button.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(button)
-        button.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20).isActive = true
-        button.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
-        button.setTitle("🔄", for: .normal)
-        button.addTarget(self, action: #selector(restart), for: .touchUpInside)
-        button.heightAnchor.constraint(equalToConstant: 150).isActive = true
-        button.widthAnchor.constraint(equalToConstant: 150).isActive = true
-        button.isHidden = true
+        askAgain.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(askAgain)
+        askAgain.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40).isActive = true
+        askAgain.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
+        askAgain.setTitle("Ask again", for: .normal)
+        askAgain.addTarget(self, action: #selector(tryAgain), for: .touchUpInside)
+        askAgain.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        askAgain.widthAnchor.constraint(equalToConstant: 150).isActive = true
+        askAgain.backgroundColor = UIColor.lightGray
+        askAgain.isHidden = true
+        
+        resetTest.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(resetTest)
+        resetTest.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40).isActive = true
+        resetTest.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
+        resetTest.setTitle("Reset", for: .normal)
+        resetTest.addTarget(self, action: #selector(restart), for: .touchUpInside)
+        resetTest.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        resetTest.widthAnchor.constraint(equalToConstant: 150).isActive = true
+        resetTest.backgroundColor = UIColor.lightGray
+        resetTest.isHidden = true
+
     }
     
     @objc func restart(_ textField:UIButton ){
+//        label.isHidden = true
+//        textInputField.text = ""
+//        textInputField.placeholder = "What's on your mind?"
+//        textInputField.isHidden = false
+//        button.isHidden = true
+        
+      
+        UserDefaults.standard.set(true, forKey: "launchedBefore")
+        
+        let introVC = introViewController()
+        introVC.modalPresentationStyle = .fullScreen
+        
+        self.present(introVC, animated: true, completion: nil)
+
+    }
+    
+    @objc func tryAgain(_ textField:UIButton ){
         label.isHidden = true
         textInputField.text = ""
         textInputField.placeholder = "What's on your mind?"
         textInputField.isHidden = false
-        button.isHidden = true
+        resetTest.isHidden = true
+        askAgain.isHidden = true
     }
 
     @objc func userAnswer(_ textField:UITextField ){
+        
+        /// present chatty screen
+        ///
+        self.view.endEditing(true)
+        
+        let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
+        if launchedBefore == false {
+            let nextVC = chattyViewController()
+            nextVC.mainViewController = self
+           // nextVC.modalPresentationStyle = .fullScreen
+                //  nextVC.YourLabel.text = "Passed Text"
+                //  nextVC.YourLabel.text = YourArray[indexPath.row]
+            
+                // Push to next vizew
+                //  navigationController?.pushViewController(nextVC, animated: true)
+            self.present(nextVC, animated: true, completion: nil)
+        }
         
         var closestEmilyDickinsonLine = ""
             if let text = self.textInputField.text{
@@ -96,8 +168,14 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 poemText.append("\n")
             }
             
+            self.label.alpha = 0
             self.label.text = poemText
-            button.isHidden = false
+            resetTest.isHidden = false
+            askAgain.isHidden = false
+        
+        if launchedBefore {
+            animate()
+        }
     }
     
     func answerKeyCustom(for string: String) -> String? {

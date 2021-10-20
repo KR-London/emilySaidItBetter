@@ -1,4 +1,10 @@
 //
+//  chattyViewController.swift
+//  chattyViewController
+//
+//  Created by Kate Roberts on 19/10/2021.
+//
+//
 //  introViewController.swift
 //  introViewController
 //
@@ -7,27 +13,30 @@
 
 import UIKit
 
-class introViewController: UIViewController, UITextFieldDelegate {
+class chattyViewController: UIViewController, UITextFieldDelegate {
+    
+    var mainViewController: ViewController?
     
     lazy var hello: UILabel = {
         let contentView = UILabel()
-        contentView.text = "Hello"
+        contentView.text = "Oh..."
         contentView.adjustsFontSizeToFitWidth = true
         return contentView
     }()
     
     lazy var myNameIs: UILabel = {
         let contentView = UILabel()
-        contentView.text = "My name is Emily"
+        contentView.text = ".. I think I understand ... "
         return contentView
     }()
     
     
     lazy var whatIsYour: UILabel = {
         let contentView = UILabel()
-        contentView.text = "What is your name?"
+        contentView.text = "... can I show you a poem ...?"
         return contentView
     }()
+    
     
     lazy var textEntry: UITextField = {
         let contentView = UITextField()
@@ -39,7 +48,7 @@ class introViewController: UIViewController, UITextFieldDelegate {
         contentView.textAlignment = .center
         return contentView
     }()
-
+    
     
     lazy var goForwardButton: UIButton = {
         let button = UIButton()
@@ -53,15 +62,15 @@ class introViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setup()
         layout()
-        // Do any additional setup after loading the view.
+            // Do any additional setup after loading the view.
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-     
+        
         
         view.backgroundColor = UIColor(red: 224, green: 250, blue: 233, alpha: 1)
         
@@ -111,17 +120,17 @@ class introViewController: UIViewController, UITextFieldDelegate {
             ]
         )
         
-//        view.addSubview(happy)
-//        happy.translatesAutoresizingMaskIntoConstraints = false
-//        NSLayoutConstraint.activate(
-//            [
-//                happy.topAnchor.constraint(greaterThanOrEqualTo: margins.topAnchor),
-//                happy.trailingAnchor.constraint(equalTo: block1.trailingAnchor),
-//                happy.heightAnchor.constraint(equalToConstant: 150),
-//                happy.widthAnchor.constraint(equalToConstant: 150),
-//            ]
-//        )
-//
+            //        view.addSubview(happy)
+            //        happy.translatesAutoresizingMaskIntoConstraints = false
+            //        NSLayoutConstraint.activate(
+            //            [
+            //                happy.topAnchor.constraint(greaterThanOrEqualTo: margins.topAnchor),
+            //                happy.trailingAnchor.constraint(equalTo: block1.trailingAnchor),
+            //                happy.heightAnchor.constraint(equalToConstant: 150),
+            //                happy.widthAnchor.constraint(equalToConstant: 150),
+            //            ]
+            //        )
+            //
         view.addSubview(myNameIs)
         myNameIs.translatesAutoresizingMaskIntoConstraints = false
         myNameIs.alpha = 0
@@ -132,22 +141,6 @@ class introViewController: UIViewController, UITextFieldDelegate {
                 myNameIs.widthAnchor.constraint(equalTo: margins.widthAnchor),
             ]
         )
-        
-        view.addSubview( textEntry)
-        textEntry.translatesAutoresizingMaskIntoConstraints = false
-        textEntry.alpha = 0
-        NSLayoutConstraint.activate(
-            [
-                textEntry.centerXAnchor.constraint(equalTo: margins.centerXAnchor),
-                textEntry.heightAnchor.constraint(equalTo: margins.widthAnchor, multiplier: 163/545),
-                textEntry.widthAnchor.constraint(equalTo: margins.widthAnchor),
-                textEntry.centerYAnchor.constraint(equalTo: myNameIs.centerYAnchor)
-            ]
-        )
-        
-        textEntry.delegate = self
-        textEntry.addTarget(self, action: #selector(userName), for: UIControl.Event.editingDidEndOnExit)
-        
         
         view.addSubview(whatIsYour)
         whatIsYour.translatesAutoresizingMaskIntoConstraints = false
@@ -199,85 +192,71 @@ class introViewController: UIViewController, UITextFieldDelegate {
     
     @objc func goOn(sender: UIButton!) {
             // performSegue(withIdentifier: "o1-o2", sender: self)
-       // performSegue(withIdentifier: "toQuiz", sender: self)
+            // performSegue(withIdentifier: "toQuiz", sender: self)
+        
+        mainViewController?.animate()
+        self.dismiss(animated: true, completion: nil)
+        
         myNameIs.alpha = 0
         whatIsYour.alpha = 0
         goForwardButton.alpha = 0
+    
         
-        if hello.text == "Hello"
-        { hello.text = "What is your name?" }
-        else {
-            
-           // hello.text = "What is on your mind?"
-            
-            // initialise next VC
-            
-            let nextVC = ViewController()
-            nextVC.modalPresentationStyle = .fullScreen
-          //  nextVC.YourLabel.text = "Passed Text"
-          //  nextVC.YourLabel.text = YourArray[indexPath.row]
-            
-                // Push to next view
-          //  navigationController?.pushViewController(nextVC, animated: true)
-            self.present(nextVC, animated: true, completion: nil)
-            
-        }
-       
         textEntry.alpha = 1
         
     }
     
-    @objc func userName(_ textField:UITextField ){
-
-     //   if hello.text == "What is your name?"{
-            if let text = self.textEntry.text{
-            
-                hello.alpha = 0
-                myNameIs.alpha = 0
-                whatIsYour.alpha = 0
-                goForwardButton.alpha = 0
-                textEntry.alpha = 0
-            
-                hello.text = "Nice to meet you " + text
-                myNameIs.text = "You look a little thoughtful..."
-                whatIsYour.text = "Do you mind if ask what is on your mind ...?"
-            
-            
-            
-                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(0)){
-                    let animator = UIViewPropertyAnimator(duration: 3, curve: .easeOut) {
-                        self.hello.alpha = 1
-                    }
-                    animator.startAnimation()
-                }
-            
-                /// fade it in & out with RH picture
-                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)){
-                    let animator = UIViewPropertyAnimator(duration: 3, curve: .easeOut) {
-                        self.myNameIs.alpha = 1
-                    }
-                    animator.startAnimation()
-                }
-                
-                    /// fade it in & out with RH picture
-                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)){
-                    let animator = UIViewPropertyAnimator(duration: 3, curve: .easeOut) {
-                        self.whatIsYour.alpha = 1
-                    }
-                    animator.startAnimation()
-                }
-                
-                    /// fade it in & out with RH picture
-                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3)){
-                    let animator = UIViewPropertyAnimator(duration: 3, curve: .easeOut) {
-                        self.goForwardButton.alpha = 1
-                    }
-                    animator.startAnimation()
-                }
-            
-            }
-//        } else {
+//    @objc func userName(_ textField:UITextField ){
+//
+//            //   if hello.text == "What is your name?"{
+//        if let text = self.textEntry.text{
+//
+//            hello.alpha = 0
+//            myNameIs.alpha = 0
+//            whatIsYour.alpha = 0
+//            goForwardButton.alpha = 0
+//            textEntry.alpha = 0
+//
+//            hello.text = "Nice to meet you " + text
+//            myNameIs.text = "You look a little thoughtful..."
+//            whatIsYour.text = "Do you mind if ask what is on your mind ...?"
+//
+//
+//
+//            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(0)){
+//                let animator = UIViewPropertyAnimator(duration: 3, curve: .easeOut) {
+//                    self.hello.alpha = 1
+//                }
+//                animator.startAnimation()
+//            }
+//
+//                /// fade it in & out with RH picture
+//            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)){
+//                let animator = UIViewPropertyAnimator(duration: 3, curve: .easeOut) {
+//                    self.myNameIs.alpha = 1
+//                }
+//                animator.startAnimation()
+//            }
+//
+//                /// fade it in & out with RH picture
+//            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)){
+//                let animator = UIViewPropertyAnimator(duration: 3, curve: .easeOut) {
+//                    self.whatIsYour.alpha = 1
+//                }
+//                animator.startAnimation()
+//            }
+//
+//                /// fade it in & out with RH picture
+//            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3)){
+//                let animator = UIViewPropertyAnimator(duration: 3, curve: .easeOut) {
+//                    self.goForwardButton.alpha = 1
+//                }
+//                animator.startAnimation()
+//            }
 //
 //        }
-    }
+//            //        } else {
+//            //
+//            //        }
+//    }
 }
