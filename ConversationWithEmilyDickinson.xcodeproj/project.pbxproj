@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4475A48A272D27130092255B /* myViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4475A489272D27130092255B /* myViewController.swift */; };
+		4475A48C272D3E5C0092255B /* myTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4475A48B272D3E5C0092255B /* myTextField.swift */; };
 		44998B9C271EC1C700A92AB5 /* EmilyVerse.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 44998B9B271EC1C700A92AB5 /* EmilyVerse.mlmodel */; };
 		44998B9E271EC7B000A92AB5 /* introViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44998B9D271EC7B000A92AB5 /* introViewController.swift */; };
 		44C0AEAA2712C6980020DA9A /* Verse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C0AEA92712C6980020DA9A /* Verse.swift */; };
@@ -21,8 +23,6 @@
 		44C3D7272711F164000C1218 /* ConversationWithEmilyDickinsonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C3D7262711F164000C1218 /* ConversationWithEmilyDickinsonTests.swift */; };
 		44C3D7312711F164000C1218 /* ConversationWithEmilyDickinsonUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C3D7302711F164000C1218 /* ConversationWithEmilyDickinsonUITests.swift */; };
 		44C3D7332711F164000C1218 /* ConversationWithEmilyDickinsonUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C3D7322711F164000C1218 /* ConversationWithEmilyDickinsonUITestsLaunchTests.swift */; };
-		44C87CB62717201F008CB280 /* PlaygroundCodeToMakeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C87CB52717201F008CB280 /* PlaygroundCodeToMakeModel.swift */; };
-		44CC3A332713455A00A98F54 /* cosineSimilarity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CC3A322713455A00A98F54 /* cosineSimilarity.swift */; };
 		44E71818271ED92500E2B283 /* chattyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E71817271ED92500E2B283 /* chattyViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -44,6 +44,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4475A489272D27130092255B /* myViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myViewController.swift; sourceTree = "<group>"; };
+		4475A48B272D3E5C0092255B /* myTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myTextField.swift; sourceTree = "<group>"; };
 		44998B9B271EC1C700A92AB5 /* EmilyVerse.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = EmilyVerse.mlmodel; sourceTree = "<group>"; };
 		44998B9D271EC7B000A92AB5 /* introViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = introViewController.swift; sourceTree = "<group>"; };
 		44C0AEA92712C6980020DA9A /* Verse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Verse.swift; sourceTree = "<group>"; };
@@ -62,8 +64,6 @@
 		44C3D72C2711F164000C1218 /* ConversationWithEmilyDickinsonUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ConversationWithEmilyDickinsonUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		44C3D7302711F164000C1218 /* ConversationWithEmilyDickinsonUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationWithEmilyDickinsonUITests.swift; sourceTree = "<group>"; };
 		44C3D7322711F164000C1218 /* ConversationWithEmilyDickinsonUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationWithEmilyDickinsonUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		44C87CB52717201F008CB280 /* PlaygroundCodeToMakeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaygroundCodeToMakeModel.swift; sourceTree = "<group>"; };
-		44CC3A322713455A00A98F54 /* cosineSimilarity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cosineSimilarity.swift; sourceTree = "<group>"; };
 		44E71817271ED92500E2B283 /* chattyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = chattyViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -92,6 +92,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4475A48D272D3E750092255B /* custom elements  */ = {
+			isa = PBXGroup;
+			children = (
+				4475A48B272D3E5C0092255B /* myTextField.swift */,
+				4475A489272D27130092255B /* myViewController.swift */,
+			);
+			path = "custom elements ";
+			sourceTree = "<group>";
+		};
+		4475A48E272D3E8C0092255B /* launch files  */ = {
+			isa = PBXGroup;
+			children = (
+				44C3D70E2711F162000C1218 /* SceneDelegate.swift */,
+				44C3D70C2711F162000C1218 /* AppDelegate.swift */,
+			);
+			path = "launch files ";
+			sourceTree = "<group>";
+		};
+		4475A48F272D3EA40092255B /* Model  */ = {
+			isa = PBXGroup;
+			children = (
+				44C0AEA92712C6980020DA9A /* Verse.swift */,
+			);
+			path = "Model ";
+			sourceTree = "<group>";
+		};
 		44C3D7002711F162000C1218 = {
 			isa = PBXGroup;
 			children = (
@@ -115,14 +141,12 @@
 		44C3D70B2711F162000C1218 /* ConversationWithEmilyDickinson */ = {
 			isa = PBXGroup;
 			children = (
-				44C3D70C2711F162000C1218 /* AppDelegate.swift */,
-				44C3D70E2711F162000C1218 /* SceneDelegate.swift */,
+				4475A48E272D3E8C0092255B /* launch files  */,
 				44C3D7102711F162000C1218 /* ViewController.swift */,
 				44998B9B271EC1C700A92AB5 /* EmilyVerse.mlmodel */,
-				44CC3A322713455A00A98F54 /* cosineSimilarity.swift */,
-				44C0AEA92712C6980020DA9A /* Verse.swift */,
-				44C87CB52717201F008CB280 /* PlaygroundCodeToMakeModel.swift */,
+				4475A48F272D3EA40092255B /* Model  */,
 				44998B9D271EC7B000A92AB5 /* introViewController.swift */,
+				4475A48D272D3E750092255B /* custom elements  */,
 				44E71817271ED92500E2B283 /* chattyViewController.swift */,
 				44C3D7182711F164000C1218 /* Assets.xcassets */,
 				44C0AEAF271305890020DA9A /* copiedVerse.mlmodel */,
@@ -287,11 +311,11 @@
 				44998B9C271EC1C700A92AB5 /* EmilyVerse.mlmodel in Sources */,
 				44C0AEAA2712C6980020DA9A /* Verse.swift in Sources */,
 				44E71818271ED92500E2B283 /* chattyViewController.swift in Sources */,
-				44C87CB62717201F008CB280 /* PlaygroundCodeToMakeModel.swift in Sources */,
-				44CC3A332713455A00A98F54 /* cosineSimilarity.swift in Sources */,
 				44C0AEB0271305890020DA9A /* copiedVerse.mlmodel in Sources */,
 				44C3D7112711F162000C1218 /* ViewController.swift in Sources */,
 				44C3D70D2711F162000C1218 /* AppDelegate.swift in Sources */,
+				4475A48C272D3E5C0092255B /* myTextField.swift in Sources */,
+				4475A48A272D27130092255B /* myViewController.swift in Sources */,
 				44C3D70F2711F162000C1218 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

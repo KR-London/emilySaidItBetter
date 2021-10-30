@@ -13,7 +13,7 @@
 
 import UIKit
 
-class chattyViewController: UIViewController, UITextFieldDelegate {
+class chattyViewController: myViewController, UITextFieldDelegate {
     
     var mainViewController: ViewController?
     

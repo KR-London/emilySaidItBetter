@@ -23,7 +23,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // TODO:  Handle dark mode
         window.overrideUserInterfaceStyle = .light
         
-        let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
+       // let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
+        let launchedBefore = false
         
         if launchedBefore{
         

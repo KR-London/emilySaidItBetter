@@ -7,18 +7,20 @@
 
 import UIKit
 
-class introViewController: UIViewController, UITextFieldDelegate {
+class introViewController: myViewController, UITextFieldDelegate {
     
     lazy var hello: UILabel = {
         let contentView = UILabel()
-        contentView.text = "Hello"
+        contentView.text = "Hello!"
         contentView.adjustsFontSizeToFitWidth = true
+        contentView.font = UIFont.systemFont(ofSize: 32, weight: .thin)
         return contentView
     }()
     
     lazy var myNameIs: UILabel = {
         let contentView = UILabel()
         contentView.text = "My name is Emily"
+        contentView.font = UIFont.boldSystemFont(ofSize: 32.0)
         return contentView
     }()
     
@@ -26,17 +28,14 @@ class introViewController: UIViewController, UITextFieldDelegate {
     lazy var whatIsYour: UILabel = {
         let contentView = UILabel()
         contentView.text = "What is your name?"
+        contentView.font = UIFont.systemFont(ofSize: 32, weight: .thin)
         return contentView
     }()
     
-    lazy var textEntry: UITextField = {
-        let contentView = UITextField()
+    lazy var textEntry: myTextField = {
+        let contentView = myTextField()
         contentView.placeholder = "Write your name here"
-        contentView.layer.borderColor = CGColor.init(gray: 12, alpha: 1)
-        contentView.borderStyle = UITextField.BorderStyle.line
-        contentView.layer.cornerRadius = 50
-        contentView.backgroundColor = UIColor.lightGray.withAlphaComponent(0.2)
-        contentView.textAlignment = .center
+
         return contentView
     }()
 
@@ -88,60 +87,83 @@ class introViewController: UIViewController, UITextFieldDelegate {
             animator.startAnimation()
         }
         
-            /// fade it in & out with RH picture
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3)){
             let animator = UIViewPropertyAnimator(duration: 3, curve: .easeOut) {
-                self.goForwardButton.alpha = 1
+                self.textEntry.alpha = 1
             }
             animator.startAnimation()
         }
+        
+            /// fade it in & out with RH picture
+//        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3)){
+//            let animator = UIViewPropertyAnimator(duration: 3, curve: .easeOut) {
+//                self.goForwardButton.alpha = 1
+//            }
+//            animator.startAnimation()
+//        }
     }
     
     func layout(){
         let margins = view.layoutMarginsGuide
         
-        view.addSubview(hello)
+        let stackView = UIStackView()
+        
+        stackView.addArrangedSubview(hello)
+        stackView.addArrangedSubview(myNameIs)
+        stackView.addArrangedSubview(whatIsYour)
+        
+        stackView.axis  = NSLayoutConstraint.Axis.vertical
+        stackView.distribution  = UIStackView.Distribution.fillEqually
+        stackView.alignment = UIStackView.Alignment.leading
+        
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(stackView)
+        
+        NSLayoutConstraint.activate(
+             [
+                stackView.heightAnchor.constraint(equalTo: margins.heightAnchor, multiplier: 0.25),
+                stackView.widthAnchor.constraint(equalTo: margins.widthAnchor, constant: -40),
+                stackView.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: 20),
+                //stackView.centerYAnchor.constraint(lessThanOrEqualTo: margins.centerYAnchor, constant: -100)
+             ]
+       )
+        
+    
+        
+        
+        //view.addSubview(hello)
         hello.translatesAutoresizingMaskIntoConstraints = false
         hello.alpha = 0
-        NSLayoutConstraint.activate(
-            [
-                hello.widthAnchor.constraint(equalTo: margins.widthAnchor),
-                hello.centerXAnchor.constraint(equalTo: margins.centerXAnchor),
-                hello.heightAnchor.constraint(equalTo: margins.widthAnchor, multiplier: 78/545)
-            ]
-        )
-        
-//        view.addSubview(happy)
-//        happy.translatesAutoresizingMaskIntoConstraints = false
 //        NSLayoutConstraint.activate(
 //            [
-//                happy.topAnchor.constraint(greaterThanOrEqualTo: margins.topAnchor),
-//                happy.trailingAnchor.constraint(equalTo: block1.trailingAnchor),
-//                happy.heightAnchor.constraint(equalToConstant: 150),
-//                happy.widthAnchor.constraint(equalToConstant: 150),
+//                hello.widthAnchor.constraint(equalTo: margins.widthAnchor),
+//                hello.centerXAnchor.constraint(equalTo: margins.centerXAnchor),
+//                hello.heightAnchor.constraint(equalTo: margins.widthAnchor, multiplier: 78/545)
+//            ]
+//        )
+
+      //  view.addSubview(myNameIs)
+        myNameIs.translatesAutoresizingMaskIntoConstraints = false
+        myNameIs.alpha = 0
+//        NSLayoutConstraint.activate(
+//            [
+//                myNameIs.centerXAnchor.constraint(equalTo: margins.centerXAnchor),
+//                myNameIs.heightAnchor.constraint(equalTo: margins.widthAnchor, multiplier: 163/545),
+//                myNameIs.widthAnchor.constraint(equalTo: margins.widthAnchor),
 //            ]
 //        )
 //
-        view.addSubview(myNameIs)
-        myNameIs.translatesAutoresizingMaskIntoConstraints = false
-        myNameIs.alpha = 0
-        NSLayoutConstraint.activate(
-            [
-                myNameIs.centerXAnchor.constraint(equalTo: margins.centerXAnchor),
-                myNameIs.heightAnchor.constraint(equalTo: margins.widthAnchor, multiplier: 163/545),
-                myNameIs.widthAnchor.constraint(equalTo: margins.widthAnchor),
-            ]
-        )
-        
         view.addSubview( textEntry)
         textEntry.translatesAutoresizingMaskIntoConstraints = false
         textEntry.alpha = 0
         NSLayoutConstraint.activate(
             [
                 textEntry.centerXAnchor.constraint(equalTo: margins.centerXAnchor),
-                textEntry.heightAnchor.constraint(equalTo: margins.widthAnchor, multiplier: 163/545),
-                textEntry.widthAnchor.constraint(equalTo: margins.widthAnchor),
-                textEntry.centerYAnchor.constraint(equalTo: myNameIs.centerYAnchor)
+                textEntry.heightAnchor.constraint(equalToConstant: 64),
+              //  textEntry.heightAnchor.constraint(equalTo: margins.widthAnchor, multiplier: 163/545),
+                textEntry.widthAnchor.constraint(equalTo: margins.widthAnchor, constant: -40),
+                textEntry.centerYAnchor.constraint(equalTo:  margins.centerYAnchor),
+                stackView.bottomAnchor.constraint(lessThanOrEqualTo: textEntry.topAnchor, constant: -40)
             ]
         )
         
@@ -149,16 +171,16 @@ class introViewController: UIViewController, UITextFieldDelegate {
         textEntry.addTarget(self, action: #selector(userName), for: UIControl.Event.editingDidEndOnExit)
         
         
-        view.addSubview(whatIsYour)
+       // view.addSubview(whatIsYour)
         whatIsYour.translatesAutoresizingMaskIntoConstraints = false
         whatIsYour.alpha = 0
-        NSLayoutConstraint.activate(
-            [
-                whatIsYour.centerXAnchor.constraint(equalTo: margins.centerXAnchor),
-                whatIsYour.heightAnchor.constraint(equalTo: margins.widthAnchor, multiplier: 375/545),
-                whatIsYour.widthAnchor.constraint(equalTo: margins.widthAnchor)
-            ]
-        )
+//        NSLayoutConstraint.activate(
+//            [
+//                whatIsYour.centerXAnchor.constraint(equalTo: margins.centerXAnchor),
+//                whatIsYour.heightAnchor.constraint(equalTo: margins.widthAnchor, multiplier: 375/545),
+//                whatIsYour.widthAnchor.constraint(equalTo: margins.widthAnchor)
+//            ]
+//        )
         
         self.view.addSubview(goForwardButton)
         goForwardButton.translatesAutoresizingMaskIntoConstraints = false
@@ -179,15 +201,19 @@ class introViewController: UIViewController, UITextFieldDelegate {
         let spacer = ( self.view.frame.height - contentSize )/5
         print("spacer 1 = ", spacer)
         
-        NSLayoutConstraint.activate(
-            [
-                hello.topAnchor.constraint(lessThanOrEqualTo: margins.topAnchor, constant:spacer),
-                myNameIs.topAnchor.constraint(lessThanOrEqualTo: hello.bottomAnchor, constant:spacer),
-                whatIsYour.topAnchor.constraint(lessThanOrEqualTo: myNameIs.bottomAnchor, constant:spacer),
-                goForwardButton.topAnchor.constraint(lessThanOrEqualTo: whatIsYour.bottomAnchor, constant:spacer),
-                goForwardButton.bottomAnchor.constraint(equalTo: margins.bottomAnchor, constant: -40)
-            ]
-        )
+//        NSLayoutConstraint.activate(
+//            [
+//                hello.topAnchor.constraint(greaterThanOrEqualTo: margins.topAnchor, constant:20),
+//                myNameIs.topAnchor.constraint(equalTo: hello.bottomAnchor, constant:10),
+//                whatIsYour.topAnchor.constraint(equalTo:  myNameIs.bottomAnchor, constant:10),
+//                whatIsYour.bottomAnchor.constraint(lessThanOrEqualTo: textEntry.topAnchor, constant:10),
+//                goForwardButton.topAnchor.constraint(lessThanOrEqualTo: whatIsYour.bottomAnchor, constant:spacer),
+//                goForwardButton.bottomAnchor.constraint(equalTo: margins.bottomAnchor, constant: -40)
+//            ]
+//        )
+        
+  
+       
     }
     
     func setup(){
@@ -208,13 +234,12 @@ class introViewController: UIViewController, UITextFieldDelegate {
         { hello.text = "What is your name?" }
         else {
             
-           // hello.text = "What is on your mind?"
-            
-            // initialise next VC
+            // hello.text = "What is on your mind?
+           // initialise next VC
             
             let nextVC = ViewController()
             nextVC.modalPresentationStyle = .fullScreen
-          //  nextVC.YourLabel.text = "Passed Text"
+        //  nextVC.YourLabel.text = "Passed Text"
           //  nextVC.YourLabel.text = YourArray[indexPath.row]
             
                 // Push to next view

@@ -10,11 +10,11 @@ var poemCollection = [Verse]()
 import UIKit
 import NaturalLanguage
 import CoreML
-import CreateML
+//import CreateML
 
 
 
-class ViewController: UIViewController, UITextFieldDelegate {
+class ViewController: myViewController, UITextFieldDelegate {
     
     var textInputField = UITextField()
     var label = UILabel()
