@@ -38,6 +38,8 @@ class myTextField: UITextField {
         //contentView.backgroundColor = UIColor.lightGray.withAlphaComponent(0.2)
         self.backgroundColor = UIColor.white.withAlphaComponent(0.5)
         self.textAlignment = .left
+        self.font = UIFont.systemFont(ofSize: 24, weight: .thin)
+        
     }
     
 }
