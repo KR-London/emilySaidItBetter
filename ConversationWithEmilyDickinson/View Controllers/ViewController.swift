@@ -27,6 +27,8 @@ class ViewController: myViewController, UITextFieldDelegate{
     var reset = UIButton()
     var showKeyLine = UIButton()
     var signature = UIImageView()
+    
+    var settings = UIButton()
   
     var allTheLines = [ (String, [Double]) ]()
     var firstLinesWithPoemWeights = [ (String, [Double]) ]()
@@ -37,7 +39,7 @@ class ViewController: myViewController, UITextFieldDelegate{
     var matchedPoem = String()
     
     var seenAnimationsThisTime = false
-    
+    let generatorLight = UIImpactFeedbackGenerator(style: .light)
 
     let stackView = UIStackView()
     let buttonStack  = UIStackView()
@@ -48,6 +50,7 @@ class ViewController: myViewController, UITextFieldDelegate{
         contentView.numberOfLines = 0
         contentView.lineBreakMode = .byWordWrapping
         contentView.font = UIFont.systemFont(ofSize: 32, weight: .thin)
+        contentView.adjustsFontSizeToFitWidth = true
         return contentView
     }()
     
@@ -58,6 +61,8 @@ class ViewController: myViewController, UITextFieldDelegate{
         contentView.numberOfLines = 0
         contentView.lineBreakMode = .byWordWrapping
         contentView.font = UIFont.boldSystemFont(ofSize: 32.0)
+        contentView.adjustsFontSizeToFitWidth = true
+        contentView.minimumScaleFactor = 0.6
         return contentView
     }()
     
@@ -68,6 +73,8 @@ class ViewController: myViewController, UITextFieldDelegate{
         contentView.numberOfLines = 0
         contentView.lineBreakMode = .byWordWrapping
         contentView.font = UIFont.systemFont(ofSize: 32, weight: .thin)
+        contentView.adjustsFontSizeToFitWidth = true
+        contentView.minimumScaleFactor = 0.6
         return contentView
     }()
     
@@ -97,8 +104,10 @@ class ViewController: myViewController, UITextFieldDelegate{
         name = (UserDefaults.standard.object(forKey: "Name") as? String ) ?? "buddy"
         
         if launchedBefore{
+            //preThinLabel.isHidden = true
             boldLabel.text = "Hello again, \(name!)"
-            thinLabel.text = "Did anything splendid or dreadful preoccupy you today?"
+            thinLabel.text = "Did anything preoccupy you today?"
+            
         }  else
         {
             UserDefaults.standard.set(true, forKey: "launchedBefore")
@@ -108,23 +117,26 @@ class ViewController: myViewController, UITextFieldDelegate{
     }
     
     func animate(){
-        DispatchQueue.main.asyncAfter(deadline: .now() ){
+        DispatchQueue.main.asyncAfter(deadline: .now() ){ [self] in
             let animator = UIViewPropertyAnimator(duration: 3, curve: .easeOut) {
                 self.boldLabel.alpha = 1
             }
             animator.startAnimation()
+            self.generatorLight.impactOccurred()
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1) ){
             let animator = UIViewPropertyAnimator(duration: 3, curve: .easeOut) {
                 self.thinLabel.alpha = 1
             }
             animator.startAnimation()
+            self.generatorLight.impactOccurred()
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2) ){
             let animator = UIViewPropertyAnimator(duration: 3, curve: .easeOut) {
                 self.textInputField.alpha = 1
             }
             animator.startAnimation()
+            self.generatorLight.impactOccurred()
         }
     }
 
@@ -140,7 +152,7 @@ class ViewController: myViewController, UITextFieldDelegate{
         view.addSubview(label)
         textInputField.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: 20).isActive = true
         textInputField.trailingAnchor.constraint(equalTo: margins.trailingAnchor, constant: -20).isActive = true
-        textInputField.placeholder = "Share your thoughts ...?"
+        textInputField.placeholder = "Share your thoughts ..."
         textInputField.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         textInputField.heightAnchor.constraint(equalToConstant: 64).isActive = true
         
@@ -214,6 +226,20 @@ class ViewController: myViewController, UITextFieldDelegate{
         back.layer.cornerRadius = 30
         back.alpha = 0
     
+        view.addSubview(settings)
+        settings.isHidden = true
+        settings.translatesAutoresizingMaskIntoConstraints = false
+        settings.topAnchor.constraint(equalTo: margins.topAnchor).isActive = true
+        settings.trailingAnchor.constraint(equalTo: margins.trailingAnchor).isActive = true
+        settings.heightAnchor.constraint(equalToConstant: 96).isActive = true
+        settings.widthAnchor.constraint(equalToConstant: 96).isActive = true
+        settings.tintColor = .darkGray
+        //settings.titleLabel?.font = UIFont
+        settings.alpha = 0
+        settings.setImage( UIImage(systemName: "seal"), for: .normal )
+        settings.clipsToBounds = true
+        settings.addTarget(self, action: #selector(settingsButtonPressed), for: .touchUpInside)
+        
 
     }
     
@@ -253,8 +279,16 @@ class ViewController: myViewController, UITextFieldDelegate{
     }
     
 
+    @objc func settingsButtonPressed(){
+        
+        let vc = settingsViewController()
+            //  ac.isModalInPresentation = true
+        present(vc, animated: true)
+    }
 
     @objc func shareButtonPressed(){
+        let generator = UISelectionFeedbackGenerator()
+        generator.selectionChanged()
         
         let ac = UIActivityViewController(activityItems: [matchedPoem], applicationActivities: nil)
       //  ac.isModalInPresentation = true
@@ -271,7 +305,8 @@ class ViewController: myViewController, UITextFieldDelegate{
 //        textInputField.placeholder = "What's on your mind?"
 //        textInputField.isHidden = false
 //        button.isHidden = true
-        
+        let generator = UISelectionFeedbackGenerator()
+        generator.selectionChanged()
       
         UserDefaults.standard.set(false, forKey: "launchedBefore")
         
@@ -283,11 +318,18 @@ class ViewController: myViewController, UITextFieldDelegate{
     }
     
     @objc func tryAgain(_ textField:UIButton ){
+        let generator = UISelectionFeedbackGenerator()
+        generator.selectionChanged()
+        
         label.isHidden = true
+        buttonStack.isHidden = true
+        settings.isHidden = true
+        settings.alpha = 0
+        //buttonStack.alpha = 0
         textInputField.text = ""
         textInputField.placeholder = "Grab a fleeting feeling"
         textInputField.isHidden = false
-        buttonStack.isHidden = true
+       
        // share.isHidden = true
         signature.isHidden = true
     }
@@ -296,7 +338,9 @@ class ViewController: myViewController, UITextFieldDelegate{
         
 
         self.view.endEditing(true)
-                
+//        let generatorSuccess = UINotificationFeedbackGenerator()
+//        generatorSuccess.notificationOccurred(.success)
+        generatorLight.impactOccurred()
         answerAnimate()
 
         var closestEmilyDickinsonLine = ""
@@ -311,7 +355,7 @@ class ViewController: myViewController, UITextFieldDelegate{
             
             let poem = findThePoem[closestEmilyDickinsonLine]
             
-            //var poemText = ""
+            matchedPoem = ""
             
             for lines in poem!.lines{
                 matchedPoem.append(contentsOf: lines)
@@ -339,6 +383,7 @@ class ViewController: myViewController, UITextFieldDelegate{
         
         buttonStack.isHidden = false
         signature.isHidden = false
+        settings.isHidden = false
         
         if seenAnimationsThisTime{
             DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1) ){
@@ -369,23 +414,26 @@ class ViewController: myViewController, UITextFieldDelegate{
             //thinLabel.text = "I wish I could help .. "
             thinLabel.isHidden = true
             
-            DispatchQueue.main.asyncAfter(deadline: .now() ){
+            DispatchQueue.main.asyncAfter(deadline: .now() ){ [self] in
                 let animator = UIViewPropertyAnimator(duration: 3, curve: .easeOut) {
                     self.preThinLabel.alpha = 1
                 }
                 animator.startAnimation()
+                self.generatorLight.impactOccurred()
             }
             DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1) ){
                 let animator = UIViewPropertyAnimator(duration: 3, curve: .easeOut) {
                     self.thinLabel.alpha = 1
                 }
                 animator.startAnimation()
+                self.generatorLight.impactOccurred()
             }
             DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2) ){
                 let animator = UIViewPropertyAnimator(duration: 3, curve: .easeOut) {
                     self.boldLabel.alpha = 1
                 }
                 animator.startAnimation()
+                self.generatorLight.impactOccurred()
             }
             DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(5) ){
                 self.stackView.isHidden = true
@@ -394,6 +442,8 @@ class ViewController: myViewController, UITextFieldDelegate{
                     self.label.alpha = 1
                 }
                 animator.startAnimation()
+                let generatorHeavy = UIImpactFeedbackGenerator(style: .heavy)
+                generatorHeavy.impactOccurred()
             }
             
             DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(8) ){
@@ -403,19 +453,23 @@ class ViewController: myViewController, UITextFieldDelegate{
                     self.signature.alpha = 1
                 }
                 animator.startAnimation()
+                self.generatorLight.impactOccurred()
             }
             
             seenAnimationsThisTime = true
         }
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(15) ){
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(10) ){
             self.buttonStack.isHidden = false
+            self.settings.isHidden = false
             
             let animator = UIViewPropertyAnimator(duration: 5, curve: .easeOut) {
                 self.back.alpha = 1
                 self.share.alpha = 1
+                self.settings.alpha = 1
             }
             animator.startAnimation()
+            self.generatorLight.impactOccurred()
         }
     }
     

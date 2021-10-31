@@ -43,3 +43,72 @@ class myTextField: UITextField {
     }
     
 }
+
+class myThinLabel : UILabel {
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)!
+        format()
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        format()
+    }
+    
+    func format(){
+        numberOfLines = 0
+        lineBreakMode = .byWordWrapping
+        font = UIFont.systemFont(ofSize: 16, weight: .thin)
+        adjustsFontSizeToFitWidth = true
+        minimumScaleFactor = 0.6
+    }
+    
+}
+
+class myBoldLabel : UILabel {
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)!
+        format()
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        format()
+    }
+    
+    func format(){
+        numberOfLines = 0
+        lineBreakMode = .byWordWrapping
+        font = UIFont.systemFont(ofSize: 16, weight: .bold)
+        adjustsFontSizeToFitWidth = true
+        minimumScaleFactor = 0.6
+    }
+    
+}
+
+
+class myBlackButton: UIButton {
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)!
+        format()
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        format()
+    }
+    
+    func format(){
+        heightAnchor.constraint(equalToConstant: 56).isActive = true
+       widthAnchor.constraint(equalToConstant: 96).isActive = true
+       backgroundColor = UIColor.black
+       titleLabel?.textColor = UIColor.white
+       titleLabel?.font = UIFont.systemFont(ofSize: 18)
+       layer.cornerRadius = 30
+    }
+}
+
+
+
+
+
