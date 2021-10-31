@@ -8,6 +8,8 @@
 import UIKit
 
 class myViewController: UIViewController {
+
+    
     
     var background: UIImageView!
     
@@ -36,4 +38,20 @@ class myViewController: UIViewController {
         self.view.addSubview(background)
         
     }
+    
+//    func activityViewController(_ activityViewController: UIActivityViewController, itemForActivityType activityType: UIActivity.ActivityType?) -> Any? {
+//        if activityType == .postToTwitter {
+//            return "#EmilySaidItBetter - download from the App Store now and find your perfect personalised #EmilyDickinson #poem!"
+//        } else {
+//            return "#EmilySaidItBetter - download from the App Store now and find your perfect personalised #EmilyDickinson #poem!"
+//        }
+//    }
+//    
+//    func activityViewControllerPlaceholderItem(_ activityViewController: UIActivityViewController) -> Any {
+//        return  "#EmilySaidItBetter - download from the App Store now and find your perfect personalised #EmilyDickinson #poem!"
+//    }
+//    
+//    func activityViewController(_ activityViewController: UIActivityViewController, subjectForActivityType activityType: UIActivity.ActivityType?) -> String {
+//        return "Emily said it better"
+//    }
 }

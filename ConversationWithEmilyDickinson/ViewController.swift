@@ -16,7 +16,7 @@ import CoreML
 
 
 
-class ViewController: myViewController, UITextFieldDelegate {
+class ViewController: myViewController, UITextFieldDelegate{
     
     var name : String?
     
@@ -34,6 +34,7 @@ class ViewController: myViewController, UITextFieldDelegate {
     var firstLines = [String]()
     
     var matchedLine = String()
+    var matchedPoem = String()
     
     var seenAnimationsThisTime = false
     
@@ -177,7 +178,7 @@ class ViewController: myViewController, UITextFieldDelegate {
       //  share.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40).isActive = true
       //  askAgain.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
         share.setTitle("Share", for: .normal)
-        share.addTarget(self, action: #selector(tryAgain), for: .touchUpInside)
+        share.addTarget(self, action: #selector(shareButtonPressed), for: .touchUpInside)
         share.heightAnchor.constraint(equalToConstant: 56).isActive = true
         share.widthAnchor.constraint(equalToConstant: 96).isActive = true
         share.backgroundColor = UIColor.lightGray
@@ -242,6 +243,15 @@ class ViewController: myViewController, UITextFieldDelegate {
 
     }
     
+
+
+    @objc func shareButtonPressed(){
+        
+        let ac = UIActivityViewController(activityItems: [matchedPoem], applicationActivities: nil)
+      //  ac.isModalInPresentation = true
+        present(ac, animated: true)
+    }
+    
     @objc func showMatchedLine(){
         label.text = matchedLine
     }
@@ -292,14 +302,14 @@ class ViewController: myViewController, UITextFieldDelegate {
             
             let poem = findThePoem[closestEmilyDickinsonLine]
             
-            var poemText = ""
+            //var poemText = ""
             
             for lines in poem!.lines{
-                poemText.append(contentsOf: lines)
-                poemText.append("\n")
+                matchedPoem.append(contentsOf: lines)
+                matchedPoem.append("\n")
             }
         
-            self.label.text = poemText
+            self.label.text = matchedPoem
            // resetTest.isHidden = false
           //  askAgain.isHidden = false
         
@@ -415,8 +425,8 @@ class ViewController: myViewController, UITextFieldDelegate {
         
         matchedLine = nearestLineKey
         
-        let myAnswer = self.findThePoem[ nearestLineKey ]
-        return myAnswer?.lines.first
+        let matchedVerse = self.findThePoem[ nearestLineKey ]
+        return matchedVerse?.lines.first
         
     }
 
@@ -463,6 +473,24 @@ class ViewController: myViewController, UITextFieldDelegate {
                 findThePoem[line] = poem
             }
         }
+    }
+}
+
+extension ViewController : UIActivityItemSource  {
+    func activityViewController(_ activityViewController: UIActivityViewController, itemForActivityType activityType: UIActivity.ActivityType?) -> Any? {
+        if activityType == .postToTwitter {
+            return "#EmilySaidItBetter - download from the App Store now and find your perfect personalised #EmilyDickinson #poem!"
+        } else {
+            return "#EmilySaidItBetter - download from the App Store now and find your perfect personalised #EmilyDickinson #poem!"
+        }
+    }
+    
+    func activityViewControllerPlaceholderItem(_ activityViewController: UIActivityViewController) -> Any {
+        return  "#EmilySaidItBetter - download from the App Store now and find your perfect personalised #EmilyDickinson #poem!"
+    }
+    
+    func activityViewController(_ activityViewController: UIActivityViewController, subjectForActivityType activityType: UIActivity.ActivityType?) -> String {
+        return "Emily said it better"
     }
 }
 
