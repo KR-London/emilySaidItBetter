@@ -78,8 +78,8 @@
             filePath = "ConversationWithEmilyDickinson/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "481"
-            endingLineNumber = "481"
+            startingLineNumber = "490"
+            endingLineNumber = "490"
             landmarkName = "activityViewController(_:itemForActivityType:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -94,8 +94,8 @@
             filePath = "ConversationWithEmilyDickinson/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "480"
-            endingLineNumber = "480"
+            startingLineNumber = "489"
+            endingLineNumber = "489"
             landmarkName = "activityViewController(_:itemForActivityType:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -110,8 +110,8 @@
             filePath = "ConversationWithEmilyDickinson/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "250"
-            endingLineNumber = "250"
+            startingLineNumber = "259"
+            endingLineNumber = "259"
             landmarkName = "shareButtonPressed()"
             landmarkType = "7">
          </BreakpointContent>

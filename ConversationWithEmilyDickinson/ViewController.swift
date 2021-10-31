@@ -76,11 +76,8 @@ class ViewController: myViewController, UITextFieldDelegate{
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        name = (UserDefaults.standard.object(forKey: "Name") as? String ) ?? "buddy"
-        
-        print("Your name is \(name!)")
-        
+    
+        checkIfNewUser()
         setup()
         layout()
         formatLabels()
@@ -93,6 +90,21 @@ class ViewController: myViewController, UITextFieldDelegate{
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         animate()
+    }
+    
+    func checkIfNewUser(){
+        let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
+        name = (UserDefaults.standard.object(forKey: "Name") as? String ) ?? "buddy"
+        
+        if launchedBefore{
+            boldLabel.text = "Hello again, \(name!)"
+            thinLabel.text = "Did anything splendid or dreadful preoccupy you today?"
+        }  else
+        {
+            UserDefaults.standard.set(true, forKey: "launchedBefore")
+            boldLabel.text = "Nice to meet you, \(name!)"
+            thinLabel.text = "You look like you think about things deeply"
+        }
     }
     
     func animate(){
@@ -208,9 +220,6 @@ class ViewController: myViewController, UITextFieldDelegate{
     func formatLabels(){
         
         let margins = view.layoutMarginsGuide
-        
-        boldLabel.text = "Nice to meet you, \(name!)"
-        thinLabel.text = "You look like you think about things deeply"
         
         preThinLabel.isHidden = true
    

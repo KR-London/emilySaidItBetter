@@ -33,7 +33,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             self.window = window
         }  else
         {
-            UserDefaults.standard.set(true, forKey: "launchedBefore")
+            //UserDefaults.standard.set(true, forKey: "launchedBefore")
 
             window.rootViewController = introViewController() // Your initial view controller.
             window.makeKeyAndVisible()
