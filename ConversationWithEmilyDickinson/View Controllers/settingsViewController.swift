@@ -27,21 +27,22 @@ class settingsViewController: myViewController {
        moduleStack.addArrangedSubview(module3)
        moduleStack.addArrangedSubview(module4)
        
-       view.addSubview(moduleStack)
+//       view.addSubview(moduleStack)
+       view.addSubview(module1)
        
 //       NSLayoutConstraint.activate([
-//        moduleStack.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: -40),
-//        moduleStack.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
-//        moduleStack.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: -200),
-//        moduleStack.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -40)
+//        module1.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: -40),
+//        module1.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
+//        module1.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: -200),
+//        module1.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -40)
 //       ])
-       
-       NSLayoutConstraint.activate([
-            moduleStack.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: -40),
-            moduleStack.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
-            moduleStack.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: -200),
-            moduleStack.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -40)
-        ])
+//       moduleStack.translatesAutoresizingMaskIntoConstraints = false
+//       NSLayoutConstraint.activate([
+//            moduleStack.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: -40),
+//            moduleStack.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
+//            moduleStack.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: -200),
+//            moduleStack.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -40)
+//        ])
      }
    }
 
