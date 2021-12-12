@@ -23,7 +23,7 @@ struct SettingsView: View {
             Spacer()
             VStack{
                  NavigationLink(destination: UnlockedPoemsView()){
-                     SettingsButton(title: "Unlocked Poems", subtitle: "18 of 1,800")
+                     SettingsButton(title: "Unlocked Poems", subtitle: "__ of 1,800")
                 }
                 Divider()
                 
@@ -63,19 +63,21 @@ struct SettingsView: View {
 }
 
 struct Streak: View {
-    //var content: () -> Content
+    @State var name: String = (UserDefaults.standard.object(forKey: "Name") as? String ) ?? "You"
+    
+    let logins = UserDefaults.standard.integer(forKey: "launchedBefore")
     
     var body: some View {
         Color.settingsGray.overlay(
             VStack(alignment: .leading) {
                 Spacer()
-            Text("Andrew and Emily have been talking for —").font(.system(size: 14)).foregroundColor(Color("gray1"))
+            Text("\(name) and Emily have been talking for —").font(.system(size: 14)).foregroundColor(Color("gray1"))
                 Spacer()
-                Text("20 Days").font(.system(size: 32)).foregroundColor(Color("gray1"))
+                Text("\(logins) Days").font(.system(size: 32)).foregroundColor(Color("gray1"))
                 Spacer()
                 Spacer()
-            Text("Current streak - 3 days").font(.system(size: 14)).foregroundColor(Color("gray1"))
-                Text("Longest streak - 5 days").font(.system(size: 14)).foregroundColor(Color("gray2"))
+            Text("Current streak - _ days").font(.system(size: 14)).foregroundColor(Color("gray1"))
+                Text("Longest streak - _ days").font(.system(size: 14)).foregroundColor(Color("gray2"))
                 Spacer()
         })
     }

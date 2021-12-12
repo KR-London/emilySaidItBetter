@@ -197,7 +197,7 @@ class introViewController: myViewController, UITextFieldDelegate {
         if let text = self.textEntry.text{
             generator.impactOccurred()
             
-            UserDefaults.standard.set(text, forKey: "Name")
+            UserDefaults.standard.set(text.capitalized, forKey: "Name")
             
             let nextVC = ViewController()
             
@@ -217,11 +217,13 @@ class introViewController: myViewController, UITextFieldDelegate {
 //                generatorSuccess.notificationOccurred(.success)
                 generator.impactOccurred()
                 
-                UserDefaults.standard.set(text, forKey: "Name")
+               // var name = text.capitalized
+                
+                UserDefaults.standard.set(text.capitalized, forKey: "Name")
                 
                 let nextVC = ViewController()
                 
-                nextVC.name = textField.text
+                nextVC.name = text.capitalized
                 nextButton.alpha = 0 
                 nextVC.modalPresentationStyle = .fullScreen
                 self.present(nextVC, animated: false, completion: nil)

@@ -107,7 +107,7 @@ class ViewController: myViewController, UITextFieldDelegate{
     
     func checkIfNewUser(){
         let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
-        name = (UserDefaults.standard.object(forKey: "Name") as? String ) ?? "buddy"
+        name = (UserDefaults.standard.object(forKey: "Name") as? String ) ?? "friend"
         
         if launchedBefore{
             //preThinLabel.isHidden = true
@@ -607,6 +607,8 @@ class ViewController: myViewController, UITextFieldDelegate{
                 poemCollection.append(verse)
             }
          }
+        
+        print("Number of verses = \(poemCollection.count)")
         
         for poem in poemCollection{
             for line in poem.lines{
