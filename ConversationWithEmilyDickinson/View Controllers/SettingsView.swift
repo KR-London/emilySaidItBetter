@@ -99,7 +99,6 @@ struct SettingsButton: View {
         }
             Spacer()
             Image(systemName: imageName ?? "chevron.right").foregroundColor(Color("gray1")).font(.system(size: 14))
-           // Image(uiImage: #imageLiteral(resourceName: "Pasted Graphic.png"))
         }.foregroundColor(.black)
     }
 }
@@ -116,10 +115,6 @@ struct SwiftUIView_Previews: PreviewProvider {
         SettingsView()
             .previewDevice(PreviewDevice(rawValue: "iPhone 8"))
             .previewDisplayName("iPhone 8")
-        
-//        SettingsView()
-//            .previewDevice(PreviewDevice(rawValue: "iPhone 12 Pro Max"))
-//            .previewDisplayName("iPhone 12 Pro Max")
     }
 }
 

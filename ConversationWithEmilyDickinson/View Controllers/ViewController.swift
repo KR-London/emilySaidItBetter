@@ -61,7 +61,7 @@ class ViewController: myViewController, UITextFieldDelegate{
         //contentView.text = "My name is Emily"
         contentView.numberOfLines = 0
         contentView.lineBreakMode = .byWordWrapping
-        contentView.font = UIFont.boldSystemFont(ofSize: 32.0)
+        contentView.font = UIFont.titleOne
         contentView.adjustsFontSizeToFitWidth = true
         contentView.minimumScaleFactor = 0.6
         return contentView
@@ -73,13 +73,18 @@ class ViewController: myViewController, UITextFieldDelegate{
       //  contentView.text = "What is your name?"
         contentView.numberOfLines = 0
         contentView.lineBreakMode = .byWordWrapping
-        contentView.font = UIFont.systemFont(ofSize: 32, weight: .thin)
+        contentView.font = UIFont.titleTwo
         contentView.adjustsFontSizeToFitWidth = true
         contentView.minimumScaleFactor = 0.6
         return contentView
     }()
     
-    
+    lazy var nextButton: myBlackButton = {
+        let contentView = myBlackButton()
+        contentView.setTitle("Next", for: .normal)
+        contentView.alpha = 0
+        return contentView
+    }()
     
 
     override func viewDidLoad() {
@@ -235,14 +240,21 @@ class ViewController: myViewController, UITextFieldDelegate{
         settings.heightAnchor.constraint(equalToConstant: 16).isActive = true
         settings.widthAnchor.constraint(equalToConstant: 24).isActive = true
         settings.tintColor = UIColor(named: "gray1")
-       // let configuration = UIImage.SymbolConfiguration(weight: .light)
         settings.alpha = 1
-       // settings.setBackgroundImage( UIImage(systemName: "person.crop.artframe", withConfiguration: configuration), for: .normal )
         settings.setBackgroundImage(UIImage(named: "menu"), for: .normal)
         settings.clipsToBounds = true
         settings.addTarget(self, action: #selector(settingsButtonPressed), for: .touchUpInside)
 
 
+        view.addSubview(nextButton)
+        nextButton.addTarget(self, action: #selector(userAnswerButtonPressed), for: .touchUpInside)
+        nextButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate(
+            [
+                nextButton.topAnchor.constraint(equalTo: textInputField.bottomAnchor, constant: 24),
+                nextButton.centerXAnchor.constraint(equalTo:  margins.centerXAnchor)
+            ]
+        )
         
 
     }
@@ -296,8 +308,6 @@ class ViewController: myViewController, UITextFieldDelegate{
         generator.selectionChanged()
         
         let ac = UIActivityViewController(activityItems: [matchedPoem], applicationActivities: nil)
-    
-            //.fullScreen
         present(ac, animated: true)
     }
     
@@ -331,7 +341,6 @@ class ViewController: myViewController, UITextFieldDelegate{
         buttonStack.isHidden = true
         settings.isHidden = false
         settings.alpha = 1
-        //buttonStack.alpha = 0
         textInputField.text = ""
         textInputField.placeholder = "Grab a fleeting feeling"
         textInputField.isHidden = false
@@ -339,10 +348,48 @@ class ViewController: myViewController, UITextFieldDelegate{
        // share.isHidden = true
         signature.isHidden = true
     }
-
-    @objc func userAnswer(_ textField:UITextField ){
+    
+    @objc func userAnswerButtonPressed(){
+        nextButton.isHidden = true
         
+        self.view.endEditing(true)
+            //        let generatorSuccess = UINotificationFeedbackGenerator()
+            //        generatorSuccess.notificationOccurred(.success)
+        generatorLight.impactOccurred()
+        answerAnimate()
+        
+        var closestEmilyDickinsonLine = ""
+        if let text = self.textInputField.text{
+            if let closestline = self.answerKeyCustom(for: text){
+                closestEmilyDickinsonLine = closestline
+            }
+        }
+        
+        textInputField.isHidden = true
+        self.label.isHidden = false
+      
+        let poem = findThePoem[closestEmilyDickinsonLine]
+        
+        matchedPoem = ""
+        
+        for lines in poem!.lines{
+            matchedPoem.append(contentsOf: lines)
+            matchedPoem.append("\n")
+        }
+        
+        self.label.text = matchedPoem
+        nextButton.alpha = 0
+            // resetTest.isHidden = false
+            //  askAgain.isHidden = false
+        
+            //        if launchedBefore {
+            //   animate()
+            //      }
+    }
 
+    @objc func userAnswer(_ textField: myTextField ){
+        nextButton.isHidden = true
+        nextButton.alpha = 0 
         self.view.endEditing(true)
 //        let generatorSuccess = UINotificationFeedbackGenerator()
 //        generatorSuccess.notificationOccurred(.success)
@@ -360,7 +407,7 @@ class ViewController: myViewController, UITextFieldDelegate{
             self.label.isHidden = false
             
             let poem = findThePoem[closestEmilyDickinsonLine]
-            
+       
             matchedPoem = ""
             
             for lines in poem!.lines{
@@ -375,9 +422,22 @@ class ViewController: myViewController, UITextFieldDelegate{
 //        if launchedBefore {
          //   animate()
   //      }
+         nextButton.alpha = 0
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        nextButton.isHidden = false
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)){
+            let animator = UIViewPropertyAnimator(duration: 5, curve: .easeOut) {
+                self.nextButton.alpha = 1
+                
+            }
+            animator.startAnimation()
+        }
     }
     
     func answerAnimate(){
+        nextButton.alpha = 0
         preThinLabel.alpha = 0
         label.alpha = 0
         boldLabel.alpha = 0

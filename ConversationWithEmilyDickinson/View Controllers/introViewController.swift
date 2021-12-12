@@ -40,8 +40,16 @@ class introViewController: myViewController, UITextFieldDelegate {
     
     lazy var textEntry: myTextField = {
         let contentView = myTextField()
-        contentView.placeholder = "Write your name here"
-
+        contentView.placeholder = "Write your name here ..."
+       // contentView.alpha = 1
+       // contentView.backgroundColor = .white
+        return contentView
+    }()
+    
+    lazy var nextButton: myBlackButton = {
+        let contentView = myBlackButton()
+        contentView.setTitle("Next", for: .normal)
+        contentView.alpha = 0
         return contentView
     }()
     
@@ -126,6 +134,8 @@ class introViewController: myViewController, UITextFieldDelegate {
         hello.alpha = 0
         myNameIs.translatesAutoresizingMaskIntoConstraints = false
         myNameIs.alpha = 0
+        whatIsYour.translatesAutoresizingMaskIntoConstraints = false
+        whatIsYour.alpha = 0
 
         view.addSubview( textEntry)
         textEntry.translatesAutoresizingMaskIntoConstraints = false
@@ -141,6 +151,16 @@ class introViewController: myViewController, UITextFieldDelegate {
             ]
         )
         
+        view.addSubview(nextButton)
+        nextButton.addTarget(self, action: #selector(nextScreen), for: .touchUpInside)
+        nextButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate(
+            [
+                nextButton.topAnchor.constraint(equalTo: textEntry.bottomAnchor, constant: 24),
+                nextButton.centerXAnchor.constraint(equalTo:  margins.centerXAnchor)
+            ]
+        )
+        
         textEntry.delegate = self
         textEntry.addTarget(self, action: #selector(userName), for: UIControl.Event.editingDidEndOnExit)
         
@@ -149,11 +169,10 @@ class introViewController: myViewController, UITextFieldDelegate {
         whatIsYour.translatesAutoresizingMaskIntoConstraints = false
         whatIsYour.alpha = 0
         
-        var ratio: CGFloat = (375 + 163 + 78 + (self.view.frame.width/6) )
-        ratio = ratio/545
-        let contentSize = self.view.frame.width*ratio
-        let spacer = ( self.view.frame.height - contentSize )/5
-        print("spacer 1 = ", spacer)
+      //  var ratio: CGFloat = (375 + 163 + 78 + (self.view.frame.width/6) )
+      //  ratio = ratio/545
+       // let contentSize = self.view.frame.width*ratio
+       // let spacer = ( self.view.frame.height - contentSize )/5
        
     }
     
@@ -163,7 +182,25 @@ class introViewController: myViewController, UITextFieldDelegate {
         whatIsYour.alpha = 0
     }
     
-    @objc func userName(_ textField:UITextField ){
+    @objc func nextScreen(){
+        print("tapped")
+        if let text = self.textEntry.text{
+            generator.impactOccurred()
+            
+            UserDefaults.standard.set(text, forKey: "Name")
+            
+            let nextVC = ViewController()
+            
+            nextVC.name = text
+            
+            nextVC.modalPresentationStyle = .fullScreen
+            nextButton.alpha = 0
+            self.present(nextVC, animated: false, completion: nil)
+            
+        }
+    }
+    
+    @objc func userName(_ textField: myTextField ){
 
             if let text = self.textEntry.text{
 //                let generatorSuccess = UINotificationFeedbackGenerator()
@@ -175,44 +212,22 @@ class introViewController: myViewController, UITextFieldDelegate {
                 let nextVC = ViewController()
                 
                 nextVC.name = textField.text
-                
+                nextButton.alpha = 0 
                 nextVC.modalPresentationStyle = .fullScreen
                 self.present(nextVC, animated: false, completion: nil)
             
-//                hello.alpha = 0
-//                myNameIs.alpha = 0
-//                whatIsYour.alpha = 0
-//                textEntry.alpha = 0
-//
-//                hello.text = ""
-//                myNameIs.text =  "Nice to meet you " + text
-//                whatIsYour.text = "You look like you think about things deeply"
-//
-//
-//
-//                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(0)){
-//                    let animator = UIViewPropertyAnimator(duration: 3, curve: .easeOut) {
-//                        self.hello.alpha = 1
-//                    }
-//                    animator.startAnimation()
-//                }
-//
-//                /// fade it in & out with RH picture
-//                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)){
-//                    let animator = UIViewPropertyAnimator(duration: 3, curve: .easeOut) {
-//                        self.myNameIs.alpha = 1
-//                    }
-//                    animator.startAnimation()
-//                }
-//
-//                    /// fade it in & out with RH picture
-//                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)){
-//                    let animator = UIViewPropertyAnimator(duration: 3, curve: .easeOut) {
-//                        self.whatIsYour.alpha = 1
-//                    }
-//                    animator.startAnimation()
-//                }
-            
             }
     }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)){
+            let animator = UIViewPropertyAnimator(duration: 5, curve: .easeOut) {
+                self.nextButton.alpha = 1
+                
+            }
+            animator.startAnimation()
+        }
+    }
+    
 }

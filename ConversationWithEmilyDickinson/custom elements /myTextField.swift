@@ -34,12 +34,15 @@ class myTextField: UITextField {
     func format(){
         //  contentView.layer.borderColor = CGColor.init(gray: 12, alpha: 1)
         //contentView.borderStyle = UITextField.BorderStyle.line
-        self.layer.cornerRadius = 10
+      //  self.layer.cornerRadius = 10
         //contentView.backgroundColor = UIColor.lightGray.withAlphaComponent(0.2)
-        self.backgroundColor = UIColor.white.withAlphaComponent(0.5)
+        self.backgroundColor = UIColor.white
         self.textAlignment = .left
-        self.font = UIFont.systemFont(ofSize: 24, weight: .thin)
-        
+        self.layer.borderWidth = 0
+        self.font = UIFont.systemFont(ofSize: 18)
+        self.layer.shadowOpacity = 0.1
+        self.layer.shadowRadius = 1.0
+        self.layer.shadowColor = UIColor.systemGray.cgColor
     }
     
 }
@@ -99,7 +102,7 @@ class myBlackButton: UIButton {
     }
     
     func format(){
-        heightAnchor.constraint(equalToConstant: 56).isActive = true
+      heightAnchor.constraint(equalToConstant: 56).isActive = true
        widthAnchor.constraint(equalToConstant: 96).isActive = true
        backgroundColor = UIColor.black
        titleLabel?.textColor = UIColor.white

@@ -41,8 +41,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
      
         
-        let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
-       // let launchedBefore = false
+        //let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
+        let launchedBefore = false
 
         if launchedBefore{
 

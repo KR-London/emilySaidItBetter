@@ -16,6 +16,7 @@
 		44B091D12766577100B2132A /* CreditsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B091D02766577100B2132A /* CreditsView.swift */; };
 		44B091D3276657A200B2132A /* UnlockedPoemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B091D2276657A200B2132A /* UnlockedPoemsView.swift */; };
 		44B091D5276657D000B2132A /* PrivacyPolicyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B091D4276657D000B2132A /* PrivacyPolicyView.swift */; };
+		44B091D72766845E00B2132A /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B091D62766845E00B2132A /* Fonts.swift */; };
 		44C0AEAA2712C6980020DA9A /* Verse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C0AEA92712C6980020DA9A /* Verse.swift */; };
 		44C0AEAC2712C7780020DA9A /* Emily.tsv in Resources */ = {isa = PBXBuildFile; fileRef = 44C0AEAB2712C7780020DA9A /* Emily.tsv */; };
 		44C0AEB0271305890020DA9A /* copiedVerse.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 44C0AEAF271305890020DA9A /* copiedVerse.mlmodel */; };
@@ -58,6 +59,7 @@
 		44B091D02766577100B2132A /* CreditsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsView.swift; sourceTree = "<group>"; };
 		44B091D2276657A200B2132A /* UnlockedPoemsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnlockedPoemsView.swift; sourceTree = "<group>"; };
 		44B091D4276657D000B2132A /* PrivacyPolicyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyView.swift; sourceTree = "<group>"; };
+		44B091D62766845E00B2132A /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		44C0AEA92712C6980020DA9A /* Verse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Verse.swift; sourceTree = "<group>"; };
 		44C0AEAB2712C7780020DA9A /* Emily.tsv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Emily.tsv; sourceTree = "<group>"; };
 		44C0AEAF271305890020DA9A /* copiedVerse.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = copiedVerse.mlmodel; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				4475A48B272D3E5C0092255B /* myTextField.swift */,
+				44B091D62766845E00B2132A /* Fonts.swift */,
 				4475A489272D27130092255B /* myViewController.swift */,
 				441718362742732300A61AF8 /* settingsButtonModule.swift */,
 			);
@@ -336,6 +339,7 @@
 				44C0AEAA2712C6980020DA9A /* Verse.swift in Sources */,
 				44E71818271ED92500E2B283 /* chattyViewController.swift in Sources */,
 				44C0AEB0271305890020DA9A /* copiedVerse.mlmodel in Sources */,
+				44B091D72766845E00B2132A /* Fonts.swift in Sources */,
 				44B091D3276657A200B2132A /* UnlockedPoemsView.swift in Sources */,
 				44C3D7112711F162000C1218 /* ViewController.swift in Sources */,
 				44C3D70D2711F162000C1218 /* AppDelegate.swift in Sources */,
@@ -516,7 +520,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_TEAM = 2E5MDC86ME;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ConversationWithEmilyDickinson/Info.plist;
@@ -546,7 +550,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_TEAM = 2E5MDC86ME;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ConversationWithEmilyDickinson/Info.plist;
