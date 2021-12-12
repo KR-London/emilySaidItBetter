@@ -6,39 +6,37 @@
 //
 
 import SwiftUI
+import Combine
 
-struct SwiftUIView: View {
+
+
+
+struct SettingsView: View {
     @Environment(\.presentationMode) var presentationMode
+    @Environment(\.openURL) var openURL
+
     var body: some View {
+        NavigationView{
         VStack(alignment: .leading)  {
-            Button(action: { presentationMode.wrappedValue.dismiss() }, label: {Image(systemName: "xmark").foregroundColor(Color("gray1"))}).frame(width: 24, height: 24, alignment: .leading).font(.system(size: 14))
-            Spacer().frame(height: 20)
+           // Spacer().frame(height: 20)
             Streak().frame(minHeight: 100, idealHeight: 150, maxHeight: 200)
             Spacer()
             VStack{
-                Button(action: {
-                    print("Action goes here")
-                }, label: {
-                    SettingsButton(title: "Unlocked Poems", subtitle: "18 of 1,800")
+                 NavigationLink(destination: UnlockedPoemsView()){
+                     SettingsButton(title: "Unlocked Poems", subtitle: "18 of 1,800")
                 }
-                )
                 Divider()
-                Button(action: {
-                    print("Action goes here")
-                }, label: {
+                
+                NavigationLink(destination: CreditsView()){
                     SettingsButton(title: "Credits", subtitle: "Emily Dickinson & Project Gutenberg")
                 }
-                )
-                Divider()
-                Button(action: {
-                    print("Action goes here")
-                }, label: {
+                Divider() // PrivacyPolicyView.
+                NavigationLink(destination: PrivacyPolicyView()){
                     SettingsButton(title: "Privacy Policy", subtitle: "How we handle your data")
                 }
-                )
                 Divider()
                 Button(action: {
-                    print("Action goes here")
+                    openURL(URL(string: "https://www.saltformysquid.com")!)
                 }, label: {
                     SettingsButton(title: "Developer Website", subtitle: "SaLTformySquid.com", imageName: "rectangle.portrait.and.arrow.right")
                 }
@@ -52,18 +50,18 @@ struct SwiftUIView: View {
                 Text("**A** **gift** **for** **Heidi**  \n who heard my words, \n and gave me so many new ones.").font(Font.system(size: 14).smallCaps()) .multilineTextAlignment(.center).foregroundColor(Color("gray1"))
                 Spacer()
             }
-        }.padding(20)
-     
+        }.padding(20).padding(.top, -60).navigationBarItems(leading:
+            Button(
+                action: { presentationMode.wrappedValue.dismiss() },
+                label: {
+                    Image(systemName: "xmark").foregroundColor(Color("gray1"))
+                }).frame(width: 24, height: 24, alignment: .leading).font(.system(size: 14)
+                                                                        )
+        ).navigationTitle("")
+        }
     }
 }
 
-//struct SwiftUIView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        SwiftUIView()
-//    }
-//}
-
-//struct Streak<Content: View>: View {
 struct Streak: View {
     //var content: () -> Content
     
@@ -107,18 +105,23 @@ struct SettingsButton: View {
 }
 
 
+
 extension Color {
     static let settingsGray = Color("settingsGray")
+    static let gray1 = Color("gray1")
+    static let gray2 = Color("gray2")
 }
 struct SwiftUIView_Previews: PreviewProvider {
     static var previews: some View {
-        SwiftUIView()
+        SettingsView()
             .previewDevice(PreviewDevice(rawValue: "iPhone 8"))
             .previewDisplayName("iPhone 8")
         
-        SwiftUIView()
-            .previewDevice(PreviewDevice(rawValue: "iPhone 12 Pro Max"))
-            .previewDisplayName("iPhone 12 Pro Max")
+//        SettingsView()
+//            .previewDevice(PreviewDevice(rawValue: "iPhone 12 Pro Max"))
+//            .previewDisplayName("iPhone 12 Pro Max")
     }
 }
+
+
 

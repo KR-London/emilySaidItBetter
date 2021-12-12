@@ -12,7 +12,10 @@
 		4475A48C272D3E5C0092255B /* myTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4475A48B272D3E5C0092255B /* myTextField.swift */; };
 		44998B9C271EC1C700A92AB5 /* EmilyVerse.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 44998B9B271EC1C700A92AB5 /* EmilyVerse.mlmodel */; };
 		44998B9E271EC7B000A92AB5 /* introViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44998B9D271EC7B000A92AB5 /* introViewController.swift */; };
-		44ACADD62760FC29002630F1 /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44ACADD52760FC29002630F1 /* SwiftUIView.swift */; };
+		44ACADD62760FC29002630F1 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44ACADD52760FC29002630F1 /* SettingsView.swift */; };
+		44B091D12766577100B2132A /* CreditsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B091D02766577100B2132A /* CreditsView.swift */; };
+		44B091D3276657A200B2132A /* UnlockedPoemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B091D2276657A200B2132A /* UnlockedPoemsView.swift */; };
+		44B091D5276657D000B2132A /* PrivacyPolicyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B091D4276657D000B2132A /* PrivacyPolicyView.swift */; };
 		44C0AEAA2712C6980020DA9A /* Verse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C0AEA92712C6980020DA9A /* Verse.swift */; };
 		44C0AEAC2712C7780020DA9A /* Emily.tsv in Resources */ = {isa = PBXBuildFile; fileRef = 44C0AEAB2712C7780020DA9A /* Emily.tsv */; };
 		44C0AEB0271305890020DA9A /* copiedVerse.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 44C0AEAF271305890020DA9A /* copiedVerse.mlmodel */; };
@@ -51,7 +54,10 @@
 		4475A48B272D3E5C0092255B /* myTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myTextField.swift; sourceTree = "<group>"; };
 		44998B9B271EC1C700A92AB5 /* EmilyVerse.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = EmilyVerse.mlmodel; sourceTree = "<group>"; };
 		44998B9D271EC7B000A92AB5 /* introViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = introViewController.swift; sourceTree = "<group>"; };
-		44ACADD52760FC29002630F1 /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
+		44ACADD52760FC29002630F1 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		44B091D02766577100B2132A /* CreditsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsView.swift; sourceTree = "<group>"; };
+		44B091D2276657A200B2132A /* UnlockedPoemsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnlockedPoemsView.swift; sourceTree = "<group>"; };
+		44B091D4276657D000B2132A /* PrivacyPolicyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyView.swift; sourceTree = "<group>"; };
 		44C0AEA92712C6980020DA9A /* Verse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Verse.swift; sourceTree = "<group>"; };
 		44C0AEAB2712C7780020DA9A /* Emily.tsv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Emily.tsv; sourceTree = "<group>"; };
 		44C0AEAF271305890020DA9A /* copiedVerse.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = copiedVerse.mlmodel; sourceTree = "<group>"; };
@@ -129,7 +135,10 @@
 				44998B9D271EC7B000A92AB5 /* introViewController.swift */,
 				44C3D7102711F162000C1218 /* ViewController.swift */,
 				44E71817271ED92500E2B283 /* chattyViewController.swift */,
-				44ACADD52760FC29002630F1 /* SwiftUIView.swift */,
+				44ACADD52760FC29002630F1 /* SettingsView.swift */,
+				44B091D2276657A200B2132A /* UnlockedPoemsView.swift */,
+				44B091D02766577100B2132A /* CreditsView.swift */,
+				44B091D4276657D000B2132A /* PrivacyPolicyView.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -321,14 +330,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				44C3D7172711F162000C1218 /* ConversationWithEmilyDickinson.xcdatamodeld in Sources */,
+				44B091D12766577100B2132A /* CreditsView.swift in Sources */,
 				44998B9E271EC7B000A92AB5 /* introViewController.swift in Sources */,
 				44998B9C271EC1C700A92AB5 /* EmilyVerse.mlmodel in Sources */,
 				44C0AEAA2712C6980020DA9A /* Verse.swift in Sources */,
 				44E71818271ED92500E2B283 /* chattyViewController.swift in Sources */,
 				44C0AEB0271305890020DA9A /* copiedVerse.mlmodel in Sources */,
+				44B091D3276657A200B2132A /* UnlockedPoemsView.swift in Sources */,
 				44C3D7112711F162000C1218 /* ViewController.swift in Sources */,
 				44C3D70D2711F162000C1218 /* AppDelegate.swift in Sources */,
-				44ACADD62760FC29002630F1 /* SwiftUIView.swift in Sources */,
+				44ACADD62760FC29002630F1 /* SettingsView.swift in Sources */,
+				44B091D5276657D000B2132A /* PrivacyPolicyView.swift in Sources */,
 				4475A48C272D3E5C0092255B /* myTextField.swift in Sources */,
 				4475A48A272D27130092255B /* myViewController.swift in Sources */,
 				441718372742732300A61AF8 /* settingsButtonModule.swift in Sources */,

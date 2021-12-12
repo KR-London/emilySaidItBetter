@@ -285,7 +285,7 @@ class ViewController: myViewController, UITextFieldDelegate{
 
     @objc func settingsButtonPressed(){
         
-        let vc = UIHostingController(rootView: SwiftUIView())
+        let vc = UIHostingController(rootView: SettingsView())
         
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true)
