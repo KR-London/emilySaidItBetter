@@ -23,27 +23,27 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // TODO:  Handle dark mode
         window.overrideUserInterfaceStyle = .light
         
-        window.rootViewController = settingsViewController() // Your initial view controller.
-        window.makeKeyAndVisible()
-        self.window = window
+   //     window.rootViewController = settingsViewController() // Your initial view controller.
+     //   window.makeKeyAndVisible()
+     //   self.window = window
         
-//        let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
-//       // let launchedBefore = false
-//
-//        if launchedBefore{
-//
-//            window.rootViewController = ViewController() // Your initial view controller.
-//            window.makeKeyAndVisible()
-//            self.window = window
-//        }  else
-//        {
-//            //UserDefaults.standard.set(true, forKey: "launchedBefore")
-//
-//            window.rootViewController = introViewController() // Your initial view controller.
-//            window.makeKeyAndVisible()
-//            self.window = window
-//
-//        }
+        let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
+       // let launchedBefore = false
+
+        if launchedBefore{
+
+            window.rootViewController = ViewController() // Your initial view controller.
+            window.makeKeyAndVisible()
+            self.window = window
+        }  else
+        {
+            //UserDefaults.standard.set(true, forKey: "launchedBefore")
+
+            window.rootViewController = introViewController() // Your initial view controller.
+            window.makeKeyAndVisible()
+            self.window = window
+
+        }
        
     }
 

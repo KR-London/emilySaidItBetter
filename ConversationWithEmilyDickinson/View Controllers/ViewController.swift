@@ -10,6 +10,7 @@ var poemCollection = [Verse]()
 import UIKit
 import NaturalLanguage
 import CoreML
+import SwiftUI
 //import CreateML
 
 
@@ -227,18 +228,21 @@ class ViewController: myViewController, UITextFieldDelegate{
         back.alpha = 0
     
         view.addSubview(settings)
-        settings.isHidden = true
+        settings.isHidden = false
         settings.translatesAutoresizingMaskIntoConstraints = false
-        settings.topAnchor.constraint(equalTo: margins.topAnchor).isActive = true
-        settings.trailingAnchor.constraint(equalTo: margins.trailingAnchor).isActive = true
-        settings.heightAnchor.constraint(equalToConstant: 96).isActive = true
-        settings.widthAnchor.constraint(equalToConstant: 96).isActive = true
-        settings.tintColor = .darkGray
-        //settings.titleLabel?.font = UIFont
-        settings.alpha = 0
-        settings.setImage( UIImage(systemName: "seal"), for: .normal )
+        settings.topAnchor.constraint(equalTo: margins.topAnchor, constant: 20).isActive = true
+        settings.leadingAnchor.constraint(equalTo: margins.leadingAnchor).isActive = true
+        settings.heightAnchor.constraint(equalToConstant: 16).isActive = true
+        settings.widthAnchor.constraint(equalToConstant: 24).isActive = true
+        settings.tintColor = UIColor(named: "gray1")
+       // let configuration = UIImage.SymbolConfiguration(weight: .light)
+        settings.alpha = 1
+       // settings.setBackgroundImage( UIImage(systemName: "person.crop.artframe", withConfiguration: configuration), for: .normal )
+        settings.setBackgroundImage(UIImage(named: "menu"), for: .normal)
         settings.clipsToBounds = true
         settings.addTarget(self, action: #selector(settingsButtonPressed), for: .touchUpInside)
+
+
         
 
     }
@@ -281,8 +285,9 @@ class ViewController: myViewController, UITextFieldDelegate{
 
     @objc func settingsButtonPressed(){
         
-        let vc = settingsViewController()
-            //  ac.isModalInPresentation = true
+        let vc = UIHostingController(rootView: SwiftUIView())
+        
+        vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true)
     }
 
@@ -291,7 +296,8 @@ class ViewController: myViewController, UITextFieldDelegate{
         generator.selectionChanged()
         
         let ac = UIActivityViewController(activityItems: [matchedPoem], applicationActivities: nil)
-      //  ac.isModalInPresentation = true
+    
+            //.fullScreen
         present(ac, animated: true)
     }
     
@@ -323,8 +329,8 @@ class ViewController: myViewController, UITextFieldDelegate{
         
         label.isHidden = true
         buttonStack.isHidden = true
-        settings.isHidden = true
-        settings.alpha = 0
+        settings.isHidden = false
+        settings.alpha = 1
         //buttonStack.alpha = 0
         textInputField.text = ""
         textInputField.placeholder = "Grab a fleeting feeling"
@@ -383,7 +389,7 @@ class ViewController: myViewController, UITextFieldDelegate{
         
         buttonStack.isHidden = false
         signature.isHidden = false
-        settings.isHidden = false
+        settings.isHidden = true
         
         if seenAnimationsThisTime{
             DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1) ){
@@ -461,7 +467,7 @@ class ViewController: myViewController, UITextFieldDelegate{
         
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(10) ){
             self.buttonStack.isHidden = false
-            self.settings.isHidden = false
+            self.settings.isHidden = true
             
             let animator = UIViewPropertyAnimator(duration: 5, curve: .easeOut) {
                 self.back.alpha = 1

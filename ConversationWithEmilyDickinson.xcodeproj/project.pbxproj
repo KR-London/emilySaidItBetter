@@ -10,7 +10,6 @@
 		441718372742732300A61AF8 /* settingsButtonModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441718362742732300A61AF8 /* settingsButtonModule.swift */; };
 		4475A48A272D27130092255B /* myViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4475A489272D27130092255B /* myViewController.swift */; };
 		4475A48C272D3E5C0092255B /* myTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4475A48B272D3E5C0092255B /* myTextField.swift */; };
-		44994B76272EC89B00730327 /* settingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44994B75272EC89B00730327 /* settingsViewController.swift */; };
 		44998B9C271EC1C700A92AB5 /* EmilyVerse.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 44998B9B271EC1C700A92AB5 /* EmilyVerse.mlmodel */; };
 		44998B9E271EC7B000A92AB5 /* introViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44998B9D271EC7B000A92AB5 /* introViewController.swift */; };
 		44ACADD62760FC29002630F1 /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44ACADD52760FC29002630F1 /* SwiftUIView.swift */; };
@@ -50,7 +49,6 @@
 		441718362742732300A61AF8 /* settingsButtonModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = settingsButtonModule.swift; sourceTree = "<group>"; };
 		4475A489272D27130092255B /* myViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myViewController.swift; sourceTree = "<group>"; };
 		4475A48B272D3E5C0092255B /* myTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myTextField.swift; sourceTree = "<group>"; };
-		44994B75272EC89B00730327 /* settingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = settingsViewController.swift; sourceTree = "<group>"; };
 		44998B9B271EC1C700A92AB5 /* EmilyVerse.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = EmilyVerse.mlmodel; sourceTree = "<group>"; };
 		44998B9D271EC7B000A92AB5 /* introViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = introViewController.swift; sourceTree = "<group>"; };
 		44ACADD52760FC29002630F1 /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
@@ -131,7 +129,6 @@
 				44998B9D271EC7B000A92AB5 /* introViewController.swift */,
 				44C3D7102711F162000C1218 /* ViewController.swift */,
 				44E71817271ED92500E2B283 /* chattyViewController.swift */,
-				44994B75272EC89B00730327 /* settingsViewController.swift */,
 				44ACADD52760FC29002630F1 /* SwiftUIView.swift */,
 			);
 			path = "View Controllers";
@@ -336,7 +333,6 @@
 				4475A48A272D27130092255B /* myViewController.swift in Sources */,
 				441718372742732300A61AF8 /* settingsButtonModule.swift in Sources */,
 				44C3D70F2711F162000C1218 /* SceneDelegate.swift in Sources */,
-				44994B76272EC89B00730327 /* settingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
