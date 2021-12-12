@@ -122,7 +122,7 @@ class introViewController: myViewController, UITextFieldDelegate {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(stackView)
         
-        if UIScreen.main.bounds.height > 700{
+        if UIScreen.main.bounds.height > 850{
             NSLayoutConstraint.activate(
                 [
                     stackView.heightAnchor.constraint(equalTo: margins.heightAnchor, multiplier: 0.2),

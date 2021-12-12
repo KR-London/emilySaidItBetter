@@ -11,11 +11,11 @@ struct PrivacyPolicyView: View {
     var body: some View {
         VStack(alignment: .leading){
             Spacer()
-            Text("Privacy Policy").font(.title)
+            Text("Privacy Policy").font(.titleOne)
             Spacer()
-            Text("Your thoughts belong to you. This app does not send any personal information off your device. ")
+            Text("Your thoughts belong to you. This app does not send any personal information off your device. ").font(.body)
             Spacer()
-            Text("The AI matching is done locally. It saves your name, poems and logon stats on your handset, but not your words")
+            Text("The AI matching is done locally. It saves your name, poems and logon stats on your handset, but not your words").font(.body)
             Spacer()
             Spacer()
             Spacer()

@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import SwiftUI
 
 
 extension UIFont {
@@ -34,6 +35,28 @@ extension UIFont {
     }
 }
 
+extension Font {
+    public static var titleOne: Font {
+        return Font.system(size: 32, weight: .medium)
+    }
+    
+        /// Create a font with the title text style.
+    public static var titleTwo: Font {
+        return Font.system(size: 32, weight: .thin)
+    }
+    
+    public static var bodyBold: Font {
+        return Font.system(size: 18, weight: .semibold)
+    }
+    
+    public static var body: Font {
+        return Font.system(size: 18)
+    }
+    
+    public static var caption: Font {
+        return Font.system(size: 14)
+    }
+}
 
 
 extension UILabel {

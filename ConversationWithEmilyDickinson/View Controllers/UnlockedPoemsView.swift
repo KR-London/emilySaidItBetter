@@ -11,11 +11,11 @@ struct UnlockedPoemsView: View {
     
     var body: some View {
         VStack(alignment: .leading){
-            Text("Unlocked Poems").font(.title)
+            Text("Unlocked Poems").font(.titleOne)
             Spacer()
-            Text("Future releases plan to add ability to browse your unlocked poems")
+            Text("Future releases plan to add ability to browse your unlocked poems").font(.body)
             Spacer()
-            Text("Please boost our morale with ... ")
+            Text("Please boost our morale with ... ").font(.body)
             VStack{
             Spacer()
             Divider()
@@ -28,7 +28,7 @@ struct UnlockedPoemsView: View {
              Divider()
             Spacer()
             }
-            Text("... or ... ")
+            Text("... or ... ").font(.body)
             VStack{
             Spacer()
             Divider()
@@ -41,7 +41,7 @@ struct UnlockedPoemsView: View {
             Divider()
             Spacer()
             }
-        }.padding(20)
+        }.padding(20).foregroundColor(Color("gray1"))
     }
 }
 
