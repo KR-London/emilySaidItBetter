@@ -50,7 +50,7 @@ class ViewController: myViewController, UITextFieldDelegate{
             //  contentView.text = "What is your name?"
         contentView.numberOfLines = 0
         contentView.lineBreakMode = .byWordWrapping
-        contentView.font = UIFont.systemFont(ofSize: 32, weight: .thin)
+        contentView.font = UIFont.titleTwo
         contentView.adjustsFontSizeToFitWidth = true
         return contentView
     }()
@@ -276,14 +276,25 @@ class ViewController: myViewController, UITextFieldDelegate{
         stackView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(stackView)
         
+        if UIScreen.main.bounds.height > 700{
         NSLayoutConstraint.activate(
             [
-                stackView.heightAnchor.constraint(equalTo: margins.heightAnchor, multiplier: 0.25),
+                stackView.heightAnchor.constraint(equalTo: margins.heightAnchor, multiplier: 0.2),
                 stackView.widthAnchor.constraint(equalTo: margins.widthAnchor, constant: -40),
                 stackView.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: 20),
                 stackView.bottomAnchor.constraint(lessThanOrEqualTo: textInputField.topAnchor, constant: -20)
             ]
         )
+        } else {
+            NSLayoutConstraint.activate(
+                [
+                    stackView.heightAnchor.constraint(equalTo: margins.heightAnchor, multiplier: 0.3),
+                    stackView.widthAnchor.constraint(equalTo: margins.widthAnchor, constant: -40),
+                    stackView.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: 20),
+                    stackView.bottomAnchor.constraint(lessThanOrEqualTo: textInputField.topAnchor, constant: -20)
+                ]
+            )
+        }
         
         boldLabel.translatesAutoresizingMaskIntoConstraints = false
         boldLabel.alpha = 0

@@ -126,7 +126,7 @@ class chattyViewController: myViewController, UITextFieldDelegate {
         NSLayoutConstraint.activate(
             [
                 myNameIs.centerXAnchor.constraint(equalTo: margins.centerXAnchor),
-                myNameIs.heightAnchor.constraint(equalTo: margins.widthAnchor, multiplier: 163/545),
+                myNameIs.heightAnchor.constraint(equalTo: margins.widthAnchor, multiplier: 150/545),
                 myNameIs.widthAnchor.constraint(equalTo: margins.widthAnchor),
             ]
         )
@@ -137,7 +137,7 @@ class chattyViewController: myViewController, UITextFieldDelegate {
         NSLayoutConstraint.activate(
             [
                 whatIsYour.centerXAnchor.constraint(equalTo: margins.centerXAnchor),
-                whatIsYour.heightAnchor.constraint(equalTo: margins.widthAnchor, multiplier: 375/545),
+                whatIsYour.heightAnchor.constraint(equalTo: margins.widthAnchor, multiplier: 330/545),
                 whatIsYour.widthAnchor.constraint(equalTo: margins.widthAnchor)
             ]
         )

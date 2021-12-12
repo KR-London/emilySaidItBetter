@@ -18,7 +18,7 @@ extension UIFont {
     
         /// Create a font with the title text style.
     public static var titleTwo: UIFont {
-        return systemFont(ofSize: 32)
+        return systemFont(ofSize: 32, weight: .thin)
     }
     
     public static var bodyBold: UIFont {
@@ -34,3 +34,15 @@ extension UIFont {
     }
 }
 
+
+
+extension UILabel {
+    func setTextWithLineSpacing(text: String, lineHeightMultiply: CGFloat = 1.3) {
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineHeightMultiple = lineHeightMultiply
+        paragraphStyle.alignment = .center
+        let attributedString = NSMutableAttributedString(string: text)
+        attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSRange(location: 0, length: attributedString.length))
+        self.attributedText = attributedString
+    }
+}

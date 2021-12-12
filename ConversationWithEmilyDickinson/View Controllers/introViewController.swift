@@ -15,7 +15,7 @@ class introViewController: myViewController, UITextFieldDelegate {
         contentView.adjustsFontSizeToFitWidth = true
         contentView.numberOfLines = 0
         contentView.lineBreakMode = .byWordWrapping
-        contentView.font = UIFont.systemFont(ofSize: 32, weight: .thin)
+        contentView.font = UIFont.titleTwo
         return contentView
     }()
     
@@ -24,7 +24,7 @@ class introViewController: myViewController, UITextFieldDelegate {
         contentView.text = "My name is Emily"
         contentView.numberOfLines = 0
         contentView.lineBreakMode = .byWordWrapping
-        contentView.font = UIFont.boldSystemFont(ofSize: 32.0)
+        contentView.font = UIFont.titleTwo
         return contentView
     }()
     
@@ -34,7 +34,7 @@ class introViewController: myViewController, UITextFieldDelegate {
         contentView.text = "What is your name?"
         contentView.numberOfLines = 0
         contentView.lineBreakMode = .byWordWrapping
-        contentView.font = UIFont.systemFont(ofSize: 24, weight: .thin)
+        contentView.font = UIFont.titleOne
         return contentView
     }()
     
@@ -122,13 +122,23 @@ class introViewController: myViewController, UITextFieldDelegate {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(stackView)
         
-        NSLayoutConstraint.activate(
-             [
-                stackView.heightAnchor.constraint(equalTo: margins.heightAnchor, multiplier: 0.25),
-                stackView.widthAnchor.constraint(equalTo: margins.widthAnchor, constant: -40),
-                stackView.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: 20),
-             ]
-       )
+        if UIScreen.main.bounds.height > 700{
+            NSLayoutConstraint.activate(
+                [
+                    stackView.heightAnchor.constraint(equalTo: margins.heightAnchor, multiplier: 0.2),
+                    stackView.widthAnchor.constraint(equalTo: margins.widthAnchor, constant: -40),
+                    stackView.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: 20),
+                ]
+            )
+        } else{
+            NSLayoutConstraint.activate(
+                [
+                    stackView.heightAnchor.constraint(equalTo: margins.heightAnchor, multiplier: 0.3),
+                    stackView.widthAnchor.constraint(equalTo: margins.widthAnchor, constant: -40),
+                    stackView.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: 20),
+                ]
+            )
+        }
 
         hello.translatesAutoresizingMaskIntoConstraints = false
         hello.alpha = 0
