@@ -39,7 +39,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         if launchedBefore{
 
-            let logins = UserDefaults.standard.integer(forKey: "launchedBefore")
+            let logins = UserDefaults.standard.integer(forKey: "LoginCount")
             UserDefaults.standard.set(logins + 1, forKey: "LoginCount")
             window.rootViewController = ViewController() // Your initial view controller.
             window.makeKeyAndVisible()

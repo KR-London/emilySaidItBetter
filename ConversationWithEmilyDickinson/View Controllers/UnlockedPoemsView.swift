@@ -24,7 +24,9 @@ struct UnlockedPoemsView: View {
                     Spacer()
                     Divider()
                     Button(action: {
-                            print("Action goes here")
+                                if let writeReviewURL = URL(string: "https://apps.apple.com/app/id1591017862?action=write-review")
+                                { openURL(URL(string: "writeReviewURL")!)}
+                             
                         }, label: {
                             SettingsButton(title: "A nice review", subtitle: "", imageName: "rectangle.portrait.and.arrow.right")
                         }
@@ -32,20 +34,20 @@ struct UnlockedPoemsView: View {
                     Divider()
                     Spacer()
                 }
-//             VStack{
-//                    Spacer()
-//                    Divider()
-//                    Button(action: {
-//                        self.showingMail.toggle()
-//                    }, label: {
-//                        SettingsButton(title: "Get in touch", subtitle: "What extra features would you like?", imageName: "envelope")
-//                    }
-//                    )
-//                    Divider()
-//                    Spacer()
-//                }
-//                .sheet(isPresented: $showingMail) {
-//                    MailComposeViewController(toRecipients: ["test@gmail.com"], mailBody: "Here is mail body") { }  }
+             VStack{
+                    Spacer()
+                    Divider()
+                    Button(action: {
+                        self.showingMail.toggle()
+                    }, label: {
+                        SettingsButton(title: "Get in touch", subtitle: "What extra features would you like?", imageName: "envelope")
+                    }
+                    )
+                    Divider()
+                    Spacer()
+                }
+                .sheet(isPresented: $showingMail) {
+                    MailComposeViewController(toRecipients: ["emily@saltformysquid.com"], mailBody: "We'd love to hear what you think!") { }  }
             VStack{
                     Spacer()
                     Divider()

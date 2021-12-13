@@ -65,19 +65,19 @@ struct SettingsView: View {
 struct Streak: View {
     @State var name: String = (UserDefaults.standard.object(forKey: "Name") as? String ) ?? "You"
     
-    let logins = UserDefaults.standard.integer(forKey: "launchedBefore")
+    let logins = UserDefaults.standard.integer(forKey: "LoginCount")
     
     var body: some View {
         Color.settingsGray.overlay(
             VStack(alignment: .leading) {
                 Spacer()
-            Text("\(name) and Emily have been talking for —").font(.system(size: 14)).foregroundColor(Color("gray1"))
+                Text("\(name) and Emily have been talking for —").font(.system(size: 14)).foregroundColor(Color("gray1"))
                 Spacer()
                 Text("\(logins) Days").font(.system(size: 32)).foregroundColor(Color("gray1"))
                 Spacer()
                 Spacer()
-          //  Text("Current streak - _ days").font(.system(size: 14)).foregroundColor(Color("gray1"))
-               // Text("Longest streak - _ days").font(.system(size: 14)).foregroundColor(Color("gray2"))
+                Text("Current streak - _ days").font(.system(size: 14)).foregroundColor(Color("gray1"))
+                Text("Longest streak - _ days").font(.system(size: 14)).foregroundColor(Color("gray2"))
                 Spacer()
         })
     }
