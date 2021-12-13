@@ -57,8 +57,8 @@ struct SettingsView: View {
                     Image(systemName: "xmark").foregroundColor(Color("gray1"))
                 }).frame(width: 24, height: 24, alignment: .leading).font(.system(size: 14)
                                                                         )
-        ).navigationTitle("")
-        }
+        )
+        }.navigationTitle("").navigationViewStyle(StackNavigationViewStyle())
     }
 }
 
@@ -76,8 +76,8 @@ struct Streak: View {
                 Text("\(logins) Days").font(.system(size: 32)).foregroundColor(Color("gray1"))
                 Spacer()
                 Spacer()
-            Text("Current streak - _ days").font(.system(size: 14)).foregroundColor(Color("gray1"))
-                Text("Longest streak - _ days").font(.system(size: 14)).foregroundColor(Color("gray2"))
+          //  Text("Current streak - _ days").font(.system(size: 14)).foregroundColor(Color("gray1"))
+               // Text("Longest streak - _ days").font(.system(size: 14)).foregroundColor(Color("gray2"))
                 Spacer()
         })
     }

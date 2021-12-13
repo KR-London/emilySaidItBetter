@@ -30,19 +30,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
        
         UINavigationBar.appearance().backIndicatorImage = UIImage(systemName: "chevron.left")
         UINavigationBar.appearance().backIndicatorTransitionMaskImage = UIImage(named: "chevron.left")
-        //UINavigationBar.appearance().backIndicatorImage = UIImage(named: "")
-
-      //  UINavigationBar.appearance().backItem?.backButtonTitle = ""
         UINavigationBar.appearance().barTintColor = UIColor(.gray1)
         UINavigationBar.appearance().tintColor = UIColor(.gray1)
-        //UINavigationBar.appearance().tintColor = UIColor(.clear)
-        //UINavigationBar.addBa
-       // UINavigationBar.appearance().backgroundColor = .systemPink
+
         
-     
-        
-        //let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
-        let launchedBefore = false
+        let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
+       // let launchedBefore = false
 
         if launchedBefore{
 

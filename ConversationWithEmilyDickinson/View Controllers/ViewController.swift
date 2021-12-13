@@ -11,6 +11,7 @@ import UIKit
 import NaturalLanguage
 import CoreML
 import SwiftUI
+import Social
 //import CreateML
 
 
@@ -320,6 +321,13 @@ class ViewController: myViewController, UITextFieldDelegate{
         
         let ac = UIActivityViewController(activityItems: [matchedPoem], applicationActivities: nil)
         present(ac, animated: true)
+        
+//        if let vc = SLComposeViewController(forServiceType: SLServiceTypeFacebook) {
+//            vc.setInitialText("Look at this great picture!")
+//            vc.add(UIImage(named: "myImage.jpg")!)
+//            vc.add(URL(string: "https://www.hackingwithswift.com"))
+//            present(vc, animated: true)
+//        }
     }
     
     @objc func showMatchedLine(){
