@@ -30,6 +30,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
        
         UINavigationBar.appearance().backIndicatorImage = UIImage(systemName: "chevron.left")
         UINavigationBar.appearance().backIndicatorTransitionMaskImage = UIImage(named: "chevron.left")
+       // ¸.backItem?.standardAppearance = .clear
+        //UINavigationBar.navigationItem.backBarButtonItem?.title = ""
         UINavigationBar.appearance().barTintColor = UIColor(.gray1)
         UINavigationBar.appearance().tintColor = UIColor(.gray1)
 

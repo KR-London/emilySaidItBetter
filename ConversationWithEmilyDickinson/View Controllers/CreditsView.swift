@@ -18,7 +18,8 @@ struct CreditsView: View {
             Text("Credits").font(.titleOne).foregroundColor(Color("gray1"))
             Spacer().frame(height: 32)
             Text("Poetry by Emily Dickinson").font(.bodyBold).foregroundColor(Color("gray1"))
-            Text("Emily Elizabeth Dickinson (December 10, 1830 – May 15, 1886) was an American poet. Little-known during her life, she has since been regarded as one of the most important figures in American poetry.").font(.body).foregroundColor(Color("gray1"))
+            Spacer().frame(height: 24)
+            Text("Emily Elizabeth Dickinson (December 10, 1830 – May 15, 1886) was an American poet. Little-known during her life, she has since been regarded as one of the most important figures in American poetry.").font(.body).foregroundColor(Color("gray1")).fontWeight(.light)
             Divider()
             Button(action: {
                 openURL(URL(string: "https://www.poetryfoundation.org/poets/emily-dickinson")!)
@@ -31,7 +32,8 @@ struct CreditsView: View {
         Spacer()
         VStack(alignment: .leading){
             Text("Source of Text").font(.bodyBold).foregroundColor(Color("gray1"))
-            Text("Project Gutenberg (PG) is a volunteer effort to digitize and archive cultural works, as well as to encourage the creation and distribution of eBooks.").font(.body).foregroundColor(Color("gray1"))
+            Spacer().frame(height: 24)
+            Text("Project Gutenberg (PG) is a volunteer effort to digitize and archive cultural works, as well as to encourage the creation and distribution of eBooks.").font(.body).foregroundColor(Color("gray1")).fontWeight(.light)
             Divider()
             Button(action: {
                 openURL(URL(string: "https://www.gutenberg.org/about/")!)

@@ -17,9 +17,9 @@ struct UnlockedPoemsView: View {
         VStack(alignment: .leading){
             Text("Unlocked Poems").font(.titleOne)
             Spacer()
-            Text("Future releases plan to add ability to browse your unlocked poems and other special features.").font(.body)
+            Text("Future releases plan to add ability to browse your unlocked poems and other special features.").font(.body).fontWeight(.light)
             Spacer()
-            Text("Please boost our morale with ... ").font(.body)
+            Text("Please boost our morale with ... ").font(.body).fontWeight(.light)
                 VStack{
                     Spacer()
                     Divider()
