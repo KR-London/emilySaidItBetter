@@ -10,6 +10,7 @@ import UIKit
 class myTextField: UITextField {
     
     let inset: CGFloat = 16
+    let overlayButton = UIButton(type: .custom)
     
         // placeholder position
     override func textRect(forBounds bounds: CGRect) -> CGRect {
@@ -43,6 +44,21 @@ class myTextField: UITextField {
         self.layer.shadowOpacity = 0.1
         self.layer.shadowRadius = 1.0
         self.layer.shadowColor = UIColor.systemGray.cgColor
+        
+        let nextImage = UIImage(systemName: "arrow.forward")
+        overlayButton.setImage(nextImage, for: .normal)
+
+        overlayButton.sizeToFit()
+        overlayButton.tintColor = .gray
+        rightView = overlayButton
+        rightViewMode = .whileEditing
+        
+        
+    }
+
+    override func rightViewRect(forBounds bounds: CGRect) -> CGRect {
+        let rect = super.clearButtonRect(forBounds: bounds)
+        return rect.offsetBy(dx: -2, dy: 0)
     }
     
 }

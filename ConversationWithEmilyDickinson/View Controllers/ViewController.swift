@@ -80,23 +80,25 @@ class ViewController: myViewController, UITextFieldDelegate{
         return contentView
     }()
     
-    lazy var nextButton: myBlackButton = {
-        let contentView = myBlackButton()
-        contentView.setTitle("Next", for: .normal)
-        contentView.alpha = 0
-        return contentView
-    }()
+//    lazy var nextButton: myBlackButton = {
+//        let contentView = myBlackButton()
+//        contentView.setTitle("Next", for: .normal)
+//        contentView.alpha = 0
+//        return contentView
+//    }()
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        share.alpha = 0
+        back.alpha = 0
     
         checkIfNewUser()
         setup()
         layout()
         formatLabels()
         
-        
+        textInputField.overlayButton.addTarget(self, action: #selector(userAnswerButtonPressed), for: .touchUpInside)
         
         
     }
@@ -247,15 +249,15 @@ class ViewController: myViewController, UITextFieldDelegate{
         settings.addTarget(self, action: #selector(settingsButtonPressed), for: .touchUpInside)
 
 
-        view.addSubview(nextButton)
-        nextButton.addTarget(self, action: #selector(userAnswerButtonPressed), for: .touchUpInside)
-        nextButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [
-                nextButton.topAnchor.constraint(equalTo: textInputField.bottomAnchor, constant: 24),
-                nextButton.centerXAnchor.constraint(equalTo:  margins.centerXAnchor)
-            ]
-        )
+//        view.addSubview(nextButton)
+//        nextButton.addTarget(self, action: #selector(userAnswerButtonPressed), for: .touchUpInside)
+//        nextButton.translatesAutoresizingMaskIntoConstraints = false
+//        NSLayoutConstraint.activate(
+//            [
+//                nextButton.topAnchor.constraint(equalTo: textInputField.bottomAnchor, constant: 24),
+//                nextButton.centerXAnchor.constraint(equalTo:  margins.centerXAnchor)
+//            ]
+//        )
         
 
     }
@@ -369,13 +371,13 @@ class ViewController: myViewController, UITextFieldDelegate{
     }
     
     @objc func userAnswerButtonPressed(){
-        nextButton.isHidden = true
-        
+      //  nextButton.isHidden = true
+        buttonStack.isHidden = true
         self.view.endEditing(true)
             //        let generatorSuccess = UINotificationFeedbackGenerator()
             //        generatorSuccess.notificationOccurred(.success)
         generatorLight.impactOccurred()
-        answerAnimate()
+       
         
         var closestEmilyDickinsonLine = ""
         if let text = self.textInputField.text{
@@ -383,7 +385,7 @@ class ViewController: myViewController, UITextFieldDelegate{
                 closestEmilyDickinsonLine = closestline
             }
         }
-        
+        answerAnimate()
         textInputField.isHidden = true
         self.label.isHidden = false
       
@@ -397,7 +399,7 @@ class ViewController: myViewController, UITextFieldDelegate{
         }
         
         self.label.text = matchedPoem
-        nextButton.alpha = 0
+       // nextButton.alpha = 0
             // resetTest.isHidden = false
             //  askAgain.isHidden = false
         
@@ -407,13 +409,14 @@ class ViewController: myViewController, UITextFieldDelegate{
     }
 
     @objc func userAnswer(_ textField: myTextField ){
-        nextButton.isHidden = true
-        nextButton.alpha = 0 
+//        nextButton.isHidden = true
+//        nextButton.alpha = 0
+        buttonStack.isHidden = true
         self.view.endEditing(true)
 //        let generatorSuccess = UINotificationFeedbackGenerator()
 //        generatorSuccess.notificationOccurred(.success)
         generatorLight.impactOccurred()
-        answerAnimate()
+      
 
         var closestEmilyDickinsonLine = ""
             if let text = self.textInputField.text{
@@ -433,7 +436,7 @@ class ViewController: myViewController, UITextFieldDelegate{
                 matchedPoem.append(contentsOf: lines)
                 matchedPoem.append("\n")
             }
-        
+            answerAnimate()
             self.label.text = matchedPoem
            // resetTest.isHidden = false
           //  askAgain.isHidden = false
@@ -441,22 +444,22 @@ class ViewController: myViewController, UITextFieldDelegate{
 //        if launchedBefore {
          //   animate()
   //      }
-         nextButton.alpha = 0
+      //   nextButton.alpha = 0
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        nextButton.isHidden = false
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)){
-            let animator = UIViewPropertyAnimator(duration: 5, curve: .easeOut) {
-                self.nextButton.alpha = 1
-                
-            }
-            animator.startAnimation()
-        }
+       // nextButton.isHidden = false
+//        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)){
+//            let animator = UIViewPropertyAnimator(duration: 5, curve: .easeOut) {
+//                self.nextButton.alpha = 1
+//
+//            }
+//            animator.startAnimation()
+//        }
     }
     
     func answerAnimate(){
-        nextButton.alpha = 0
+        //nextButton.alpha = 0
         preThinLabel.alpha = 0
         label.alpha = 0
         boldLabel.alpha = 0
@@ -466,7 +469,7 @@ class ViewController: myViewController, UITextFieldDelegate{
         share.alpha = 0
         signature.alpha = 0
         
-        buttonStack.isHidden = false
+        //buttonStack.isHidden = false
         signature.isHidden = false
         settings.isHidden = true
         
@@ -543,15 +546,16 @@ class ViewController: myViewController, UITextFieldDelegate{
             
             seenAnimationsThisTime = true
         }
+      
         
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(10) ){
+            
             self.buttonStack.isHidden = false
             self.settings.isHidden = true
             
             let animator = UIViewPropertyAnimator(duration: 5, curve: .easeOut) {
                 self.back.alpha = 1
                 self.share.alpha = 1
-                self.settings.alpha = 1
             }
             animator.startAnimation()
             self.generatorLight.impactOccurred()

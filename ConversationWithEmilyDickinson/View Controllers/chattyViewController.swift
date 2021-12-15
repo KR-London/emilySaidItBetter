@@ -177,6 +177,7 @@ class chattyViewController: myViewController, UITextFieldDelegate {
         myNameIs.alpha = 0
         whatIsYour.alpha = 0
         goForwardButton.alpha = 0
+        textEntry.overlayButton.addTarget(self, action: #selector(goOn), for: .touchUpInside)
     }
     
     @objc func goOn(sender: UIButton!) {

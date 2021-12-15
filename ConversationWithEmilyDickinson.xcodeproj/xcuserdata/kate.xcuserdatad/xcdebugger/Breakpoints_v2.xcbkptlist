@@ -119,32 +119,64 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "E191EE85-C0EC-496C-8A93-ABA75717E3CD"
+            uuid = "34FA1E69-8573-4D4D-A7D0-84077B27FC7F"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ConversationWithEmilyDickinson/View Controllers/introViewController.swift"
+            filePath = "ConversationWithEmilyDickinson/View Controllers/chattyViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "220"
-            endingLineNumber = "220"
-            landmarkName = "userName(_:)"
+            startingLineNumber = "184"
+            endingLineNumber = "184"
+            landmarkName = "goOn(sender:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "DF9686F9-5628-4587-8DCD-5B10EF6081C4"
+            uuid = "04EFAD2A-BE4B-4BD4-BB7F-95C9B7D2022E"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ConversationWithEmilyDickinson/launch files /SceneDelegate.swift"
+            filePath = "ConversationWithEmilyDickinson/View Controllers/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
-            landmarkName = "scene(_:willConnectTo:options:)"
+            startingLineNumber = "376"
+            endingLineNumber = "376"
+            landmarkName = "userAnswerButtonPressed()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "77EE7235-EA08-4ACA-813C-F7E15AA230D0"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ConversationWithEmilyDickinson/View Controllers/ViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "415"
+            endingLineNumber = "415"
+            landmarkName = "userAnswer(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "36391CE1-910D-4112-B808-DDFC87123FD2"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ConversationWithEmilyDickinson/View Controllers/ViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "553"
+            endingLineNumber = "553"
+            landmarkName = "answerAnimate()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
