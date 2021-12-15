@@ -389,8 +389,7 @@ class ViewController: myViewController, UITextFieldDelegate{
         textInputField.isHidden = true
         self.label.isHidden = false
       
-        let poem = findThePoem[closestEmilyDickinsonLine]
-        
+        let poem = findThePoem[closestEmilyDickinsonLine] ?? poemCollection.randomElement()
         matchedPoem = ""
         
         for lines in poem!.lines{

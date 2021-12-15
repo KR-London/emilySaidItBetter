@@ -158,8 +158,8 @@
             filePath = "ConversationWithEmilyDickinson/View Controllers/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "415"
-            endingLineNumber = "415"
+            startingLineNumber = "414"
+            endingLineNumber = "414"
             landmarkName = "userAnswer(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -174,8 +174,8 @@
             filePath = "ConversationWithEmilyDickinson/View Controllers/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "553"
-            endingLineNumber = "553"
+            startingLineNumber = "552"
+            endingLineNumber = "552"
             landmarkName = "answerAnimate()"
             landmarkType = "7">
          </BreakpointContent>
