@@ -225,7 +225,7 @@ class ViewController: myViewController, UITextFieldDelegate{
         back.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40).isActive = true
         //back.trailingAnchor.constraint(equalTo: share.leadingAnchor, constant: 16).isActive = true
         
-        back.setTitle("Another?", for: .normal)
+        back.setTitle("Again?", for: .normal)
         back.addTarget(self, action: #selector(tryAgain), for: .touchUpInside)
         back.heightAnchor.constraint(equalToConstant: 56).isActive = true
         back.widthAnchor.constraint(equalToConstant: 96).isActive = true
@@ -497,7 +497,7 @@ class ViewController: myViewController, UITextFieldDelegate{
             
             preThinLabel.text = "Oh ... I think I understand .... "
             
-            boldLabel.text = "Can I show you a poem?"
+            boldLabel.text = "Let me show you a poem"
             
             //thinLabel.text = "I wish I could help .. "
             thinLabel.isHidden = true
