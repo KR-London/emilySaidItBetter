@@ -21,6 +21,7 @@ import Social
 class ViewController: myViewController, UITextFieldDelegate{
     
     var name : String?
+    var emilyVoice = EmilyScript()
     
     var textInputField = myTextField()
     var label = UILabel()
@@ -114,14 +115,18 @@ class ViewController: myViewController, UITextFieldDelegate{
         
         if launchedBefore{
             //preThinLabel.isHidden = true
-            boldLabel.text = "Hello again, \(name!)"
-            thinLabel.text = "Did anything preoccupy you today?"
+            let emilySaid = emilyVoice.openingPhrase()
+            boldLabel.text = emilySaid.boldLabel
+            //"Hello again, \(name!)"
+            thinLabel.text = emilySaid.thinLabel
+            textInputField.placeholder = emilySaid.textPlaceholder
             
         }  else
         {
             UserDefaults.standard.set(true, forKey: "launchedBefore")
             boldLabel.text = "Nice to meet you, \(name!)"
             thinLabel.text = "You look like you think about things deeply"
+            textInputField.placeholder = "Write the first word that comes to mind"
         }
     }
     
@@ -161,7 +166,7 @@ class ViewController: myViewController, UITextFieldDelegate{
         view.addSubview(label)
         textInputField.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: 20).isActive = true
         textInputField.trailingAnchor.constraint(equalTo: margins.trailingAnchor, constant: -20).isActive = true
-        textInputField.placeholder = "Share your thoughts ..."
+        //textInputField.placeholder = "Three words for now"
         textInputField.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         textInputField.heightAnchor.constraint(equalToConstant: 64).isActive = true
         
@@ -363,7 +368,7 @@ class ViewController: myViewController, UITextFieldDelegate{
         settings.isHidden = false
         settings.alpha = 1
         textInputField.text = ""
-        textInputField.placeholder = "Grab a fleeting feeling"
+        textInputField.placeholder = emilyVoice.tryAgain()
         textInputField.isHidden = false
        
        // share.isHidden = true
@@ -494,9 +499,11 @@ class ViewController: myViewController, UITextFieldDelegate{
         else {
             preThinLabel.isHidden = false
             
-            preThinLabel.text = "Oh ... I think I understand .... "
-            
-            boldLabel.text = "Let me show you a poem"
+            let emilySaid = emilyVoice.intermezzoPhrase()
+            preThinLabel.text = emilySaid.thinLabel
+            boldLabel.text = emilySaid.boldLabel
+          //  preThinLabel.text = "Oh ... I think I understand .... "
+          //  boldLabel.text = "Let me show you a poem"
             
             //thinLabel.text = "I wish I could help .. "
             thinLabel.isHidden = true
