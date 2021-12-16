@@ -14,12 +14,21 @@ class myTextField: UITextField {
     
         // placeholder position
     override func textRect(forBounds bounds: CGRect) -> CGRect {
-        return bounds.insetBy(dx: inset, dy: inset)
+        //var insetRect = bounds.insetBy(dx: inset, dy: inset)
+        let height = bounds.height
+        let buttonInset = UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset + height)
+        
+        return bounds.inset(by: buttonInset)
+        
     }
     
         // text position
     override func editingRect(forBounds bounds: CGRect) -> CGRect {
-        return bounds.insetBy(dx: inset, dy: inset)
+        //return bounds.insetBy(dx: inset, dy: inset)
+        let height = bounds.height
+        let buttonInset = UIEdgeInsets(top: inset, left: inset, bottom: inset, right: height - 2*inset)
+        
+        return bounds.inset(by: buttonInset)
     }
     
     required init(coder aDecoder: NSCoder) {

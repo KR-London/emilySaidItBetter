@@ -10,7 +10,6 @@
 		441718372742732300A61AF8 /* settingsButtonModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441718362742732300A61AF8 /* settingsButtonModule.swift */; };
 		4475A48A272D27130092255B /* myViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4475A489272D27130092255B /* myViewController.swift */; };
 		4475A48C272D3E5C0092255B /* myTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4475A48B272D3E5C0092255B /* myTextField.swift */; };
-		44998B9C271EC1C700A92AB5 /* EmilyVerse.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 44998B9B271EC1C700A92AB5 /* EmilyVerse.mlmodel */; };
 		44998B9E271EC7B000A92AB5 /* introViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44998B9D271EC7B000A92AB5 /* introViewController.swift */; };
 		44ACADD62760FC29002630F1 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44ACADD52760FC29002630F1 /* SettingsView.swift */; };
 		44B091D12766577100B2132A /* CreditsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B091D02766577100B2132A /* CreditsView.swift */; };
@@ -19,7 +18,6 @@
 		44B091D72766845E00B2132A /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B091D62766845E00B2132A /* Fonts.swift */; };
 		44C0AEAA2712C6980020DA9A /* Verse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C0AEA92712C6980020DA9A /* Verse.swift */; };
 		44C0AEAC2712C7780020DA9A /* Emily.tsv in Resources */ = {isa = PBXBuildFile; fileRef = 44C0AEAB2712C7780020DA9A /* Emily.tsv */; };
-		44C0AEB0271305890020DA9A /* copiedVerse.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 44C0AEAF271305890020DA9A /* copiedVerse.mlmodel */; };
 		44C3D70D2711F162000C1218 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C3D70C2711F162000C1218 /* AppDelegate.swift */; };
 		44C3D70F2711F162000C1218 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C3D70E2711F162000C1218 /* SceneDelegate.swift */; };
 		44C3D7112711F162000C1218 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C3D7102711F162000C1218 /* ViewController.swift */; };
@@ -29,6 +27,7 @@
 		44C3D7272711F164000C1218 /* ConversationWithEmilyDickinsonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C3D7262711F164000C1218 /* ConversationWithEmilyDickinsonTests.swift */; };
 		44C3D7312711F164000C1218 /* ConversationWithEmilyDickinsonUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C3D7302711F164000C1218 /* ConversationWithEmilyDickinsonUITests.swift */; };
 		44C3D7332711F164000C1218 /* ConversationWithEmilyDickinsonUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C3D7322711F164000C1218 /* ConversationWithEmilyDickinsonUITestsLaunchTests.swift */; };
+		44D5C7B7276A4F2300B65677 /* EmilyVerse.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 44D5C7B6276A4F2300B65677 /* EmilyVerse.mlmodel */; };
 		44E71818271ED92500E2B283 /* chattyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E71817271ED92500E2B283 /* chattyViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -53,7 +52,6 @@
 		441718362742732300A61AF8 /* settingsButtonModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = settingsButtonModule.swift; sourceTree = "<group>"; };
 		4475A489272D27130092255B /* myViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myViewController.swift; sourceTree = "<group>"; };
 		4475A48B272D3E5C0092255B /* myTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myTextField.swift; sourceTree = "<group>"; };
-		44998B9B271EC1C700A92AB5 /* EmilyVerse.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = EmilyVerse.mlmodel; sourceTree = "<group>"; };
 		44998B9D271EC7B000A92AB5 /* introViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = introViewController.swift; sourceTree = "<group>"; };
 		44ACADD52760FC29002630F1 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		44B091D02766577100B2132A /* CreditsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsView.swift; sourceTree = "<group>"; };
@@ -62,7 +60,6 @@
 		44B091D62766845E00B2132A /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		44C0AEA92712C6980020DA9A /* Verse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Verse.swift; sourceTree = "<group>"; };
 		44C0AEAB2712C7780020DA9A /* Emily.tsv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Emily.tsv; sourceTree = "<group>"; };
-		44C0AEAF271305890020DA9A /* copiedVerse.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = copiedVerse.mlmodel; sourceTree = "<group>"; };
 		44C3D7092711F162000C1218 /* ConversationWithEmilyDickinson.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ConversationWithEmilyDickinson.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		44C3D70C2711F162000C1218 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		44C3D70E2711F162000C1218 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -76,6 +73,7 @@
 		44C3D72C2711F164000C1218 /* ConversationWithEmilyDickinsonUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ConversationWithEmilyDickinsonUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		44C3D7302711F164000C1218 /* ConversationWithEmilyDickinsonUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationWithEmilyDickinsonUITests.swift; sourceTree = "<group>"; };
 		44C3D7322711F164000C1218 /* ConversationWithEmilyDickinsonUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationWithEmilyDickinsonUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		44D5C7B6276A4F2300B65677 /* EmilyVerse.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = EmilyVerse.mlmodel; sourceTree = "<group>"; };
 		44E71817271ED92500E2B283 /* chattyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = chattyViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -170,12 +168,11 @@
 			isa = PBXGroup;
 			children = (
 				4475A48E272D3E8C0092255B /* launch files  */,
-				44998B9B271EC1C700A92AB5 /* EmilyVerse.mlmodel */,
 				4475A48F272D3EA40092255B /* Model  */,
 				44994B74272EC86A00730327 /* View Controllers */,
 				4475A48D272D3E750092255B /* custom elements  */,
 				44C3D7182711F164000C1218 /* Assets.xcassets */,
-				44C0AEAF271305890020DA9A /* copiedVerse.mlmodel */,
+				44D5C7B6276A4F2300B65677 /* EmilyVerse.mlmodel */,
 				44C3D71A2711F164000C1218 /* LaunchScreen.storyboard */,
 				44C3D71D2711F164000C1218 /* Info.plist */,
 				44C0AEAB2712C7780020DA9A /* Emily.tsv */,
@@ -335,16 +332,15 @@
 				44C3D7172711F162000C1218 /* ConversationWithEmilyDickinson.xcdatamodeld in Sources */,
 				44B091D12766577100B2132A /* CreditsView.swift in Sources */,
 				44998B9E271EC7B000A92AB5 /* introViewController.swift in Sources */,
-				44998B9C271EC1C700A92AB5 /* EmilyVerse.mlmodel in Sources */,
 				44C0AEAA2712C6980020DA9A /* Verse.swift in Sources */,
 				44E71818271ED92500E2B283 /* chattyViewController.swift in Sources */,
-				44C0AEB0271305890020DA9A /* copiedVerse.mlmodel in Sources */,
 				44B091D72766845E00B2132A /* Fonts.swift in Sources */,
 				44B091D3276657A200B2132A /* UnlockedPoemsView.swift in Sources */,
 				44C3D7112711F162000C1218 /* ViewController.swift in Sources */,
 				44C3D70D2711F162000C1218 /* AppDelegate.swift in Sources */,
 				44ACADD62760FC29002630F1 /* SettingsView.swift in Sources */,
 				44B091D5276657D000B2132A /* PrivacyPolicyView.swift in Sources */,
+				44D5C7B7276A4F2300B65677 /* EmilyVerse.mlmodel in Sources */,
 				4475A48C272D3E5C0092255B /* myTextField.swift in Sources */,
 				4475A48A272D27130092255B /* myViewController.swift in Sources */,
 				441718372742732300A61AF8 /* settingsButtonModule.swift in Sources */,
