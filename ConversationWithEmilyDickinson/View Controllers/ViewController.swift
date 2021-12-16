@@ -126,7 +126,7 @@ class ViewController: myViewController, UITextFieldDelegate{
             UserDefaults.standard.set(true, forKey: "launchedBefore")
             boldLabel.text = "Nice to meet you, \(name!)"
             thinLabel.text = "You look like you think about things deeply"
-            textInputField.placeholder = "Write the first word that comes to mind"
+            textInputField.placeholder = "Write one word ..."
         }
     }
     
@@ -325,8 +325,11 @@ class ViewController: myViewController, UITextFieldDelegate{
     @objc func shareButtonPressed(){
         let generator = UISelectionFeedbackGenerator()
         generator.selectionChanged()
+       
+        let shareImage = textToImage(drawText: matchedPoem, inImage: UIImage(named: "shareBackground")!)
         
-        let ac = UIActivityViewController(activityItems: [matchedPoem], applicationActivities: nil)
+       // let ac = UIActivityViewController(activityItems: [matchedPoem], applicationActivities: nil)
+        let ac = UIActivityViewController(activityItems: [shareImage, "#EmilySaidItBetter - download from the App Store now and find your perfect personalised #EmilyDickinson #poem!"], applicationActivities: nil)
         present(ac, animated: true)
         
 //        if let vc = SLComposeViewController(forServiceType: SLServiceTypeFacebook) {
@@ -633,6 +636,29 @@ class ViewController: myViewController, UITextFieldDelegate{
                 findThePoem[line] = poem
             }
         }
+    }
+    
+    func textToImage(drawText text: String, inImage image: UIImage) -> UIImage {
+        let textColor = UIColor(named: "gray1")
+        let textFont = UIFont.systemFont(ofSize: 14, weight: .thin)
+        
+        let scale = UIScreen.main.scale
+        UIGraphicsBeginImageContextWithOptions(image.size, false, scale)
+        
+        let textFontAttributes = [
+            NSAttributedString.Key.font: textFont,
+            NSAttributedString.Key.foregroundColor: textColor,
+        ] as [NSAttributedString.Key : Any]
+        image.draw(in: CGRect(origin: CGPoint.zero, size: image.size))
+        
+        var rect = CGRect(origin: CGPoint(x: 0, y: 0), size: image.size)
+        rect = rect.inset(by: UIEdgeInsets(top: 10, left: 10, bottom: 30, right: 10))
+        text.draw(in: rect, withAttributes: textFontAttributes)
+        
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage!
     }
 }
 

@@ -36,8 +36,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         UINavigationBar.appearance().tintColor = UIColor(.gray1)
 
         
-        let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
-        //let launchedBefore = false
+       // let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
+        let launchedBefore = false
 
         if launchedBefore{
 

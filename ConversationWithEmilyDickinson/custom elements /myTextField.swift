@@ -54,6 +54,19 @@ class myTextField: UITextField {
         self.layer.shadowRadius = 1.0
         self.layer.shadowColor = UIColor.systemGray.cgColor
         
+//        if let label = self.value(forKey: "placeholderLabel") as? UILabel {
+//            label.adjustsFontSizeToFitWidth = true
+//            label.minimumScaleFactor = 0.5
+//        }
+        
+//        self.subviews
+//            .filter { $0 is UILabel }
+//            .flatMap { $0 as? UILabel }
+//            .forEach {
+//                $0.adjustsFontSizeToFitWidth = true
+//                $0.minimumScaleFactor = 0.5
+//            }
+        
         let nextImage = UIImage(systemName: "arrow.forward")
         overlayButton.setImage(nextImage, for: .normal)
 

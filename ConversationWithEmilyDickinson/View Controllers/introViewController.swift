@@ -40,7 +40,7 @@ class introViewController: myViewController, UITextFieldDelegate {
     
     lazy var textEntry: myTextField = {
         let contentView = myTextField()
-        contentView.placeholder = "Write your name here ..."
+        contentView.placeholder = "Write your name here"
         return contentView
     }()
     

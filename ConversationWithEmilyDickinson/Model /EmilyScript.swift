@@ -56,7 +56,7 @@ struct EmilyScript{
     }
     
     func tryAgain() -> String{
-        let values = ["Write something you see?", "Adjective, noun, verb?", "Write short but sharp", "Write something you don't want to say"]
+        let values = ["Write what you see?", "Adjective, noun, verb?", "Write short but sharp", "Say what you don't say"]
         
         return values.randomElement() ?? "Three words"
     }
