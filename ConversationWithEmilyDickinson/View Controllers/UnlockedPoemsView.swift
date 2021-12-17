@@ -68,27 +68,7 @@ struct UnlockedPoemsView_Previews: PreviewProvider {
     static var previews: some View {
         UnlockedPoemsView()
     }
-    
-  
 }
-
-
-//struct GetInTouchButton: View {
-//
-//    @State var title: String
-//
-//    var body: some View {
-//        HStack{
-//            VStack(alignment: .leading) {
-//                Text(title).fontWeight(.light).font(.system(size: 18)).foregroundColor(Color("gray1"))
-//            }
-//            Spacer()
-//            Image(systemName:  "envelope").foregroundColor(Color("gray1")).font(.system(size: 14))
-//        }.foregroundColor(.black)
-//    }
-//
-
-
 
 struct MailComposeViewController: UIViewControllerRepresentable {
     

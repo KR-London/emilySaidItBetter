@@ -140,7 +140,7 @@ class myBlackButton: UIButton {
     }
     
     func format(){
-      heightAnchor.constraint(equalToConstant: 56).isActive = true
+      heightAnchor.constraint(equalToConstant: 46).isActive = true
        widthAnchor.constraint(equalToConstant: 96).isActive = true
        backgroundColor = UIColor.black
        titleLabel?.textColor = UIColor.white

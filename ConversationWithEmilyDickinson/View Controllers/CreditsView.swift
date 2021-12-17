@@ -31,12 +31,12 @@ struct CreditsView: View {
         }
         Spacer()
         VStack(alignment: .leading){
-            Text("Source of Text").font(.bodyBold).foregroundColor(Color("gray1"))
+            Text("Source of Text").font(.bodyBold).foregroundColor(Color("gray1")).scaledToFit()
             Spacer().frame(height: 24)
-            Text("Project Gutenberg (PG) is a volunteer effort to digitize and archive cultural works, as well as to encourage the creation and distribution of eBooks.").font(.body).foregroundColor(Color("gray1")).fontWeight(.light)
+            Text("Project Gutenberg is a volunteer effort to digitize and archive cultural works.").font(.body).foregroundColor(Color("gray1")).fontWeight(.light)
             Divider()
             Button(action: {
-                openURL(URL(string: "https://www.gutenberg.org/about/")!)
+                openURL(URL(string: "https://www.gutenberg.org/policy/license.html")!)
             }, label: {
                 MoreButton(title: "Learn more about Project Gutenberg")
             }
@@ -72,3 +72,66 @@ struct MoreButton: View {
 }
 
 
+struct CreditsView14: View {
+    
+    @Environment(\.openURL) var openURL
+    
+    
+    var body: some View {
+        VStack{
+            VStack(alignment: .leading){
+                Text("Credits").font(.titleOne).foregroundColor(Color("gray1"))
+                Spacer().frame(height: 16)
+                Text("Poetry by Emily Dickinson").font(.bodyBold).foregroundColor(Color("gray1")).scaledToFit()
+                Spacer().frame(height: 16)
+                Text("One of the most important figures in American poetry. Lived 1830 -1886.").font(.body).foregroundColor(Color("gray1")).fontWeight(.light).lineLimit(3)
+                Divider()
+                Button(action: {
+                    openURL(URL(string: "https://www.poetryfoundation.org/poets/emily-dickinson")!)
+                }, label: {
+                    MoreButton14(title: "Learn more about Emily Dickinson")
+                }
+                )
+                Divider()
+            }
+            Spacer()
+            VStack(alignment: .leading){
+                Text("Source of Text").font(.bodyBold).foregroundColor(Color("gray1")).scaledToFit()
+                Spacer().frame(height: 16)
+                Text("Project Gutenberg is a volunteer effort to digitize cultural works.").font(.body).foregroundColor(Color("gray1")).fontWeight(.light).lineLimit(3)
+                Divider()
+                Button(action: {
+                    openURL(URL(string: "https://www.gutenberg.org/policy/license.html")!)
+                }, label: {
+                    MoreButton14(title: "Learn more about Project Gutenberg")
+                }
+                )
+                Divider()
+            }
+            Spacer()
+            Spacer()
+        }.padding(20).foregroundColor(Color("gray1"))
+    }
+}
+
+struct CreditsView14_Previews: PreviewProvider {
+    static var previews: some View {
+        CreditsView14()
+    }
+}
+
+
+struct MoreButton14: View {
+    
+    @State var title: String
+    
+    var body: some View {
+        HStack{
+            VStack(alignment: .leading) {
+                Text(title).fontWeight(.light).font(.system(size: 18)).foregroundColor(Color("gray1")).scaledToFit().minimumScaleFactor(0.5)
+            }
+            Spacer()
+            Image(systemName:  "chevron.right").foregroundColor(Color("gray1")).font(.system(size: 14))
+        }.foregroundColor(.black)
+    }
+}

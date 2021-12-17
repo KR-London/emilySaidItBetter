@@ -71,7 +71,7 @@ struct Streak: View {
         Color.settingsGray.overlay(
             VStack(alignment: .leading) {
                 Spacer()
-                Text("\(name) and Emily have been talking for").font(.system(size: 14)).foregroundColor(Color("gray1"))
+                Text("\(name) and Emily have been talking for —").font(.system(size: 14)).foregroundColor(Color("gray1"))
                 Spacer()
                 Text("\(logins) Days").font(.system(size: 32)).foregroundColor(Color("gray1"))
                 Spacer()
@@ -89,7 +89,7 @@ struct SettingsButton: View {
     @State var title: String
     @State var subtitle: String
     @State var imageName : String?
-    
+
     var body: some View {
         HStack{
         VStack(alignment: .leading) {

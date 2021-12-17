@@ -29,6 +29,7 @@
 		44C3D7332711F164000C1218 /* ConversationWithEmilyDickinsonUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C3D7322711F164000C1218 /* ConversationWithEmilyDickinsonUITestsLaunchTests.swift */; };
 		44D5C7B7276A4F2300B65677 /* EmilyVerse.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 44D5C7B6276A4F2300B65677 /* EmilyVerse.mlmodel */; };
 		44D5C7B9276B0E6F00B65677 /* EmilyScript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D5C7B8276B0E6F00B65677 /* EmilyScript.swift */; };
+		44D5C7BB276C7EE500B65677 /* SettingsView14.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D5C7BA276C7EE500B65677 /* SettingsView14.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,7 @@
 		44C3D7322711F164000C1218 /* ConversationWithEmilyDickinsonUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationWithEmilyDickinsonUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		44D5C7B6276A4F2300B65677 /* EmilyVerse.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = EmilyVerse.mlmodel; sourceTree = "<group>"; };
 		44D5C7B8276B0E6F00B65677 /* EmilyScript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmilyScript.swift; sourceTree = "<group>"; };
+		44D5C7BA276C7EE500B65677 /* SettingsView14.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView14.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +139,7 @@
 				44998B9D271EC7B000A92AB5 /* introViewController.swift */,
 				44C3D7102711F162000C1218 /* ViewController.swift */,
 				44ACADD52760FC29002630F1 /* SettingsView.swift */,
+				44D5C7BA276C7EE500B65677 /* SettingsView14.swift */,
 				44B091D2276657A200B2132A /* UnlockedPoemsView.swift */,
 				44B091D02766577100B2132A /* CreditsView.swift */,
 				44B091D4276657D000B2132A /* PrivacyPolicyView.swift */,
@@ -331,6 +334,7 @@
 			files = (
 				44C3D7172711F162000C1218 /* ConversationWithEmilyDickinson.xcdatamodeld in Sources */,
 				44B091D12766577100B2132A /* CreditsView.swift in Sources */,
+				44D5C7BB276C7EE500B65677 /* SettingsView14.swift in Sources */,
 				44998B9E271EC7B000A92AB5 /* introViewController.swift in Sources */,
 				44C0AEAA2712C6980020DA9A /* Verse.swift in Sources */,
 				44B091D72766845E00B2132A /* Fonts.swift in Sources */,
@@ -527,7 +531,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -559,7 +563,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

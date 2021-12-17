@@ -305,10 +305,15 @@ class ViewController: myViewController, UITextFieldDelegate{
 
     @objc func settingsButtonPressed(){
         
-        let vc = UIHostingController(rootView: SettingsView())
-        
-        vc.modalPresentationStyle = .fullScreen
-        present(vc, animated: true)
+        if #available(iOS 15.0, *) {
+            let vc = UIHostingController(rootView: SettingsView())
+            vc.modalPresentationStyle = .fullScreen
+            present(vc, animated: true)
+        } else {
+            let vc = UIHostingController(rootView: SettingsView14())
+            vc.modalPresentationStyle = .formSheet
+            present(vc, animated: true)
+        }
     }
 
     @objc func shareButtonPressed(){
