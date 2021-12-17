@@ -353,7 +353,9 @@ class ViewController: myViewController, UITextFieldDelegate{
         let generator = UISelectionFeedbackGenerator()
         generator.selectionChanged()
       
-        UserDefaults.standard.set(false, forKey: "launchedBefore")
+        UserDefaults.standard.removeObject(forKey: "launchedBefore")
+        UserDefaults.standard.removeObject(forKey: "lastLoginDate")
+        UserDefaults.standard.removeObject(forKey: "LoginCount")
         
         let introVC = introViewController()
         introVC.modalPresentationStyle = .fullScreen
@@ -447,26 +449,9 @@ class ViewController: myViewController, UITextFieldDelegate{
             self.label.text = matchedPoem
            // resetTest.isHidden = false
           //  askAgain.isHidden = false
-        
-//        if launchedBefore {
-         //   animate()
-  //      }
-      //   nextButton.alpha = 0
     }
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-       // nextButton.isHidden = false
-//        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)){
-//            let animator = UIViewPropertyAnimator(duration: 5, curve: .easeOut) {
-//                self.nextButton.alpha = 1
-//
-//            }
-//            animator.startAnimation()
-//        }
-    }
-    
+
     func answerAnimate(){
-        //nextButton.alpha = 0
         preThinLabel.alpha = 0
         label.alpha = 0
         boldLabel.alpha = 0
@@ -475,8 +460,6 @@ class ViewController: myViewController, UITextFieldDelegate{
         back.alpha = 0
         share.alpha = 0
         signature.alpha = 0
-        
-        //buttonStack.isHidden = false
         signature.isHidden = false
         settings.isHidden = true
         
@@ -505,10 +488,6 @@ class ViewController: myViewController, UITextFieldDelegate{
             let emilySaid = emilyVoice.intermezzoPhrase()
             preThinLabel.text = emilySaid.thinLabel
             boldLabel.text = emilySaid.boldLabel
-          //  preThinLabel.text = "Oh ... I think I understand .... "
-          //  boldLabel.text = "Let me show you a poem"
-            
-            //thinLabel.text = "I wish I could help .. "
             thinLabel.isHidden = true
             
             DispatchQueue.main.asyncAfter(deadline: .now() ){ [self] in

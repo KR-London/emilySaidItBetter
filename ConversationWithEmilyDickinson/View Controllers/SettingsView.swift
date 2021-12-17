@@ -23,7 +23,7 @@ struct SettingsView: View {
             Spacer()
             VStack{
                  NavigationLink(destination: UnlockedPoemsView()){
-                     SettingsButton(title: "Unlocked Poems", subtitle: "__ of 1,800")
+                     SettingsButton(title: "Unlocked Poems (coming soon)", subtitle: "Send us some love!")
                 }
                 Divider()
                 
@@ -76,8 +76,8 @@ struct Streak: View {
                 Text("\(logins) Days").font(.system(size: 32)).foregroundColor(Color("gray1"))
                 Spacer()
                 Spacer()
-                Text("Current streak - _ days").font(.system(size: 14)).foregroundColor(Color("gray1"))
-                Text("Longest streak - _ days").font(.system(size: 14)).foregroundColor(Color("gray2"))
+               // Text("Current streak - _ days").font(.system(size: 14)).foregroundColor(Color("gray1"))
+               // Text("Longest streak - _ days").font(.system(size: 14)).foregroundColor(Color("gray2"))
                 Spacer()
         })
     }

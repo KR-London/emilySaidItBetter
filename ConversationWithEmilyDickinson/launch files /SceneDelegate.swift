@@ -34,20 +34,30 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         //UINavigationBar.navigationItem.backBarButtonItem?.title = ""
         UINavigationBar.appearance().barTintColor = UIColor(.gray1)
         UINavigationBar.appearance().tintColor = UIColor(.gray1)
-
         
-       // let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
-        let launchedBefore = false
+        let myCalendar = Calendar.current
+   
+        let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
+        //let launchedBefore = false
 
         if launchedBefore{
 
-            let logins = UserDefaults.standard.integer(forKey: "LoginCount")
-            UserDefaults.standard.set(logins + 1, forKey: "LoginCount")
+           if let lastLogin = UserDefaults.standard.object(forKey: "lastLoginDate") as? Date
+            {
+                if !myCalendar.isDateInToday(lastLogin)
+                {
+                    let logins = UserDefaults.standard.integer(forKey: "LoginCount")
+                    UserDefaults.standard.set(logins + 1, forKey: "LoginCount")
+                    UserDefaults.standard.set(Date(), forKey: "lastLoginDate")
+                }
+            }
+            
             window.rootViewController = ViewController() // Your initial view controller.
             window.makeKeyAndVisible()
             self.window = window
         }  else
         {
+            UserDefaults.standard.set(Date(), forKey: "lastLoginDate")
             UserDefaults.standard.set(true, forKey: "launchedBefore")
             UserDefaults.standard.set(1, forKey: "LoginCount")
             window.rootViewController = introViewController() // Your initial view controller.
@@ -57,6 +67,29 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
        
     }
+    
+//    func doIPlaceANewDatestamp(){
+//        let now = Date()
+//        print(Date())
+//        var loginRecord = UserDefaults.standard.object(forKey: "loginRecord") as? [ Date ] ?? [ Date ]()
+//        print("login record")
+//        print(loginRecord)
+//
+//        loginRecord = loginRecord + [now]
+//        UserDefaults.standard.set(loginRecord, forKey: "loginRecord")
+//
+//            //        if let lastStamp = loginRecord.popLast()
+//            //        {
+//            //            if Calendar.current.isDateInToday(lastStamp)
+//            //            {
+//            //                loginRecord = loginRecord + [now]
+//            //                UserDefaults.standard.set(loginRecord, forKey: "loginRecord")
+//            //            }
+//            //        }
+//
+//
+//
+//    }
 
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.

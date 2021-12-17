@@ -25,7 +25,7 @@ struct UnlockedPoemsView: View {
                     Divider()
                     Button(action: {
                                 if let writeReviewURL = URL(string: "https://apps.apple.com/app/id1591017862?action=write-review")
-                                { openURL(URL(string: "writeReviewURL")!)}
+                                { openURL(writeReviewURL)}
                              
                         }, label: {
                             SettingsButton(title: "A nice review", subtitle: "", imageName: "rectangle.portrait.and.arrow.right")
