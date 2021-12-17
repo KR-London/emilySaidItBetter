@@ -23,6 +23,8 @@ class ViewController: myViewController, UITextFieldDelegate{
     var name : String?
     var emilyVoice = EmilyScript()
     
+   // var lastFirstLine = String()
+    
     var textInputField = myTextField()
     var label = UILabel()
     var back = UIButton()
@@ -252,19 +254,6 @@ class ViewController: myViewController, UITextFieldDelegate{
         settings.setBackgroundImage(UIImage(named: "menu"), for: .normal)
         settings.clipsToBounds = true
         settings.addTarget(self, action: #selector(settingsButtonPressed), for: .touchUpInside)
-
-
-//        view.addSubview(nextButton)
-//        nextButton.addTarget(self, action: #selector(userAnswerButtonPressed), for: .touchUpInside)
-//        nextButton.translatesAutoresizingMaskIntoConstraints = false
-//        NSLayoutConstraint.activate(
-//            [
-//                nextButton.topAnchor.constraint(equalTo: textInputField.bottomAnchor, constant: 24),
-//                nextButton.centerXAnchor.constraint(equalTo:  margins.centerXAnchor)
-//            ]
-//        )
-        
-
     }
     
     func formatLabels(){
@@ -345,11 +334,6 @@ class ViewController: myViewController, UITextFieldDelegate{
     }
     
     @objc func restart(_ textField:UIButton ){
-//        label.isHidden = true
-//        textInputField.text = ""
-//        textInputField.placeholder = "What's on your mind?"
-//        textInputField.isHidden = false
-//        button.isHidden = true
         let generator = UISelectionFeedbackGenerator()
         generator.selectionChanged()
       
@@ -381,40 +365,14 @@ class ViewController: myViewController, UITextFieldDelegate{
     }
     
     @objc func userAnswerButtonPressed(){
-      //  nextButton.isHidden = true
         buttonStack.isHidden = true
         self.view.endEditing(true)
             //        let generatorSuccess = UINotificationFeedbackGenerator()
             //        generatorSuccess.notificationOccurred(.success)
         generatorLight.impactOccurred()
        
-        
-        var closestEmilyDickinsonLine = ""
-        if let text = self.textInputField.text{
-            if let closestline = self.answerKeyCustom(for: text){
-                closestEmilyDickinsonLine = closestline
-            }
-        }
-        answerAnimate()
-        textInputField.isHidden = true
-        self.label.isHidden = false
-      
-        let poem = findThePoem[closestEmilyDickinsonLine] ?? poemCollection.randomElement()
-        matchedPoem = ""
-        
-        for lines in poem!.lines{
-            matchedPoem.append(contentsOf: lines)
-            matchedPoem.append("\n")
-        }
-        
-        self.label.text = matchedPoem
-       // nextButton.alpha = 0
-            // resetTest.isHidden = false
-            //  askAgain.isHidden = false
-        
-            //        if launchedBefore {
-            //   animate()
-            //      }
+        pickPoem()
+
     }
 
     @objc func userAnswer(_ textField: myTextField ){
@@ -422,33 +380,35 @@ class ViewController: myViewController, UITextFieldDelegate{
 //        nextButton.alpha = 0
         buttonStack.isHidden = true
         self.view.endEditing(true)
+        textField.isHidden = true
 //        let generatorSuccess = UINotificationFeedbackGenerator()
 //        generatorSuccess.notificationOccurred(.success)
         generatorLight.impactOccurred()
-      
-
+        pickPoem()
+    }
+    
+    func pickPoem(){
+        
         var closestEmilyDickinsonLine = ""
-            if let text = self.textInputField.text{
-                if let closestline = self.answerKeyCustom(for: text){
-                    closestEmilyDickinsonLine = closestline
-                }
+        if let text = self.textInputField.text{
+            if let closestline = self.answerKeyCustom(for: text){
+                closestEmilyDickinsonLine = closestline
             }
-            
-            textField.isHidden = true
-            self.label.isHidden = false
-            
-            let poem = findThePoem[closestEmilyDickinsonLine]
-       
-            matchedPoem = ""
-            
-            for lines in poem!.lines{
-                matchedPoem.append(contentsOf: lines)
-                matchedPoem.append("\n")
-            }
-            answerAnimate()
-            self.label.text = matchedPoem
-           // resetTest.isHidden = false
-          //  askAgain.isHidden = false
+        }
+
+        textInputField.isHidden = true
+        label.isHidden = false
+        
+        let poem = findThePoem[closestEmilyDickinsonLine] ?? poemCollection.randomElement()
+        
+        matchedPoem = ""
+        
+        for lines in poem!.lines{
+            matchedPoem.append(contentsOf: lines)
+            matchedPoem.append("\n")
+        }
+        answerAnimate()
+        self.label.text = matchedPoem
     }
 
     func answerAnimate(){
@@ -541,7 +501,7 @@ class ViewController: myViewController, UITextFieldDelegate{
             self.buttonStack.isHidden = false
             self.settings.isHidden = true
             
-            let animator = UIViewPropertyAnimator(duration: 5, curve: .easeOut) {
+            let animator = UIViewPropertyAnimator(duration: 10, curve: .easeOut) {
                 self.back.alpha = 1
                 self.share.alpha = 1
             }
@@ -607,9 +567,7 @@ class ViewController: myViewController, UITextFieldDelegate{
                 poemCollection.append(verse)
             }
          }
-        
-        print("Number of verses = \(poemCollection.count)")
-        
+
         for poem in poemCollection{
             for line in poem.lines{
                 findThePoem[line] = poem
