@@ -30,26 +30,25 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         UINavigationBar.appearance().barTintColor = UIColor(.gray1)
         UINavigationBar.appearance().tintColor = UIColor(.gray1)
         
-        let myCalendar = Calendar.current
         let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
 
         if launchedBefore{
-            var logins = UserDefaults.standard.integer(forKey: "LoginCount")
-            if logins == 0 {
-                UserDefaults.standard.set(1, forKey: "LoginCount")
-                logins = 1
-            }
-           if let lastLogin = UserDefaults.standard.object(forKey: "lastLoginDate") as? Date
-            {
-               
-               if !myCalendar.isDateInToday(lastLogin)
-                {
-                    UserDefaults.standard.set(logins + 1, forKey: "LoginCount")
-                    UserDefaults.standard.set(Date(), forKey: "lastLoginDate")
-                }
-           } else {
-               UserDefaults.standard.set(Date(), forKey: "lastLoginDate")
-           }
+//            var logins = UserDefaults.standard.integer(forKey: "LoginCount")
+//            if logins == 0 {
+//                UserDefaults.standard.set(1, forKey: "LoginCount")
+//                logins = 1
+//            }
+//           if let lastLogin = UserDefaults.standard.object(forKey: "lastLoginDate") as? Date
+//            {
+//
+//               if !myCalendar.isDateInToday(lastLogin)
+//                {
+//                    UserDefaults.standard.set(logins + 1, forKey: "LoginCount")
+//                    UserDefaults.standard.set(Date(), forKey: "lastLoginDate")
+//                }
+//           } else {
+//               UserDefaults.standard.set(Date(), forKey: "lastLoginDate")
+//           }
             
             window.rootViewController = ViewController() // Your initial view controller.
             window.makeKeyAndVisible()
@@ -67,29 +66,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
        
     }
     
-//    func doIPlaceANewDatestamp(){
-//        let now = Date()
-//        print(Date())
-//        var loginRecord = UserDefaults.standard.object(forKey: "loginRecord") as? [ Date ] ?? [ Date ]()
-//        print("login record")
-//        print(loginRecord)
-//
-//        loginRecord = loginRecord + [now]
-//        UserDefaults.standard.set(loginRecord, forKey: "loginRecord")
-//
-//            //        if let lastStamp = loginRecord.popLast()
-//            //        {
-//            //            if Calendar.current.isDateInToday(lastStamp)
-//            //            {
-//            //                loginRecord = loginRecord + [now]
-//            //                UserDefaults.standard.set(loginRecord, forKey: "loginRecord")
-//            //            }
-//            //        }
-//
-//
-//
-//    }
-
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
         // This occurs shortly after the scene enters the background, or when its session is discarded.
@@ -110,6 +86,26 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneWillEnterForeground(_ scene: UIScene) {
         // Called as the scene transitions from the background to the foreground.
         // Use this method to undo the changes made on entering the background.
+        let myCalendar = Calendar.current
+        
+        var logins = UserDefaults.standard.integer(forKey: "LoginCount")
+        if logins == 0 {
+            UserDefaults.standard.set(1, forKey: "LoginCount")
+            logins = 1
+        }
+        if let lastLogin = UserDefaults.standard.object(forKey: "lastLoginDate") as? Date
+        {
+            
+            if !myCalendar.isDateInToday(lastLogin)
+            {
+                UserDefaults.standard.set(logins + 1, forKey: "LoginCount")
+                UserDefaults.standard.set(Date(), forKey: "lastLoginDate")
+            }
+        } else {
+            UserDefaults.standard.set(Date(), forKey: "lastLoginDate")
+        }
+        
+        
     }
 
     func sceneDidEnterBackground(_ scene: UIScene) {

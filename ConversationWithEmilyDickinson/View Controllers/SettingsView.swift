@@ -36,9 +36,9 @@ struct SettingsView: View {
                 }
                 Divider()
                 Button(action: {
-                    openURL(URL(string: "https://www.saltformysquid.com")!)
+                    openURL(URL(string: "https://www.emily-said-it-better.com")!)
                 }, label: {
-                    SettingsButton(title: "Developer Website", subtitle: "SaLTformySquid.com", imageName: "rectangle.portrait.and.arrow.right")
+                    SettingsButton(title: "Developer Website", subtitle: "More about this app", imageName: "rectangle.portrait.and.arrow.right")
                 }
                 )
                 Divider()
@@ -55,7 +55,7 @@ struct SettingsView: View {
                 action: { presentationMode.wrappedValue.dismiss() },
                 label: {
                     Image(systemName: "xmark").foregroundColor(Color("gray1"))
-                }).frame(width: 24, height: 24, alignment: .leading).font(.system(size: 14)
+                }).frame(width: 60, height: 60, alignment: .leading).font(.system(size: 14)
                                                                         )
         )
         }.navigationTitle("").navigationViewStyle(StackNavigationViewStyle())
@@ -78,8 +78,8 @@ struct Streak: View {
                 Text("\(name) and Emily have been talking for").font(.system(size: 14)).foregroundColor(Color("gray1"))
                 Spacer()
                 Text("\(logins) Days").font(.system(size: 32)).foregroundColor(Color("gray1"))
-                Spacer()
-                Spacer()
+               // Spacer()
+                //Spacer()
                // Text("Current streak - _ days").font(.system(size: 14)).foregroundColor(Color("gray1"))
                // Text("Longest streak - _ days").font(.system(size: 14)).foregroundColor(Color("gray2"))
                 Spacer()

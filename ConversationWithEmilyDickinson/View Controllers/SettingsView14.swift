@@ -19,7 +19,7 @@ struct SettingsView14: View {
         NavigationView{
             VStack(alignment: .leading)  {
                     // Spacer().frame(height: 20)
-                Streak().frame(minHeight: 100, idealHeight: 150, maxHeight: 200)
+                Streak().frame(minHeight: 80, maxHeight: 150)
                 Spacer()
                 VStack{
                     NavigationLink(destination: UnlockedPoemsView()){
@@ -36,7 +36,7 @@ struct SettingsView14: View {
                     }
                     Divider()
                     Button(action: {
-                        openURL(URL(string: "www.emily-said-it-better.com")!)
+                        openURL(URL(string: "https://www.emily-said-it-better.com")!)
                     }, label: {
                         SettingsButton(title: "Developer Website", subtitle: "More about this app")
                     }

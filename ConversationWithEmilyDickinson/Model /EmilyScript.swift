@@ -9,34 +9,7 @@ import Foundation
 
 struct EmilyScript{
     
-    let name = (UserDefaults.standard.object(forKey: "Name") as? String ) ?? "friend"
-   
-   // private var boldLabelOne:  String = "Hello friend"
-    //var thinLabelOne:  String
-    //var textPlaceholderOne:  String
-    
-   // var intermezzoThin:  String
-   // var intermezzoBold:  String
-    
-    
-   // var boldLabelTwo:  String
-   // var thinLabelTwo:  String
-   // var textPlaceholderTwo:  [String]
-    
-//    func getboldLabelOne() -> String{
-//        let values = ["Hello again \(name)"]
-//        return values.randomElement() ?? "Hello friend"
-//    }
-//
-//    func getthinLabelOne() -> String{
-//        let values = ["Hello again \(name)"]
-//        return values.randomElement() ?? "Hello friend"
-//    }
-//
-//    func getTextPlaceholderOne() -> String{
-//        let values = ["Three words for now)"]
-//        return values.randomElement() ?? "Hello friend"
-//    }
+    let name = (UserDefaults.standard.object(forKey: "Name") as? String ?? "").isEmpty ? "Friend" : (UserDefaults.standard.object(forKey: "Name") as? String ?? "")
     
     func openingPhrase() -> phrase{
         let values =    [
@@ -93,22 +66,7 @@ struct EmilyScript{
                       "Tell me a secret", "Try a song lyric", "Try saying nothing…"]
         
         return values.randomElement() ?? "Three words"
-    }
-    
-//    func getintermezzoThin() -> String{
-//        let values = ["intermezzoThin"]
-//        return values.randomElement() ?? "Hello friend"
-//    }
-//
-//    func getintermezzoBold() -> String{
-//        let values = ["IntermezzoBold"]
-//        return values.randomElement() ?? "Hello friend"
-//    }
-//
-//    func getTextPlaceholderTwo() -> [String]{
-//        return ["Three words for hope"]
-//    }
-    
+    }    
 }
 
 struct phrase{

@@ -128,11 +128,11 @@ class ViewController: myViewController, UITextFieldDelegate{
     
     func checkIfNewUser(){
         let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
-        name = (UserDefaults.standard.object(forKey: "Name") as? String ) ?? "friend"
+        name = (UserDefaults.standard.object(forKey: "Name") as? String ) ?? "Friend"
         
         if let nname = name{
             if nname.isEmpty{
-                name = "friend"
+                name = "Friend"
             }
         }
         
@@ -277,11 +277,15 @@ class ViewController: myViewController, UITextFieldDelegate{
         settings.translatesAutoresizingMaskIntoConstraints = false
         settings.topAnchor.constraint(equalTo: margins.topAnchor, constant: 20).isActive = true
         settings.leadingAnchor.constraint(equalTo: margins.leadingAnchor).isActive = true
-        settings.heightAnchor.constraint(equalToConstant: 16).isActive = true
-        settings.widthAnchor.constraint(equalToConstant: 24).isActive = true
+        settings.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        settings.widthAnchor.constraint(equalToConstant: 50).isActive = true
         settings.tintColor = UIColor(named: "gray1")
         settings.alpha = 1
-        settings.setBackgroundImage(UIImage(named: "menu"), for: .normal)
+       // settings.setBackgroundImage(UIImage(named: "menu"), for: .normal)
+        let menuImageView = UIImageView(image: UIImage(named: "menu"))
+        menuImageView.frame = CGRect(x: 0, y: 0, width: 24, height: 16)
+        settings.addSubview(menuImageView)
+       // menuImageView.translatesAutoresizingMaskIntoConstraints =
         settings.clipsToBounds = true
         settings.addTarget(self, action: #selector(settingsButtonPressed), for: .touchUpInside)
     }
