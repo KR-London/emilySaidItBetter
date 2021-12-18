@@ -36,9 +36,9 @@ struct SettingsView14: View {
                     }
                     Divider()
                     Button(action: {
-                        openURL(URL(string: "https://www.saltformysquid.com")!)
+                        openURL(URL(string: "www.emily-said-it-better.com")!)
                     }, label: {
-                        SettingsButton(title: "Developer Website", subtitle: "SaLTformySquid.com")
+                        SettingsButton(title: "Developer Website", subtitle: "More about this app")
                     }
                     )
                     Divider()

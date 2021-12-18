@@ -33,6 +33,8 @@ class ViewController: myViewController, UITextFieldDelegate{
     var showKeyLine = UIButton()
     var signature = UIImageView()
     
+   
+    
     var settings = UIButton()
   
     var allTheLines = [ (String, [Double]) ]()
@@ -90,6 +92,19 @@ class ViewController: myViewController, UITextFieldDelegate{
 //        return contentView
 //    }()
     
+    lazy var dismissingTapView : UIView = {
+        let contentView = UIView()
+        contentView.backgroundColor = .clear
+        
+            // Initialize Tap Gesture Recognizer
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.didTapView(_:)))
+        
+            // Add Tap Gesture Recognizer
+        contentView.addGestureRecognizer(tapGestureRecognizer)
+        contentView.isHidden = true
+        return contentView
+    }()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -114,6 +129,12 @@ class ViewController: myViewController, UITextFieldDelegate{
     func checkIfNewUser(){
         let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
         name = (UserDefaults.standard.object(forKey: "Name") as? String ) ?? "friend"
+        
+        if let nname = name{
+            if nname.isEmpty{
+                name = "friend"
+            }
+        }
         
         if launchedBefore{
             //preThinLabel.isHidden = true
@@ -161,6 +182,13 @@ class ViewController: myViewController, UITextFieldDelegate{
         self.view.backgroundColor = .white
         let margins = view.layoutMarginsGuide
         
+        view.addSubview(dismissingTapView)
+        dismissingTapView.translatesAutoresizingMaskIntoConstraints = false
+        dismissingTapView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        dismissingTapView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        dismissingTapView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        dismissingTapView.heightAnchor.constraint(equalToConstant: 0.8*view.frame.height).isActive = true
+        
         textInputField.alpha = 0
         textInputField.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(textInputField)
@@ -204,6 +232,8 @@ class ViewController: myViewController, UITextFieldDelegate{
         
         reset.addTarget(self, action: #selector(restart), for: .touchUpInside)
         showKeyLine.addTarget(self, action: #selector(showMatchedLine), for: .touchUpInside)
+        
+        
         
         buttonStack.axis = .horizontal
         buttonStack.translatesAutoresizingMaskIntoConstraints = false
@@ -323,7 +353,7 @@ class ViewController: myViewController, UITextFieldDelegate{
         let shareImage = textToImage(drawText: matchedPoem, inImage: UIImage(named: "shareBackground")!)
         
        // let ac = UIActivityViewController(activityItems: [matchedPoem], applicationActivities: nil)
-        let ac = UIActivityViewController(activityItems: [shareImage, "#EmilySaidItBetter - download from the App Store now and find your perfect personalised #EmilyDickinson #poem!"], applicationActivities: nil)
+        let ac = UIActivityViewController(activityItems: [ shareImage, "#EmilySaidItBetter - download from the App Store now and find your perfect personalised #EmilyDickinson #poem!"], applicationActivities: nil)
         present(ac, animated: true)
         
 //        if let vc = SLComposeViewController(forServiceType: SLServiceTypeFacebook) {
@@ -342,9 +372,13 @@ class ViewController: myViewController, UITextFieldDelegate{
         let generator = UISelectionFeedbackGenerator()
         generator.selectionChanged()
       
-        UserDefaults.standard.removeObject(forKey: "launchedBefore")
-        UserDefaults.standard.removeObject(forKey: "lastLoginDate")
-        UserDefaults.standard.removeObject(forKey: "LoginCount")
+      //  UserDefaults.standard.removeObject(forKey: "launchedBefore")
+      //  UserDefaults.standard.removeObject(forKey: "lastLoginDate")
+     //   UserDefaults.standard.removeObject(forKey: "LoginCount")
+        
+        UserDefaults.standard.set(Date(), forKey: "lastLoginDate")
+        UserDefaults.standard.set(false, forKey: "launchedBefore")
+        UserDefaults.standard.set(1, forKey: "LoginCount")
         
         let introVC = introViewController()
         introVC.modalPresentationStyle = .fullScreen
@@ -364,7 +398,7 @@ class ViewController: myViewController, UITextFieldDelegate{
         textInputField.text = ""
         textInputField.placeholder = emilyVoice.tryAgain()
         textInputField.isHidden = false
-       
+        dismissingTapView.isHidden = true
        // share.isHidden = true
         signature.isHidden = true
     }
@@ -404,7 +438,11 @@ class ViewController: myViewController, UITextFieldDelegate{
         textInputField.isHidden = true
         label.isHidden = false
         
-        let poem = findThePoem[closestEmilyDickinsonLine] ?? poemCollection.randomElement()
+        var poem = findThePoem[closestEmilyDickinsonLine] ?? poemCollection.randomElement()
+        
+        if poem?.lines.first == "In the silent west"{
+            poem = poemCollection.randomElement()
+        }
         
         matchedPoem = ""
         
@@ -414,6 +452,7 @@ class ViewController: myViewController, UITextFieldDelegate{
         }
         answerAnimate()
         self.label.text = matchedPoem
+        dismissingTapView.isHidden = false
     }
 
     func answerAnimate(){
@@ -513,6 +552,17 @@ class ViewController: myViewController, UITextFieldDelegate{
             animator.startAnimation()
             self.generatorLight.impactOccurred()
         }
+    }
+    
+        // Initialize Tap Gesture Recognizer
+    @objc func didTapView(_ gestureRecognizer: UIGestureRecognizer){
+        self.buttonStack.isHidden = false
+        self.settings.isHidden = true
+        self.back.alpha = 1
+        self.share.alpha = 1
+        self.label.alpha = 1
+        self.signature.alpha = 1
+        self.stackView.isHidden = true
     }
     
     func answerKeyCustom(for string: String) -> String? {

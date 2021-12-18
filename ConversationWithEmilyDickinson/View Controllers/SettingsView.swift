@@ -63,7 +63,11 @@ struct SettingsView: View {
 }
 
 struct Streak: View {
-    @State var name: String = (UserDefaults.standard.object(forKey: "Name") as? String ) ?? "You"
+   // @State var name: String =  (UserDefaults.standard.object(forKey: "Name") as? String ) ?? "You"
+    @State var name: String = (UserDefaults.standard.object(forKey: "Name") as? String ?? "").isEmpty ? "You" : UserDefaults.standard.object(forKey: "Name") as! String
+    
+    
+   
     
     let logins = UserDefaults.standard.integer(forKey: "LoginCount")
     
@@ -71,7 +75,7 @@ struct Streak: View {
         Color.settingsGray.overlay(
             VStack(alignment: .leading) {
                 Spacer()
-                Text("\(name) and Emily have been talking for —").font(.system(size: 14)).foregroundColor(Color("gray1"))
+                Text("\(name) and Emily have been talking for").font(.system(size: 14)).foregroundColor(Color("gray1"))
                 Spacer()
                 Text("\(logins) Days").font(.system(size: 32)).foregroundColor(Color("gray1"))
                 Spacer()

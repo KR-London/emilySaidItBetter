@@ -135,64 +135,192 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "8742A9D1-92E5-4BB9-AB6A-214227A86C63"
+            uuid = "09A66BFB-0F65-46F7-8C5A-D1181F21DC28"
             shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ConversationWithEmilyDickinson/View Controllers/CreditsView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BE9F7FDE-25C8-4814-B002-B809BD70781A"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ConversationWithEmilyDickinson/View Controllers/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "392"
-            endingLineNumber = "392"
-            landmarkName = "pickPoem()"
+            startingLineNumber = "558"
+            endingLineNumber = "558"
+            landmarkName = "didTapView(_:)"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "82539625-0A81-4B81-8111-F0677C779E6D"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ConversationWithEmilyDickinson/View Controllers/SettingsView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
+            landmarkName = "Streak"
+            landmarkType = "14">
+            <Locations>
+               <Location
+                  uuid = "82539625-0A81-4B81-8111-F0677C779E6D - 4bac80ba6be93c10"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ConversationWithEmilyDickinson.Streak.init() -&gt; ConversationWithEmilyDickinson.Streak"
+                  moduleName = "ConversationWithEmilyDickinson"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kate/Desktop/ConversationWithEmilyDickinson/ConversationWithEmilyDickinson/View%20Controllers/SettingsView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "68"
+                  endingLineNumber = "68"
+                  offsetFromSymbolStart = "709">
+               </Location>
+               <Location
+                  uuid = "82539625-0A81-4B81-8111-F0677C779E6D - 856ad43221ed8dd4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ConversationWithEmilyDickinson.Streak.init(name: Swift.String) -&gt; ConversationWithEmilyDickinson.Streak"
+                  moduleName = "ConversationWithEmilyDickinson"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kate/Desktop/ConversationWithEmilyDickinson/ConversationWithEmilyDickinson/View%20Controllers/SettingsView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "68"
+                  endingLineNumber = "68"
+                  offsetFromSymbolStart = "122">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FDAA015B-7798-4174-AA8F-CC91F526C52B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ConversationWithEmilyDickinson/launch files /SceneDelegate.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "scene(_:willConnectTo:options:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "A495E6E9-9897-4CE5-AD6F-356C060E3B50"
+            uuid = "C497C614-C530-4F21-89D3-4EE79ED2E080"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ConversationWithEmilyDickinson/View Controllers/ViewController.swift"
+            filePath = "ConversationWithEmilyDickinson/launch files /SceneDelegate.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "400"
-            endingLineNumber = "400"
-            landmarkName = "pickPoem()"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
+            landmarkName = "scene(_:willConnectTo:options:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "4CEDE7E7-0EB8-43C1-8CB4-1A402777AD63"
+            uuid = "4A6040C2-595D-4A82-87E0-0E72FDC76E64"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ConversationWithEmilyDickinson/View Controllers/ViewController.swift"
+            filePath = "ConversationWithEmilyDickinson/launch files /SceneDelegate.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "394"
-            endingLineNumber = "394"
-            landmarkName = "pickPoem()"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
+            landmarkName = "scene(_:willConnectTo:options:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "EDF7B79F-32D1-4F90-B29B-2D3C08D70868"
+            uuid = "BC802FF0-FAD4-4730-8305-45791B93DE76"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ConversationWithEmilyDickinson/launch files /SceneDelegate.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "scene(_:willConnectTo:options:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B3D824D5-5E14-4776-9AD5-F3BF61F011F5"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ConversationWithEmilyDickinson/launch files /SceneDelegate.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "scene(_:willConnectTo:options:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BF6FEBF0-827B-4542-9B53-9F0E1E03E76A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ConversationWithEmilyDickinson/Model /EmilyScript.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
+            landmarkName = "intermezzoPhrase()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6D83FA65-64C0-4C2A-82DF-53AF4F29334D"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ConversationWithEmilyDickinson/View Controllers/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "514"
-            endingLineNumber = "514"
-            landmarkName = "answerKeyCustom(for:)"
+            startingLineNumber = "139"
+            endingLineNumber = "139"
+            landmarkName = "checkIfNewUser()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

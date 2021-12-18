@@ -47,12 +47,12 @@ struct UnlockedPoemsView: View {
                     Spacer()
                 }
                 .sheet(isPresented: $showingMail) {
-                    MailComposeViewController(toRecipients: ["emily@saltformysquid.com"], mailBody: "We'd love to hear what you think!") { }  }
+                    MailComposeViewController(toRecipients: ["emily.said.it.better@gmail.com"], mailBody: "We'd love to hear what you think!") { }  }
             VStack{
                     Spacer()
                     Divider()
                     Button(action: {
-                            openURL(URL(string: "https://www.justgiving.com/fundraising/emilyapp")!)
+                            openURL(URL(string: "https://www.justgiving.com/fundraising/emily-said-it-better")!)
                         }, label: {
                                 SettingsButton(title: "Donate to our preferred charity", subtitle: "", imageName: "rectangle.portrait.and.arrow.right")
                         }

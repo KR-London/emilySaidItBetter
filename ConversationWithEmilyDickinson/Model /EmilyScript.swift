@@ -41,22 +41,24 @@ struct EmilyScript{
     func openingPhrase() -> phrase{
         let values =    [
                             phrase(bold: "Hello again, \(name)", thin: "Did anything preoccupy you today?", placeholder: "Three words"),
-                            phrase(bold: " \(name)", thin: "Grab a fleeting feeling", placeholder: "Three words of now"),
+                            phrase(bold: "\(name)", thin: "Grab a fleeting feeling", placeholder: "Three words of now"),
                             phrase(bold: "Nice to see you \(name)", thin: "Today might be a special day", placeholder: "3 words of hope"),
-                            phrase(bold: "\(name)", thin: "What is beautiful for you", placeholder: "Short works best"),
-                            phrase(bold: "So nice to see you", thin: "What is beautiful for you?", placeholder: "… brief is bes"),
+                            phrase(bold: "\(name)", thin: "What is beautiful for you?", placeholder: "Short works best"),
+                            phrase(bold: "So nice to see you", thin: "What is beautiful for you?", placeholder: "… brief is best"),
                             phrase(bold: "Darling", thin: "Grab a fleeting feeling…", placeholder: "… brief is best"),
                                    phrase(bold: "\(name)", thin: "What is your happiest thought?", placeholder: "… brief is best"),
                                    phrase(bold: "My dear \(name),", thin: "Tell me today’s truth", placeholder: "… brief is best"),
-                                   phrase(bold: "I am here.", thin: "Ask me a deep question", placeholder: "… brief is best"),
-                                   phrase(bold: "I sometimes wonder ", thin: "What is by ear unheard?", placeholder: "… brief is best"),
+                                   phrase(bold: "I am here.", thin: "Ask me a deep question.", placeholder: "… brief is best"),
                                    phrase(bold: "A new day", thin: "What is it time to see?", placeholder: "… brief is best"),
                                    phrase(bold: "Be brave", thin: "What seems possible?", placeholder: "… brief is best"),
                                    phrase(bold: "Your heart \(name)", thin: "What does it yearn for?", placeholder: "Just three words"),
-                                   phrase(bold: "Ever dear \(name)", thin: "What is the smell of home for you?", placeholder: "… brief is best"),
-                                   phrase(bold: "\(name) - you’re here ", thin: "What do you feel?", placeholder: "… brief is best"),
+                                   phrase(bold: "Ever Dear \(name)", thin: "What is the smell of home for you?", placeholder: "… brief is best"),
+                                   phrase(bold: "\(name) - you’re here. ", thin: "What do you feel?", placeholder: "… brief is best"),
                                    phrase(bold: "Dear \(name)", thin: "Tell me a happy sound.", placeholder: "… brief is best"),
-                                    phrase(bold: "Tell me \(name)", thin: "Which bird are you?", placeholder: "… brief is best"),
+                                    phrase(bold: "Tell me \(name)", thin: "Which bird do you love best?", placeholder: "... do tell"),
+                                    phrase(bold: "Nature is a wonder", thin: "Tell me about nature", placeholder: "… brief is best"), phrase(bold: "Nature is a wonder", thin: "Tell me about nature", placeholder: "… brief is best"),
+ phrase(bold: "Nature is a wonder", thin: "Tell me about nature", placeholder: "… brief is best"),
+                            phrase(bold: "Say it true", thin: "Say it slant", placeholder: "Say what you know...")
                         ]
         return  values.randomElement() ??  phrase(bold: "Hello", thin: "Shall we talk?", placeholder: "Three important words")
     }
@@ -87,10 +89,8 @@ struct EmilyScript{
                       "What can you hear?",
                       "Share your thought",
                       "A funny word",
-                      "Say it slant",
                       "Short and sweet",
-                      "Tell me a secret",
-                      "What sums up today"]
+                      "Tell me a secret", "Try a song lyric", "Try saying nothing…"]
         
         return values.randomElement() ?? "Three words"
     }
