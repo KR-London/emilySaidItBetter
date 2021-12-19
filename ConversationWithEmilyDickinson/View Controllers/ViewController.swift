@@ -221,17 +221,17 @@ class ViewController: myViewController, UITextFieldDelegate{
         signature.widthAnchor.constraint(equalToConstant: 92).isActive = true
         signature.alpha = 0
         
-        buttonStack.addArrangedSubview(reset)
+       // buttonStack.addArrangedSubview(reset)
         buttonStack.addArrangedSubview(back)
         buttonStack.addArrangedSubview(share)
-        buttonStack.addArrangedSubview(showKeyLine)
+       // buttonStack.addArrangedSubview(showKeyLine)
         view.addSubview(buttonStack)
         
         reset.backgroundColor = .clear
         showKeyLine.backgroundColor = .clear
         
-        reset.addTarget(self, action: #selector(restart), for: .touchUpInside)
-        showKeyLine.addTarget(self, action: #selector(showMatchedLine), for: .touchUpInside)
+      //  reset.addTarget(self, action: #selector(restart), for: .touchUpInside)
+      //  showKeyLine.addTarget(self, action: #selector(showMatchedLine), for: .touchUpInside)
         
         
         
@@ -560,13 +560,13 @@ class ViewController: myViewController, UITextFieldDelegate{
     
         // Initialize Tap Gesture Recognizer
     @objc func didTapView(_ gestureRecognizer: UIGestureRecognizer){
-        self.buttonStack.isHidden = false
-        self.settings.isHidden = true
-        self.back.alpha = 1
-        self.share.alpha = 1
-        self.label.alpha = 1
-        self.signature.alpha = 1
-        self.stackView.isHidden = true
+            self.buttonStack.isHidden = false
+            self.settings.isHidden = true
+            self.back.alpha = 1
+            self.share.alpha = 1
+            self.label.alpha = 1
+            self.signature.alpha = 1
+            self.stackView.isHidden = true
     }
     
     func answerKeyCustom(for string: String) -> String? {
@@ -636,7 +636,7 @@ class ViewController: myViewController, UITextFieldDelegate{
     
     func textToImage(drawText text: String, inImage image: UIImage) -> UIImage {
         let textColor = UIColor(named: "gray1")
-        let textFont = UIFont.systemFont(ofSize: 14, weight: .thin)
+        let textFont = UIFont.systemFont(ofSize: 12, weight: .thin)
         
         let scale = UIScreen.main.scale
         UIGraphicsBeginImageContextWithOptions(image.size, false, scale)
