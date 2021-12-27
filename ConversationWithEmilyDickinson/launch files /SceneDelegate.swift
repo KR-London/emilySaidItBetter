@@ -33,22 +33,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
 
         if launchedBefore{
-//            var logins = UserDefaults.standard.integer(forKey: "LoginCount")
-//            if logins == 0 {
-//                UserDefaults.standard.set(1, forKey: "LoginCount")
-//                logins = 1
-//            }
-//           if let lastLogin = UserDefaults.standard.object(forKey: "lastLoginDate") as? Date
-//            {
-//
-//               if !myCalendar.isDateInToday(lastLogin)
-//                {
-//                    UserDefaults.standard.set(logins + 1, forKey: "LoginCount")
-//                    UserDefaults.standard.set(Date(), forKey: "lastLoginDate")
-//                }
-//           } else {
-//               UserDefaults.standard.set(Date(), forKey: "lastLoginDate")
-//           }
+
             
             window.rootViewController = ViewController() // Your initial view controller.
             window.makeKeyAndVisible()

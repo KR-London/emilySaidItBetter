@@ -13,7 +13,7 @@ struct PrivacyPolicyView: View {
             Spacer()
             Text("Privacy Policy").font(.titleOne)
             Spacer()
-            Text("Your thoughts belong to you. This app does not send any personal information off your device. We typically get some general anonymised statistics e.g. crashes, installs, uninstalls unless you have opted out. ").font(.body).fontWeight(.light)
+            Text("Your thoughts belong to you. This app does not send any personal information off your device. We typically get some general anonymized statistics e.g. crashes, installs, uninstalls unless you have opted out. ").font(.body).fontWeight(.light)
             Spacer()
             Text("The AI matching is done locally. Your name, poems and logon statistics are saved on your handset, but your own words are not stored.").font(.body).fontWeight(.light)
             Spacer()

@@ -19,7 +19,7 @@ struct CreditsView: View {
             Spacer().frame(height: 32)
             Text("Poetry by Emily Dickinson").font(.bodyBold).foregroundColor(Color("gray1"))
             Spacer().frame(height: 24)
-            Text("Emily Elizabeth Dickinson (December 10, 1830 – May 15, 1886) was an American poet. Little-known during her life, she has since been regarded as one of the most important figures in American poetry.").font(.body).foregroundColor(Color("gray1")).fontWeight(.light)
+            Text("Emily Dickinson is a 19th century American poet. She published very little in her lifetime but wrote prolifically in an original voice that still feels startling and relevant today.").font(.body).foregroundColor(Color("gray1")).fontWeight(.light)
             Divider()
             Button(action: {
                 openURL(URL(string: "https://www.poetryfoundation.org/poets/emily-dickinson")!)

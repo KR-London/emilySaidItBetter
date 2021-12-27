@@ -137,10 +137,8 @@ class ViewController: myViewController, UITextFieldDelegate{
         }
         
         if launchedBefore{
-            //preThinLabel.isHidden = true
             let emilySaid = emilyVoice.openingPhrase()
             boldLabel.text = emilySaid.boldLabel
-            //"Hello again, \(name!)"
             thinLabel.text = emilySaid.thinLabel
             textInputField.placeholder = emilySaid.textPlaceholder
             
@@ -222,8 +220,19 @@ class ViewController: myViewController, UITextFieldDelegate{
         signature.alpha = 0
         
        // buttonStack.addArrangedSubview(reset)
-        buttonStack.addArrangedSubview(back)
-        buttonStack.addArrangedSubview(share)
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            buttonStack.addArrangedSubview(back)
+            #if targetEnvironment(macCatalyst)
+            buttonStack.addArrangedSubview(share)
+            #endif
+            // work out the crash
+          //  buttonStack.addArrangedSubview(share)
+            
+        } else{
+            buttonStack.addArrangedSubview(back)
+            buttonStack.addArrangedSubview(share)
+        }
+        
        // buttonStack.addArrangedSubview(showKeyLine)
         view.addSubview(buttonStack)
         
@@ -355,10 +364,17 @@ class ViewController: myViewController, UITextFieldDelegate{
         generator.selectionChanged()
        
         let shareImage = textToImage(drawText: matchedPoem, inImage: UIImage(named: "shareBackground")!)
+        let ac = UIActivityViewController(activityItems: [ shareImage, "#EmilySaidItBetter - find your perfect personalized #Dickinson #poem! Download from the App Store now: https://apple.co/3edhxBv"
+                                                         ], applicationActivities: nil)
         
-       // let ac = UIActivityViewController(activityItems: [matchedPoem], applicationActivities: nil)
-        let ac = UIActivityViewController(activityItems: [ shareImage, "#EmilySaidItBetter - download from the App Store now and find your perfect personalised #EmilyDickinson #poem!"], applicationActivities: nil)
+//        if UIDevice.current.userInterfaceIdiom == .pad {
+//            if let wPPC = ac.popoverPresentationController {
+//                activityVC.popoverPresentationController?.sourceView = UIApplication.shared.windows.first
+//            }
+//        }
+        
         present(ac, animated: true)
+
         
 //        if let vc = SLComposeViewController(forServiceType: SLServiceTypeFacebook) {
 //            vc.setInitialText("Look at this great picture!")
@@ -636,7 +652,16 @@ class ViewController: myViewController, UITextFieldDelegate{
     
     func textToImage(drawText text: String, inImage image: UIImage) -> UIImage {
         let textColor = UIColor(named: "gray1")
-        let textFont = UIFont.systemFont(ofSize: 12, weight: .thin)
+        var textFont = UIFont()
+        
+        switch text.count{
+            case 100..<400: textFont = UIFont.systemFont(ofSize: 12, weight: .thin)
+            case 40..<100: textFont = UIFont.systemFont(ofSize: 14, weight: .thin)
+            case 20..<40: textFont = UIFont.systemFont(ofSize: 16, weight: .thin)
+            case 0..<20: textFont = UIFont.systemFont(ofSize: 18, weight: .thin)
+            default:    textFont = UIFont.systemFont(ofSize: 10, weight: .thin)
+        }
+
         
         let scale = UIScreen.main.scale
         UIGraphicsBeginImageContextWithOptions(image.size, false, scale)
@@ -654,25 +679,6 @@ class ViewController: myViewController, UITextFieldDelegate{
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
-        return newImage!
+        return newImage ?? UIImage(named: "shareBackground")!
     }
 }
-
-extension ViewController : UIActivityItemSource  {
-    func activityViewController(_ activityViewController: UIActivityViewController, itemForActivityType activityType: UIActivity.ActivityType?) -> Any? {
-        if activityType == .postToTwitter {
-            return "#EmilySaidItBetter - download from the App Store now and find your perfect personalised #EmilyDickinson #poem!"
-        } else {
-            return "#EmilySaidItBetter - download from the App Store now and find your perfect personalised #EmilyDickinson #poem!"
-        }
-    }
-    
-    func activityViewControllerPlaceholderItem(_ activityViewController: UIActivityViewController) -> Any {
-        return  "#EmilySaidItBetter - download from the App Store now and find your perfect personalised #EmilyDickinson #poem!"
-    }
-    
-    func activityViewController(_ activityViewController: UIActivityViewController, subjectForActivityType activityType: UIActivity.ActivityType?) -> String {
-        return "Emily said it better"
-    }
-}
-
