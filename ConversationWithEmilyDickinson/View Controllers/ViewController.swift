@@ -592,12 +592,11 @@ class ViewController: myViewController, UITextFieldDelegate{
         let customEmbedding = try! NLEmbedding.init(contentsOf: modelURL!)
         guard let queryVector = embedding.vector(for: string) else { return nil }
 
-        guard let (nearestLineKey, distance ) = customEmbedding.neighbors(for: queryVector, maximumCount: 1).first else
+        guard let (nearestLineKey, _ ) = customEmbedding.neighbors(for: queryVector, maximumCount: 1).first else
         {
             return nil
-            
+
         }
-        
         matchedLine = nearestLineKey
         
         let matchedVerse = self.findThePoem[ nearestLineKey ]
@@ -622,9 +621,9 @@ class ViewController: myViewController, UITextFieldDelegate{
             print("Your filepath failed")
         }
 
-       /// Break it into individual verses and tidy up some typographocal strangness
+       /// Break it into individual verses and tidy up some typographocal strangeness
        /// source: Project Gutenberg's Poems: Three Series, Complete, by Emily Dickinson
-        var unprocessedVerses = rawString.components(separatedBy: "\r\n\r\n")
+        let unprocessedVerses = rawString.components(separatedBy: "\r\n\r\n")
         for unprocessedVerse in unprocessedVerses {
              var lines = unprocessedVerse.components(separatedBy: "\r\n")
 
