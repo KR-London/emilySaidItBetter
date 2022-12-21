@@ -10,15 +10,25 @@ import UIKit
 class myTextField: UITextField {
     
     let inset: CGFloat = 16
+    let overlayButton = UIButton(type: .custom)
     
         // placeholder position
     override func textRect(forBounds bounds: CGRect) -> CGRect {
-        return bounds.insetBy(dx: inset, dy: inset)
+        //var insetRect = bounds.insetBy(dx: inset, dy: inset)
+        let height = bounds.height
+        let buttonInset = UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset + height)
+        
+        return bounds.inset(by: buttonInset)
+        
     }
     
         // text position
     override func editingRect(forBounds bounds: CGRect) -> CGRect {
-        return bounds.insetBy(dx: inset, dy: inset)
+        //return bounds.insetBy(dx: inset, dy: inset)
+        let height = bounds.height
+        let buttonInset = UIEdgeInsets(top: inset, left: inset, bottom: inset, right: height - 2*inset)
+        
+        return bounds.inset(by: buttonInset)
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -43,6 +53,34 @@ class myTextField: UITextField {
         self.layer.shadowOpacity = 0.1
         self.layer.shadowRadius = 1.0
         self.layer.shadowColor = UIColor.systemGray.cgColor
+        
+//        if let label = self.value(forKey: "placeholderLabel") as? UILabel {
+//            label.adjustsFontSizeToFitWidth = true
+//            label.minimumScaleFactor = 0.5
+//        }
+        
+//        self.subviews
+//            .filter { $0 is UILabel }
+//            .flatMap { $0 as? UILabel }
+//            .forEach {
+//                $0.adjustsFontSizeToFitWidth = true
+//                $0.minimumScaleFactor = 0.5
+//            }
+        
+        let nextImage = UIImage(systemName: "arrow.forward")
+        overlayButton.setImage(nextImage, for: .normal)
+
+        overlayButton.sizeToFit()
+        overlayButton.tintColor = .gray
+        rightView = overlayButton
+        rightViewMode = .whileEditing
+        
+        
+    }
+
+    override func rightViewRect(forBounds bounds: CGRect) -> CGRect {
+        let rect = super.clearButtonRect(forBounds: bounds)
+        return rect.offsetBy(dx: -2, dy: 0)
     }
     
 }
@@ -102,7 +140,7 @@ class myBlackButton: UIButton {
     }
     
     func format(){
-      heightAnchor.constraint(equalToConstant: 56).isActive = true
+      heightAnchor.constraint(equalToConstant: 46).isActive = true
        widthAnchor.constraint(equalToConstant: 96).isActive = true
        backgroundColor = UIColor.black
        titleLabel?.textColor = UIColor.white

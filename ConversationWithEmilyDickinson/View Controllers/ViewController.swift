@@ -21,6 +21,9 @@ import Social
 class ViewController: myViewController, UITextFieldDelegate{
     
     var name : String?
+    var emilyVoice = EmilyScript()
+    
+   // var lastFirstLine = String()
     
     var textInputField = myTextField()
     var label = UILabel()
@@ -29,6 +32,8 @@ class ViewController: myViewController, UITextFieldDelegate{
     var reset = UIButton()
     var showKeyLine = UIButton()
     var signature = UIImageView()
+    
+   
     
     var settings = UIButton()
   
@@ -80,23 +85,38 @@ class ViewController: myViewController, UITextFieldDelegate{
         return contentView
     }()
     
-    lazy var nextButton: myBlackButton = {
-        let contentView = myBlackButton()
-        contentView.setTitle("Next", for: .normal)
-        contentView.alpha = 0
+//    lazy var nextButton: myBlackButton = {
+//        let contentView = myBlackButton()
+//        contentView.setTitle("Next", for: .normal)
+//        contentView.alpha = 0
+//        return contentView
+//    }()
+    
+    lazy var dismissingTapView : UIView = {
+        let contentView = UIView()
+        contentView.backgroundColor = .clear
+        
+            // Initialize Tap Gesture Recognizer
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.didTapView(_:)))
+        
+            // Add Tap Gesture Recognizer
+        contentView.addGestureRecognizer(tapGestureRecognizer)
+        contentView.isHidden = true
         return contentView
     }()
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        share.alpha = 0
+        back.alpha = 0
     
         checkIfNewUser()
         setup()
         layout()
         formatLabels()
         
-        
+        textInputField.overlayButton.addTarget(self, action: #selector(userAnswerButtonPressed), for: .touchUpInside)
         
         
     }
@@ -108,18 +128,26 @@ class ViewController: myViewController, UITextFieldDelegate{
     
     func checkIfNewUser(){
         let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
-        name = (UserDefaults.standard.object(forKey: "Name") as? String ) ?? "friend"
+        name = (UserDefaults.standard.object(forKey: "Name") as? String ) ?? "Friend"
+        
+        if let nname = name{
+            if nname.isEmpty{
+                name = "Friend"
+            }
+        }
         
         if launchedBefore{
-            //preThinLabel.isHidden = true
-            boldLabel.text = "Hello again, \(name!)"
-            thinLabel.text = "Did anything preoccupy you today?"
+            let emilySaid = emilyVoice.openingPhrase()
+            boldLabel.text = emilySaid.boldLabel
+            thinLabel.text = emilySaid.thinLabel
+            textInputField.placeholder = emilySaid.textPlaceholder
             
         }  else
         {
             UserDefaults.standard.set(true, forKey: "launchedBefore")
             boldLabel.text = "Nice to meet you, \(name!)"
             thinLabel.text = "You look like you think about things deeply"
+            textInputField.placeholder = "Write one word ..."
         }
     }
     
@@ -152,6 +180,13 @@ class ViewController: myViewController, UITextFieldDelegate{
         self.view.backgroundColor = .white
         let margins = view.layoutMarginsGuide
         
+        view.addSubview(dismissingTapView)
+        dismissingTapView.translatesAutoresizingMaskIntoConstraints = false
+        dismissingTapView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        dismissingTapView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        dismissingTapView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        dismissingTapView.heightAnchor.constraint(equalToConstant: 0.8*view.frame.height).isActive = true
+        
         textInputField.alpha = 0
         textInputField.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(textInputField)
@@ -159,7 +194,7 @@ class ViewController: myViewController, UITextFieldDelegate{
         view.addSubview(label)
         textInputField.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: 20).isActive = true
         textInputField.trailingAnchor.constraint(equalTo: margins.trailingAnchor, constant: -20).isActive = true
-        textInputField.placeholder = "Share your thoughts ..."
+        //textInputField.placeholder = "Three words for now"
         textInputField.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         textInputField.heightAnchor.constraint(equalToConstant: 64).isActive = true
         
@@ -184,17 +219,30 @@ class ViewController: myViewController, UITextFieldDelegate{
         signature.widthAnchor.constraint(equalToConstant: 92).isActive = true
         signature.alpha = 0
         
-        buttonStack.addArrangedSubview(reset)
-        buttonStack.addArrangedSubview(back)
-        buttonStack.addArrangedSubview(share)
-        buttonStack.addArrangedSubview(showKeyLine)
+       // buttonStack.addArrangedSubview(reset)
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            buttonStack.addArrangedSubview(back)
+            #if targetEnvironment(macCatalyst)
+            buttonStack.addArrangedSubview(share)
+            #endif
+            // work out the crash
+          //  buttonStack.addArrangedSubview(share)
+            
+        } else{
+            buttonStack.addArrangedSubview(back)
+            buttonStack.addArrangedSubview(share)
+        }
+        
+       // buttonStack.addArrangedSubview(showKeyLine)
         view.addSubview(buttonStack)
         
         reset.backgroundColor = .clear
         showKeyLine.backgroundColor = .clear
         
-        reset.addTarget(self, action: #selector(restart), for: .touchUpInside)
-        showKeyLine.addTarget(self, action: #selector(showMatchedLine), for: .touchUpInside)
+      //  reset.addTarget(self, action: #selector(restart), for: .touchUpInside)
+      //  showKeyLine.addTarget(self, action: #selector(showMatchedLine), for: .touchUpInside)
+        
+        
         
         buttonStack.axis = .horizontal
         buttonStack.translatesAutoresizingMaskIntoConstraints = false
@@ -223,7 +271,7 @@ class ViewController: myViewController, UITextFieldDelegate{
         back.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40).isActive = true
         //back.trailingAnchor.constraint(equalTo: share.leadingAnchor, constant: 16).isActive = true
         
-        back.setTitle("Another?", for: .normal)
+        back.setTitle("Again?", for: .normal)
         back.addTarget(self, action: #selector(tryAgain), for: .touchUpInside)
         back.heightAnchor.constraint(equalToConstant: 56).isActive = true
         back.widthAnchor.constraint(equalToConstant: 96).isActive = true
@@ -238,26 +286,17 @@ class ViewController: myViewController, UITextFieldDelegate{
         settings.translatesAutoresizingMaskIntoConstraints = false
         settings.topAnchor.constraint(equalTo: margins.topAnchor, constant: 20).isActive = true
         settings.leadingAnchor.constraint(equalTo: margins.leadingAnchor).isActive = true
-        settings.heightAnchor.constraint(equalToConstant: 16).isActive = true
-        settings.widthAnchor.constraint(equalToConstant: 24).isActive = true
+        settings.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        settings.widthAnchor.constraint(equalToConstant: 50).isActive = true
         settings.tintColor = UIColor(named: "gray1")
         settings.alpha = 1
-        settings.setBackgroundImage(UIImage(named: "menu"), for: .normal)
+       // settings.setBackgroundImage(UIImage(named: "menu"), for: .normal)
+        let menuImageView = UIImageView(image: UIImage(named: "menu"))
+        menuImageView.frame = CGRect(x: 0, y: 0, width: 24, height: 16)
+        settings.addSubview(menuImageView)
+       // menuImageView.translatesAutoresizingMaskIntoConstraints =
         settings.clipsToBounds = true
         settings.addTarget(self, action: #selector(settingsButtonPressed), for: .touchUpInside)
-
-
-        view.addSubview(nextButton)
-        nextButton.addTarget(self, action: #selector(userAnswerButtonPressed), for: .touchUpInside)
-        nextButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [
-                nextButton.topAnchor.constraint(equalTo: textInputField.bottomAnchor, constant: 24),
-                nextButton.centerXAnchor.constraint(equalTo:  margins.centerXAnchor)
-            ]
-        )
-        
-
     }
     
     func formatLabels(){
@@ -309,18 +348,33 @@ class ViewController: myViewController, UITextFieldDelegate{
 
     @objc func settingsButtonPressed(){
         
-        let vc = UIHostingController(rootView: SettingsView())
-        
-        vc.modalPresentationStyle = .fullScreen
-        present(vc, animated: true)
+        if #available(iOS 15.0, *) {
+            let vc = UIHostingController(rootView: SettingsView())
+            vc.modalPresentationStyle = .fullScreen
+            present(vc, animated: true)
+        } else {
+            let vc = UIHostingController(rootView: SettingsView14())
+            vc.modalPresentationStyle = .formSheet
+            present(vc, animated: true)
+        }
     }
 
     @objc func shareButtonPressed(){
         let generator = UISelectionFeedbackGenerator()
         generator.selectionChanged()
+       
+        let shareImage = textToImage(drawText: matchedPoem, inImage: UIImage(named: "shareBackground")!)
+        let ac = UIActivityViewController(activityItems: [ shareImage, "#EmilySaidItBetter - find your perfect personalized #Dickinson #poem! Download from the App Store now: https://apple.co/3edhxBv"
+                                                         ], applicationActivities: nil)
         
-        let ac = UIActivityViewController(activityItems: [matchedPoem], applicationActivities: nil)
+//        if UIDevice.current.userInterfaceIdiom == .pad {
+//            if let wPPC = ac.popoverPresentationController {
+//                activityVC.popoverPresentationController?.sourceView = UIApplication.shared.windows.first
+//            }
+//        }
+        
         present(ac, animated: true)
+
         
 //        if let vc = SLComposeViewController(forServiceType: SLServiceTypeFacebook) {
 //            vc.setInitialText("Look at this great picture!")
@@ -335,15 +389,16 @@ class ViewController: myViewController, UITextFieldDelegate{
     }
     
     @objc func restart(_ textField:UIButton ){
-//        label.isHidden = true
-//        textInputField.text = ""
-//        textInputField.placeholder = "What's on your mind?"
-//        textInputField.isHidden = false
-//        button.isHidden = true
         let generator = UISelectionFeedbackGenerator()
         generator.selectionChanged()
       
+      //  UserDefaults.standard.removeObject(forKey: "launchedBefore")
+      //  UserDefaults.standard.removeObject(forKey: "lastLoginDate")
+     //   UserDefaults.standard.removeObject(forKey: "LoginCount")
+        
+        UserDefaults.standard.set(Date(), forKey: "lastLoginDate")
         UserDefaults.standard.set(false, forKey: "launchedBefore")
+        UserDefaults.standard.set(1, forKey: "LoginCount")
         
         let introVC = introViewController()
         introVC.modalPresentationStyle = .fullScreen
@@ -361,21 +416,37 @@ class ViewController: myViewController, UITextFieldDelegate{
         settings.isHidden = false
         settings.alpha = 1
         textInputField.text = ""
-        textInputField.placeholder = "Grab a fleeting feeling"
+        textInputField.placeholder = emilyVoice.tryAgain()
         textInputField.isHidden = false
-       
+        dismissingTapView.isHidden = true
        // share.isHidden = true
         signature.isHidden = true
     }
     
     @objc func userAnswerButtonPressed(){
-        nextButton.isHidden = true
-        
+        buttonStack.isHidden = true
         self.view.endEditing(true)
             //        let generatorSuccess = UINotificationFeedbackGenerator()
             //        generatorSuccess.notificationOccurred(.success)
         generatorLight.impactOccurred()
-        answerAnimate()
+       
+        pickPoem()
+
+    }
+
+    @objc func userAnswer(_ textField: myTextField ){
+//        nextButton.isHidden = true
+//        nextButton.alpha = 0
+        buttonStack.isHidden = true
+        self.view.endEditing(true)
+        textField.isHidden = true
+//        let generatorSuccess = UINotificationFeedbackGenerator()
+//        generatorSuccess.notificationOccurred(.success)
+        generatorLight.impactOccurred()
+        pickPoem()
+    }
+    
+    func pickPoem(){
         
         var closestEmilyDickinsonLine = ""
         if let text = self.textInputField.text{
@@ -383,11 +454,15 @@ class ViewController: myViewController, UITextFieldDelegate{
                 closestEmilyDickinsonLine = closestline
             }
         }
-        
+
         textInputField.isHidden = true
-        self.label.isHidden = false
-      
-        let poem = findThePoem[closestEmilyDickinsonLine]
+        label.isHidden = false
+        
+        var poem = findThePoem[closestEmilyDickinsonLine] ?? poemCollection.randomElement()
+        
+        if poem?.lines.first == "In the silent west"{
+            poem = poemCollection.randomElement()
+        }
         
         matchedPoem = ""
         
@@ -395,68 +470,12 @@ class ViewController: myViewController, UITextFieldDelegate{
             matchedPoem.append(contentsOf: lines)
             matchedPoem.append("\n")
         }
-        
-        self.label.text = matchedPoem
-        nextButton.alpha = 0
-            // resetTest.isHidden = false
-            //  askAgain.isHidden = false
-        
-            //        if launchedBefore {
-            //   animate()
-            //      }
-    }
-
-    @objc func userAnswer(_ textField: myTextField ){
-        nextButton.isHidden = true
-        nextButton.alpha = 0 
-        self.view.endEditing(true)
-//        let generatorSuccess = UINotificationFeedbackGenerator()
-//        generatorSuccess.notificationOccurred(.success)
-        generatorLight.impactOccurred()
         answerAnimate()
+        self.label.text = matchedPoem
+        dismissingTapView.isHidden = false
+    }
 
-        var closestEmilyDickinsonLine = ""
-            if let text = self.textInputField.text{
-                if let closestline = self.answerKeyCustom(for: text){
-                    closestEmilyDickinsonLine = closestline
-                }
-            }
-            
-            textField.isHidden = true
-            self.label.isHidden = false
-            
-            let poem = findThePoem[closestEmilyDickinsonLine]
-       
-            matchedPoem = ""
-            
-            for lines in poem!.lines{
-                matchedPoem.append(contentsOf: lines)
-                matchedPoem.append("\n")
-            }
-        
-            self.label.text = matchedPoem
-           // resetTest.isHidden = false
-          //  askAgain.isHidden = false
-        
-//        if launchedBefore {
-         //   animate()
-  //      }
-         nextButton.alpha = 0
-    }
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        nextButton.isHidden = false
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)){
-            let animator = UIViewPropertyAnimator(duration: 5, curve: .easeOut) {
-                self.nextButton.alpha = 1
-                
-            }
-            animator.startAnimation()
-        }
-    }
-    
     func answerAnimate(){
-        nextButton.alpha = 0
         preThinLabel.alpha = 0
         label.alpha = 0
         boldLabel.alpha = 0
@@ -465,8 +484,6 @@ class ViewController: myViewController, UITextFieldDelegate{
         back.alpha = 0
         share.alpha = 0
         signature.alpha = 0
-        
-        buttonStack.isHidden = false
         signature.isHidden = false
         settings.isHidden = true
         
@@ -492,11 +509,9 @@ class ViewController: myViewController, UITextFieldDelegate{
         else {
             preThinLabel.isHidden = false
             
-            preThinLabel.text = "Oh ... I think I understand .... "
-            
-            boldLabel.text = "Can I show you a poem?"
-            
-            //thinLabel.text = "I wish I could help .. "
+            let emilySaid = emilyVoice.intermezzoPhrase()
+            preThinLabel.text = emilySaid.thinLabel
+            boldLabel.text = emilySaid.boldLabel
             thinLabel.isHidden = true
             
             DispatchQueue.main.asyncAfter(deadline: .now() ){ [self] in
@@ -543,19 +558,31 @@ class ViewController: myViewController, UITextFieldDelegate{
             
             seenAnimationsThisTime = true
         }
+      
         
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(10) ){
+            
             self.buttonStack.isHidden = false
             self.settings.isHidden = true
             
-            let animator = UIViewPropertyAnimator(duration: 5, curve: .easeOut) {
+            let animator = UIViewPropertyAnimator(duration: 10, curve: .easeOut) {
                 self.back.alpha = 1
                 self.share.alpha = 1
-                self.settings.alpha = 1
             }
             animator.startAnimation()
             self.generatorLight.impactOccurred()
         }
+    }
+    
+        // Initialize Tap Gesture Recognizer
+    @objc func didTapView(_ gestureRecognizer: UIGestureRecognizer){
+            self.buttonStack.isHidden = false
+            self.settings.isHidden = true
+            self.back.alpha = 1
+            self.share.alpha = 1
+            self.label.alpha = 1
+            self.signature.alpha = 1
+            self.stackView.isHidden = true
     }
     
     func answerKeyCustom(for string: String) -> String? {
@@ -565,12 +592,11 @@ class ViewController: myViewController, UITextFieldDelegate{
         let customEmbedding = try! NLEmbedding.init(contentsOf: modelURL!)
         guard let queryVector = embedding.vector(for: string) else { return nil }
 
-        guard let (nearestLineKey, distance ) = customEmbedding.neighbors(for: queryVector, maximumCount: 1).first else
+        guard let (nearestLineKey, _ ) = customEmbedding.neighbors(for: queryVector, maximumCount: 1).first else
         {
             return nil
-            
+
         }
-        
         matchedLine = nearestLineKey
         
         let matchedVerse = self.findThePoem[ nearestLineKey ]
@@ -595,9 +621,9 @@ class ViewController: myViewController, UITextFieldDelegate{
             print("Your filepath failed")
         }
 
-       /// Break it into individual verses and tidy up some typographocal strangness
+       /// Break it into individual verses and tidy up some typographocal strangeness
        /// source: Project Gutenberg's Poems: Three Series, Complete, by Emily Dickinson
-        var unprocessedVerses = rawString.components(separatedBy: "\r\n\r\n")
+        let unprocessedVerses = rawString.components(separatedBy: "\r\n\r\n")
         for unprocessedVerse in unprocessedVerses {
              var lines = unprocessedVerse.components(separatedBy: "\r\n")
 
@@ -615,32 +641,43 @@ class ViewController: myViewController, UITextFieldDelegate{
                 poemCollection.append(verse)
             }
          }
-        
-        print("Number of verses = \(poemCollection.count)")
-        
+
         for poem in poemCollection{
             for line in poem.lines{
                 findThePoem[line] = poem
             }
         }
     }
-}
-
-extension ViewController : UIActivityItemSource  {
-    func activityViewController(_ activityViewController: UIActivityViewController, itemForActivityType activityType: UIActivity.ActivityType?) -> Any? {
-        if activityType == .postToTwitter {
-            return "#EmilySaidItBetter - download from the App Store now and find your perfect personalised #EmilyDickinson #poem!"
-        } else {
-            return "#EmilySaidItBetter - download from the App Store now and find your perfect personalised #EmilyDickinson #poem!"
+    
+    func textToImage(drawText text: String, inImage image: UIImage) -> UIImage {
+        let textColor = UIColor(named: "gray1")
+        var textFont = UIFont()
+        
+        switch text.count{
+            case 100..<400: textFont = UIFont.systemFont(ofSize: 12, weight: .thin)
+            case 40..<100: textFont = UIFont.systemFont(ofSize: 14, weight: .thin)
+            case 20..<40: textFont = UIFont.systemFont(ofSize: 16, weight: .thin)
+            case 0..<20: textFont = UIFont.systemFont(ofSize: 18, weight: .thin)
+            default:    textFont = UIFont.systemFont(ofSize: 10, weight: .thin)
         }
-    }
-    
-    func activityViewControllerPlaceholderItem(_ activityViewController: UIActivityViewController) -> Any {
-        return  "#EmilySaidItBetter - download from the App Store now and find your perfect personalised #EmilyDickinson #poem!"
-    }
-    
-    func activityViewController(_ activityViewController: UIActivityViewController, subjectForActivityType activityType: UIActivity.ActivityType?) -> String {
-        return "Emily said it better"
+
+        
+        let scale = UIScreen.main.scale
+        UIGraphicsBeginImageContextWithOptions(image.size, false, scale)
+        
+        let textFontAttributes = [
+            NSAttributedString.Key.font: textFont,
+            NSAttributedString.Key.foregroundColor: textColor,
+        ] as [NSAttributedString.Key : Any]
+        image.draw(in: CGRect(origin: CGPoint.zero, size: image.size))
+        
+        var rect = CGRect(origin: CGPoint(x: 0, y: 0), size: image.size)
+        rect = rect.inset(by: UIEdgeInsets(top: 10, left: 10, bottom: 30, right: 10))
+        text.draw(in: rect, withAttributes: textFontAttributes)
+        
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage ?? UIImage(named: "shareBackground")!
     }
 }
-

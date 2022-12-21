@@ -22,11 +22,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         // TODO:  Handle dark mode
         window.overrideUserInterfaceStyle = .light
-        
-   //     window.rootViewController = settingsViewController() // Your initial view controller.
-     //   window.makeKeyAndVisible()
-     //   self.window = window
-        
        
         UINavigationBar.appearance().backIndicatorImage = UIImage(systemName: "chevron.left")
         UINavigationBar.appearance().backIndicatorTransitionMaskImage = UIImage(named: "chevron.left")
@@ -34,21 +29,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         //UINavigationBar.navigationItem.backBarButtonItem?.title = ""
         UINavigationBar.appearance().barTintColor = UIColor(.gray1)
         UINavigationBar.appearance().tintColor = UIColor(.gray1)
-
         
-        let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
-       // let launchedBefore = false
-
+       // let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
+        let launchedBefore = false
+        
+        
         if launchedBefore{
 
-            let logins = UserDefaults.standard.integer(forKey: "LoginCount")
-            UserDefaults.standard.set(logins + 1, forKey: "LoginCount")
+            
             window.rootViewController = ViewController() // Your initial view controller.
             window.makeKeyAndVisible()
             self.window = window
         }  else
         {
-            UserDefaults.standard.set(true, forKey: "launchedBefore")
+            UserDefaults.standard.set(Date(), forKey: "lastLoginDate")
+           // UserDefaults.standard.set(true, forKey: "launchedBefore")
             UserDefaults.standard.set(1, forKey: "LoginCount")
             window.rootViewController = introViewController() // Your initial view controller.
             window.makeKeyAndVisible()
@@ -57,7 +52,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
        
     }
-
+    
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
         // This occurs shortly after the scene enters the background, or when its session is discarded.
@@ -78,6 +73,26 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneWillEnterForeground(_ scene: UIScene) {
         // Called as the scene transitions from the background to the foreground.
         // Use this method to undo the changes made on entering the background.
+        let myCalendar = Calendar.current
+        
+        var logins = UserDefaults.standard.integer(forKey: "LoginCount")
+        if logins == 0 {
+            UserDefaults.standard.set(1, forKey: "LoginCount")
+            logins = 1
+        }
+        if let lastLogin = UserDefaults.standard.object(forKey: "lastLoginDate") as? Date
+        {
+            
+            if !myCalendar.isDateInToday(lastLogin)
+            {
+                UserDefaults.standard.set(logins + 1, forKey: "LoginCount")
+                UserDefaults.standard.set(Date(), forKey: "lastLoginDate")
+            }
+        } else {
+            UserDefaults.standard.set(Date(), forKey: "lastLoginDate")
+        }
+        
+        
     }
 
     func sceneDidEnterBackground(_ scene: UIScene) {

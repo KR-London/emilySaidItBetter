@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "Image.png",
+      "filename" : "Emily3.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "emilyHughRes.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "emilyHughRes-1.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

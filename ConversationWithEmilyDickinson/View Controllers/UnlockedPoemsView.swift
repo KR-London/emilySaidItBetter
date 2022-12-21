@@ -19,13 +19,13 @@ struct UnlockedPoemsView: View {
             Spacer()
             Text("Future releases plan to add ability to browse your unlocked poems and other special features.").font(.body).fontWeight(.light)
             Spacer()
-            Text("Please boost our morale with ... ").font(.body).fontWeight(.light)
+            Text("Please boost our morale: ").font(.body).fontWeight(.light)
                 VStack{
                     Spacer()
                     Divider()
                     Button(action: {
                                 if let writeReviewURL = URL(string: "https://apps.apple.com/app/id1591017862?action=write-review")
-                                { openURL(URL(string: "writeReviewURL")!)}
+                                { openURL(writeReviewURL)}
                              
                         }, label: {
                             SettingsButton(title: "A nice review", subtitle: "", imageName: "rectangle.portrait.and.arrow.right")
@@ -47,12 +47,12 @@ struct UnlockedPoemsView: View {
                     Spacer()
                 }
                 .sheet(isPresented: $showingMail) {
-                    MailComposeViewController(toRecipients: ["emily@saltformysquid.com"], mailBody: "We'd love to hear what you think!") { }  }
+                    MailComposeViewController(toRecipients: ["emily.said.it.better@gmail.com"], mailBody: "We'd love to hear what you think!") { }  }
             VStack{
                     Spacer()
                     Divider()
                     Button(action: {
-                            openURL(URL(string: "https://www.justgiving.com/fundraising/emilyapp")!)
+                            openURL(URL(string: "https://www.justgiving.com/fundraising/emily-said-it-better")!)
                         }, label: {
                                 SettingsButton(title: "Donate to our preferred charity", subtitle: "", imageName: "rectangle.portrait.and.arrow.right")
                         }
@@ -68,27 +68,7 @@ struct UnlockedPoemsView_Previews: PreviewProvider {
     static var previews: some View {
         UnlockedPoemsView()
     }
-    
-  
 }
-
-
-//struct GetInTouchButton: View {
-//
-//    @State var title: String
-//
-//    var body: some View {
-//        HStack{
-//            VStack(alignment: .leading) {
-//                Text(title).fontWeight(.light).font(.system(size: 18)).foregroundColor(Color("gray1"))
-//            }
-//            Spacer()
-//            Image(systemName:  "envelope").foregroundColor(Color("gray1")).font(.system(size: 14))
-//        }.foregroundColor(.black)
-//    }
-//
-
-
 
 struct MailComposeViewController: UIViewControllerRepresentable {
     

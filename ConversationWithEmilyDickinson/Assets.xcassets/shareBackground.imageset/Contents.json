@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "signature2.jpg",
+      "filename" : "Background.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "signature2-1.jpg",
+      "filename" : "Background-1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "signature2-2.jpg",
+      "filename" : "Background-2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
